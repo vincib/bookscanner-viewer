@@ -21,10 +21,10 @@ table.matable td, table.matable th {
 table.matable td.c {
     text-align: center;
 }
-table.matable td.l1 {
+table.matable tr:nth-child(odd) td {
     background: #e8e8e8;
 }
-table.matable td.l2 {
+table.matable tr:nth-child(even) td {
     background: #f8f8f8;
 }
 

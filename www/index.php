@@ -12,6 +12,9 @@ case "/logout":
 case "/booklist":
   require_once("booklist.php"); 
   break;
+case "/events":
+  require_once("events.php"); 
+  break;
 default:
   require_once("head.php");
   require_once("menu.php");

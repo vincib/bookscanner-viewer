@@ -10,10 +10,10 @@ $abltype=array(
 	       );
 function booklog($book,$type,$message) {
   global $abltype;
-  if (!in_array($abltype,$type)) {
+  if (!isset($abltype[$type])) {
     echo "ERROR: booklog called with bad type:$type ($message)\n";
   } else {
-    mq("INSERT INTO booklog SET book='".intval(book)."', type='".intval($type)."', message='".addslashes($message)."';");
+    mq("INSERT INTO booklog SET book='".intval($book)."', type='".intval($type)."', message='".addslashes($message)."';");
   }
 }
 

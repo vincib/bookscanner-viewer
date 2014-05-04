@@ -38,14 +38,23 @@ function scanproject($project) {
     mq("INSERT INTO books SET projectname='".addslashes($project)."';");
     $data=mqone("SELECT * FROM books WHERE projectname='".addslashes($project)."';");
     booklog($data["id"],BOOKLOG_BOTINFO,"Book detected and indexed in project folder");
+    $data["changed"]=0;
+    $changed=time();
     $created=true;
+  } else {
+    $changed=$data["changed"];
   }
-  
   // metadata changed ?
   if ($data["meta_ts"]<filemtime($root."meta.json")) {
     if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"Metadata changed and indexed");
     $meta=json_decode(file_get_contents($root."meta.json"),true);
+
+    $allmeta=array("date","title","publisher","ean13","lang");
+    foreach($allmeta as $m) if (!isset($meta[$m])) $meta[$m]="";
+    if (!isset($meta["author"])) $meta["author"]=array();
+
     $dateprecision=0;
+    $date="";
     if (preg_match('#^([0-9]+)-([0-9]+)-([0-9]+)$#',$meta["date"],$mat)) {
       $date=$mat[1]."-".$mat[2]."-".$mat[3]; $dateprecision=3;
     }
@@ -55,7 +64,7 @@ function scanproject($project) {
     if (preg_match('#^([0-9]+)$#',$meta["date"],$mat)) {
       $date=$mat[1]."-"."01"."-"."01"; $dateprecision=1;
     }
-    $isbn=preg_replace("[^0-9]","",$meta["ean13"]);
+    $isbn=preg_replace("#[^0-9]#","",$meta["ean13"]);
     mq("UPDATE books SET
     date='".addslashes($date)."',
     dateprecision='".addslashes($dateprecision)."',
@@ -67,6 +76,7 @@ function scanproject($project) {
     meta_ts=".filemtime($root."meta.json")." 
     WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+    $changed=max($changed,filemtime($root."meta.json"));
   } // metadata changed / created ? 
 
   // original picture changed ? 
@@ -90,6 +100,7 @@ function scanproject($project) {
     closedir($d);
     mq("UPDATE books SET scan_ts=$scan_ts WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+    $changed=max($changed,intval($scan_ts));
   } // scan_ts changed / created ?
 
   // Scantailor project file
@@ -99,6 +110,7 @@ function scanproject($project) {
     if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"Scantailor project updated");
     mq("UPDATE books SET scantailor_ts=".filemtime($root.$project.".scantailor")." WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+    $changed=max($changed,filemtime($root.$project.".scantailor"));
   } // scantailor_ts changed / created ?
 
   // low resolution image pdf file 
@@ -108,6 +120,7 @@ function scanproject($project) {
     if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"Image PDF updated");
     mq("UPDATE books SET bookpdf_ts=".filemtime($root."book.pdf")." WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+    $changed=max($changed,filemtime($root."book.pdf"));
   } // bookpdf_ts changed / created ?
   
   // ODT result
@@ -117,34 +130,40 @@ function scanproject($project) {
     if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"ODT text updated");
     mq("UPDATE books SET odt_ts=".filemtime($root."book.odt")." WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+    $changed=max($changed,filemtime($root."book.odt"));
   } // odt_ts changed / created ?
 
 
   // booktif and ocr requires booktif/ folder
-  if (!is_dir($root."booktif")) {
-    return;
+  if (is_dir($root."booktif")) {
+    
+    // scanning booktif for TIF and TXT files, get the latest of each for booktif_ts and ocr_ts.
+    if ($data["booktif_ts"]<filemtime($root."booktif") || $data["ocr_ts"]<filemtime($root."booktif")
+	) {
+      $ocr_ts=$data["ocr_ts"];
+      $booktif_ts=$data["booktif_ts"];
+      $d=opendir($root."booktif");
+      while (($c=readdir($d))!==false) {
+	if (substr($c,0,1)==".") continue;
+	if (is_file($root."booktif/".$c) && substr($c,-4)==".tif" && filemtime($root."booktif/".$c)>$booktif_ts) $booktif_ts=filemtime($root."booktif/".$c);
+	if (is_file($root."booktif/".$c) && substr($c,-4)==".txt" && filemtime($root."booktif/".$c)>$ocr_ts) $ocr_ts=filemtime($root."booktif/".$c);
+      } 
+      closedir($d);
+      if (!$created) {
+	if ($ocr_ts!=$data["ocr_ts"]) booklog($data["id"],BOOKLOG_BOTINFO,"OCR text files updated");
+	if ($booktif_ts!=$data["booktif_ts"]) booklog($data["id"],BOOKLOG_BOTINFO,"scantailor output files updated");
+      }
+      if ($ocr_ts!=$data["ocr_ts"] || $booktif_ts!=$data["booktif_ts"]) {
+	mq("UPDATE books SET ocr_ts=$ocr_ts, booktif_ts=$booktif_ts WHERE id=".$data["id"].";");
+	if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+      }
+      $changed=max($changed,intval($ocr_ts));
+      $changed=max($changed,intval($booktif_ts));
+    } // booktif_ts or ocr_ts changed / created ?
+    
   }
 
-  // scanning booktif for TIF and TXT files, get the latest of each for booktif_ts and ocr_ts.
-  if ($data["booktif_ts"]<filemtime($root."booktif") || $data["ocr_ts"]<filemtime($root."booktif")
-      ) {
-    $ocr_ts=$data["ocr_ts"];
-    $booktif_ts=$data["booktif_ts"];
-    $d=opendir($root."booktif");
-    while (($c=readdir($d))!==false) {
-      if (substr($c,0,1)==".") continue;
-      if (is_file($root."booktif/".$c) && substr($c,-4)==".tif" && filemtime($root."booktif/".$c)>$booktif_ts) $booktif_ts=filemtime($root."booktif/".$c);
-      if (is_file($root."booktif/".$c) && substr($c,-4)==".txt" && filemtime($root."booktif/".$c)>$ocr_ts) $ocr_ts=filemtime($root."booktif/".$c);
-    } 
-    closedir($d);
-    if (!$created) {
-      if ($ocr_ts!=$data["ocr_ts"]) booklog($data["id"],BOOKLOG_BOTINFO,"OCR text files updated");
-      if ($booktif_ts!=$data["booktif_ts"]) booklog($data["id"],BOOKLOG_BOTINFO,"scantailor output files updated");
-    }
-    if ($ocr_ts!=$data["ocr_ts"] || $booktif_ts!=$data["booktif_ts"]) {
-      mq("UPDATE books SET ocr_ts=$ocr_ts, booktif_ts=$booktif_ts WHERE id=".$data["id"].";");
-      if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
-    }
-  } // booktif_ts or ocr_ts changed / created ?
-
+  if ($changed>$data["changed"]) {
+    mq("UPDATE books SET changed=$changed WHERE id=".$data["id"].";");
+  }
 }

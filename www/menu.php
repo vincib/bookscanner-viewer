@@ -16,8 +16,12 @@
     <a href="/booklist"><?php __("Book Listing"); ?></a>
               </li>
 
+       <li<?php if (substr($_SERVER["REQUEST_URI"],0,7)=="/events") echo ' class="active"'; ?>>
+    <a href="/events"><?php __("Last events"); ?></a>
+              </li>
+
        <li<?php if (substr($_SERVER["REQUEST_URI"],0,10)=="/proofread") echo ' class="active"'; ?>>
-    <a href="list.php"><?php __("Proof reading"); ?></a>
+    <a href="/proofread"><?php __("Proof reading"); ?></a>
               </li>
 
               <li class="">

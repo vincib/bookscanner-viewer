@@ -8,7 +8,7 @@
 <div class="container-fluid main">
     <div class="container">
 
-<h1>Bonjour</h1>
+    <h1><?php __("Book Listing"); ?></h1>
 
 </div>
 </div>
