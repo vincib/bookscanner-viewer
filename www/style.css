@@ -1,0 +1,118 @@
+
+.client {
+    width: 180px;
+    height: 32px;
+    vertical-align: middle;
+    padding-left: 10px;
+}
+
+div.main {
+    padding-top: 60px;
+}
+
+table.matable {
+    padding: 4px; 
+    margin: 0;
+    border-collapse: collapse;
+}
+table.matable td, table.matable th {
+    padding: 4px;
+}
+table.matable td.c {
+    text-align: center;
+}
+table.matable td.l1 {
+    background: #e8e8e8;
+}
+table.matable td.l2 {
+    background: #f8f8f8;
+}
+
+span.history {
+    color: #F00;
+}
+
+
+/* ************************************************************ */
+/* SIGNIN FORM */
+
+      .form-signin {
+        max-width: 300px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-signin .form-signin-heading,
+      .form-signin .checkbox {
+        margin-bottom: 10px;
+      }
+      .form-signin input[type="text"],
+      .form-signin input[type="password"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+
+
+.stats span {
+    padding: 0 20px;
+}
+
+
+table.hlist {
+    border-collapse: collapse;
+    border: 1px solid #555;
+    padding: 4px;
+    padding-left: 20px;
+    margin: 0;
+}
+table.hlist td, table.hlist th {
+    text-align: left;
+    border-top: 1px solid #555;
+    border-bottom: 1px solid #555;
+    padding: 4px;
+    margin: 0;
+}
+
+
+.note {
+    font-size: 14px;
+    line-height: 1.2em;
+    max-height: 6em;
+    overflow: hidden;
+}
+
+a.del, a.edit {
+    color: #999;
+    padding-left: 18px;
+}
+
+a.edit {
+    background: no-repeat url('edit.png');
+}
+a.del {
+    background: no-repeat url('delete.png');
+}
+
+.hmenu {
+    position: absolute; 
+    left: 48px; 
+    top: -18px; 
+    font-size: 12px; 
+    width: 300px;
+    display: none;
+}
+
+input.search {
+    width: 130px;
+    padding-left: 22px;
+    background: no-repeat url('search.png') 4px 6px;
+    }
