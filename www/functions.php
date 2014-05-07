@@ -1,5 +1,10 @@
 <?php
 
+$alang= array(
+	      "fre" => "French",
+	      "eng" => "English",
+	      "deu" => "Deutsch",
+	      );
 define("BOOKLOG_BOTINFO","1");
 define("BOOKLOG_BOTERROR","2");
 define("BOOKLOG_HUMAN","10");

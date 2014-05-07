@@ -39,10 +39,12 @@ function scanproject($project) {
     $data=mqone("SELECT * FROM books WHERE projectname='".addslashes($project)."';");
     booklog($data["id"],BOOKLOG_BOTINFO,"Book detected and indexed in project folder");
     $data["changed"]=0;
+    $attribs=@json_decode($data["attribs"],true);
     $changed=time();
     $created=true;
   } else {
     $changed=$data["changed"];
+    $attribs=array();
   }
   // metadata changed ?
   if ($data["meta_ts"]<filemtime($root."meta.json")) {
@@ -78,7 +80,7 @@ function scanproject($project) {
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
     $changed=max($changed,filemtime($root."meta.json"));
   } // metadata changed / created ? 
-
+  
   // original picture changed ? 
   if (is_dir($root."left") && is_dir($root."right")
       && ( $data["scan_ts"]<filemtime($root."left") || $data["scan_ts"]<filemtime($root."right"))
@@ -87,20 +89,30 @@ function scanproject($project) {
     if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"Scan folder updated");
     $scan_ts=max(filemtime($root."left"),filemtime($root."right"));
     $d=opendir($root."left");
+    $leftcount=0;
     while (($c=readdir($d))!==false) {
       if (substr($c,0,1)==".") continue;
-      if (is_file($root."left/".$c)) $scan_ts=max($scan_ts,filemtime($root."left/".$c));
+      if (is_file($root."left/".$c)) {
+	$scan_ts=max($scan_ts,filemtime($root."left/".$c));
+	$leftcount++;
+      }
     } 
     closedir($d);
     $d=opendir($root."right");
+    $rightcount=0;
     while (($c=readdir($d))!==false) {
       if (substr($c,0,1)==".") continue;
-      if (is_file($root."right/".$c)) $scan_ts=max($scan_ts,filemtime($root."right/".$c));
+      if (is_file($root."right/".$c)) {
+	$scan_ts=max($scan_ts,filemtime($root."right/".$c));
+	$rightcount++;
+      }
     } 
     closedir($d);
     mq("UPDATE books SET scan_ts=$scan_ts WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
     $changed=max($changed,intval($scan_ts));
+    $attribs["leftcount"]=$leftcount;
+    $attribs["rightcount"]=$rightcount;
   } // scan_ts changed / created ?
 
   // Scantailor project file
@@ -121,8 +133,14 @@ function scanproject($project) {
     mq("UPDATE books SET bookpdf_ts=".filemtime($root."book.pdf")." WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
     $changed=max($changed,filemtime($root."book.pdf"));
+    $attribs["bookpdf_size"]=filesize($root."book.pdf");
+    unset($out);
+    exec("pdfinfo ".escapeshellarg($root."book.pdf"),$out);
+    foreach($out as $o) 
+      if (preg_match("#Pages: *([0-9]*)#",$o,$mat))
+	$attribs["bookpdf_pages"]=intval($mat[1]);
   } // bookpdf_ts changed / created ?
-  
+ 
   // ODT result
   if (is_file($root."book.odt")
       && $data["odt_ts"]<filemtime($root."book.odt")
@@ -131,6 +149,7 @@ function scanproject($project) {
     mq("UPDATE books SET odt_ts=".filemtime($root."book.odt")." WHERE id=".$data["id"].";");
     if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
     $changed=max($changed,filemtime($root."book.odt"));
+    $attribs["odt_size"]=filesize($root."book.odt");
   } // odt_ts changed / created ?
 
 
@@ -140,13 +159,21 @@ function scanproject($project) {
     // scanning booktif for TIF and TXT files, get the latest of each for booktif_ts and ocr_ts.
     if ($data["booktif_ts"]<filemtime($root."booktif") || $data["ocr_ts"]<filemtime($root."booktif")
 	) {
+      $booktifcount=0;
+      $ocrcount=0;
       $ocr_ts=$data["ocr_ts"];
       $booktif_ts=$data["booktif_ts"];
       $d=opendir($root."booktif");
       while (($c=readdir($d))!==false) {
 	if (substr($c,0,1)==".") continue;
-	if (is_file($root."booktif/".$c) && substr($c,-4)==".tif" && filemtime($root."booktif/".$c)>$booktif_ts) $booktif_ts=filemtime($root."booktif/".$c);
-	if (is_file($root."booktif/".$c) && substr($c,-4)==".txt" && filemtime($root."booktif/".$c)>$ocr_ts) $ocr_ts=filemtime($root."booktif/".$c);
+	if (is_file($root."booktif/".$c) && substr($c,-4)==".tif") {
+	  if (filemtime($root."booktif/".$c)>$booktif_ts) $booktif_ts=filemtime($root."booktif/".$c);
+	  $booktifcount++;
+	}
+	if (is_file($root."booktif/".$c) && substr($c,-4)==".txt") {
+	  if (filemtime($root."booktif/".$c)>$ocr_ts) $ocr_ts=filemtime($root."booktif/".$c);
+	  $ocrcount++;
+	}
       } 
       closedir($d);
       if (!$created) {
@@ -159,10 +186,16 @@ function scanproject($project) {
       }
       $changed=max($changed,intval($ocr_ts));
       $changed=max($changed,intval($booktif_ts));
+      $attribs["booktifcount"]=$booktifcount;
+      $attribs["ocrcount"]=$ocrcount;
     } // booktif_ts or ocr_ts changed / created ?
     
   }
-
+  
+  $jattribs=json_encode($attribs);
+  if ($jattribs!=$data["attribs"]) {
+    mq("UPDATE books SET attribs='".addslashes($jattribs)."' WHERE id=".$data["id"].";");
+  }
   if ($changed>$data["changed"]) {
     mq("UPDATE books SET changed=$changed WHERE id=".$data["id"].";");
   }
