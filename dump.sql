@@ -30,7 +30,7 @@ CREATE TABLE `booklog` (
   `message` text NOT NULL,
   PRIMARY KEY (`id`),
   KEY `book` (`book`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,6 +60,7 @@ CREATE TABLE `books` (
   `isbn` varchar(13) NOT NULL,
   `lang` char(3) NOT NULL,
   `status` int(11) NOT NULL,
+  `changed` int(11) NOT NULL,
   `meta_ts` int(10) unsigned NOT NULL DEFAULT '0',
   `scan_ts` int(10) unsigned NOT NULL DEFAULT '0',
   `scantailor_ts` int(10) unsigned NOT NULL DEFAULT '0',
@@ -67,9 +68,11 @@ CREATE TABLE `books` (
   `bookpdf_ts` int(10) unsigned NOT NULL DEFAULT '0',
   `ocr_ts` int(10) unsigned NOT NULL DEFAULT '0',
   `odt_ts` int(10) unsigned NOT NULL DEFAULT '0',
+  `attribs` text NOT NULL,
   PRIMARY KEY (`id`),
+  KEY `changed` (`changed`),
   FULLTEXT KEY `projectname` (`projectname`,`title`,`authors`,`publisher`,`isbn`,`lang`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,4 +122,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-05-04 19:24:30
+-- Dump completed on 2014-05-07 10:25:51
