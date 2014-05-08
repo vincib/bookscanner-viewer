@@ -36,6 +36,7 @@
    </button>
    <ul class="dropdown-menu">
    <li id="ca-logout"><a href="/logout"><?php __("Logout"); ?></a></li>
+ <?php if ($me["role"] & ROLE_ADMIN) { ?>   <li id="ca-edit"><a href="/accounts"><?php __("Edit accounts"); ?></a></li> <?php } ?>
    </ul>
 </div>
  <?php } else { ?> 

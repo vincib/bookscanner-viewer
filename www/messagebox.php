@@ -12,4 +12,16 @@ if (isset($_REQUEST["msg"])) {
 <?php
 }
 ?>
+<?php 
+if (isset($_REQUEST["error"])) {
+  ?>
+  <div id="alertmsg" class="alert alert-error">  <button type="button" class="close" data-dismiss="alert">&times;</button> <?php ehe($_REQUEST["error"]); ?></div>
+<script type="text/javascript">
+  $(document).ready(
+		    function () { window.setTimeout(function() { $("#alertmsg").fadeTo(500,0, function () { $("#alertmsg").alert('close'); } ) }, 3000); }
+		    );
+</script>
+<?php
+}
+?>
 </div>

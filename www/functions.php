@@ -1,5 +1,7 @@
 <?php
 
+define("ROLE_ADMIN","1");
+
 $alang= array(
 	      "fre" => "French",
 	      "eng" => "English",

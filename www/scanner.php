@@ -1,3 +1,4 @@
+#!/usr/bin/php
 <?php
 
 // This php-cli script scans all the project folders
@@ -39,12 +40,12 @@ function scanproject($project) {
     $data=mqone("SELECT * FROM books WHERE projectname='".addslashes($project)."';");
     booklog($data["id"],BOOKLOG_BOTINFO,"Book detected and indexed in project folder");
     $data["changed"]=0;
-    $attribs=@json_decode($data["attribs"],true);
-    $changed=time();
+    $changed=0; //time();
+    $attribs=array();
     $created=true;
   } else {
     $changed=$data["changed"];
-    $attribs=array();
+    $attribs=@json_decode($data["attribs"],true);
   }
   // metadata changed ?
   if ($data["meta_ts"]<filemtime($root."meta.json")) {
