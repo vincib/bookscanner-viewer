@@ -1,4 +1,6 @@
-
+<?php
+require_once("common.php");
+?>
 <div style="position: fixed; left: 20px; top: 60px; width: 800px; height: 48px;" id="messagebox">
 <?php 
 if (isset($_REQUEST["msg"])) {

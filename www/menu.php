@@ -1,4 +1,6 @@
-
+<?php
+require_once("common.php");
+?>
     <!-- Navbar
     ================================================== -->
     <div class="navbar navbar-fixed-top">
@@ -34,7 +36,7 @@
               </li>
 
             </ul>
-       <?php if ($_SESSION["id"]) { ?>
+       <?php if (isset($_SESSION["id"])) { ?>
 <div id="gravatar" class="pull-right" style="padding-left: 10px; padding-top:4px"><img src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($me["email"])); ?>?s=32"></div>
 <div id="user" class="pull-right btn-group"><button class="btn dropdown-toggle btn-info" data-toggle="dropdown">
 <?php echo $me["firstname"]." ".$me["lastname"]; ?>  <span class="caret"></span>

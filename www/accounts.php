@@ -1,5 +1,7 @@
 <?php
 
+require_once("common.php");
+
 if (!($me["role"] & ROLE_ADMIN)) {
   header("Location: /");
   exit();
