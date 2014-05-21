@@ -8,7 +8,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
   $me=mqone("SELECT * FROM users WHERE `login`='".addslashes($_POST["login"])."';");
   if ($me) {
     print_r($me);
-    if ($me["password"]!=crypt($_POST["password"],$me["password"])) {
+    if ($me["pass"]!=crypt($_POST["password"],$me["pass"])) {
       $error=_("Incorrect username or password");
     } else {
       $_SESSION["id"]=$me["id"];
@@ -21,7 +21,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
     $error=_("Incorrect username or password");
   }
 }
-$_REQUEST["error"]=$error;
+if ($error) { $_REQUEST["error"]=$error; }
 require_once("head.php");
 require_once("menu.php");
 require_once("messagebox.php");

@@ -1,30 +1,5 @@
 <?php
 
-define("ROLE_ADMIN","1");
-
-$alang= array(
-	      "fre" => "French",
-	      "eng" => "English",
-	      "deu" => "Deutsch",
-	      );
-define("BOOKLOG_BOTINFO","1");
-define("BOOKLOG_BOTERROR","2");
-define("BOOKLOG_HUMAN","10");
-$abltype=array(
-	       BOOKLOG_BOTINFO => "Bot Information",
-	       BOOKLOG_BOTERROR => "Bot Error",
-	       BOOKLOG_HUMAN => "Human Information",
-	       );
-function booklog($book,$type,$message) {
-  global $abltype;
-  if (!isset($abltype[$type])) {
-    echo "ERROR: booklog called with bad type:$type ($message)\n";
-  } else {
-    mq("INSERT INTO booklog SET book='".intval($book)."', type='".intval($type)."', message='".addslashes($message)."';");
-  }
-}
-
-
 function ifcheck($cond) {
   if ($cond) echo " checked=\"checked\""; 
 }
@@ -403,3 +378,11 @@ function getSalt() {
   return '$5$rounds=1000$'.$salt.'$';
 }
   
+function mkpass() {
+  $str="abcdefghjkmnpqrstuvwxyz23456789aaaaeeeeuuuu";
+  $s="";
+  for($i=0;$i<=8;$i++) {
+    $s.=substr($str,rand(0,strlen($str)),1);
+  }
+  return $s;
+}

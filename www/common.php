@@ -12,4 +12,5 @@ if (!isset($_SESSION["id"])) {
 $me=$_SESSION["me"];
 
 require_once("functions.php");
+require_once("bookfuncs.php");
 

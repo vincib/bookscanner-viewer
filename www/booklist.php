@@ -38,6 +38,7 @@ echo mysql_error();
     <th><?php __("Step"); ?></th>
     <th style="width: 140px"><?php __("Status"); ?></th>
     <th><?php __("Page Count"); ?></th>
+    <th><?php __("License"); ?></th>
     </tr>
 <?php
     while ($c=mysql_fetch_array($r)) { 
@@ -104,12 +105,7 @@ echo mysql_error();
  <td><img src="blue.png" style="width: <?php echo $step*10; ?>px; height: 16px" /></td>
  <td><?php echo $stepstring; ?></td>
  <td><?php echo $status; ?></td>
-<!--
- <td><?php if ($c["booktif_ts"]) echo date(_("Y-m-d"),$c["booktif_ts"]); ?></td>
- <td><?php if ($c["bookpdf_ts"]) echo date(_("Y-m-d"),$c["bookpdf_ts"]); ?></td>
- <td><?php if ($c["ocr_ts"]) echo date(_("Y-m-d"),$c["ocr_ts"]); ?></td>
- <td><?php if ($c["odt_ts"]) echo date(_("Y-m-d"),$c["odt_ts"]); ?></td>
- -->
+			       <td><?php if (isset($alicense[$c["license"]])) { __($alicense[$c["license"]]["name"]); } ?></td>
 </tr>
 	<?php } ?>
 
