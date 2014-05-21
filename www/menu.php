@@ -17,8 +17,8 @@
               </li>
 <?php
     if ($me["role"]!=0) { ?>
-       <li<?php if (substr($_SERVER["REQUEST_URI"],0,9)=="/booklist") echo ' class="active"'; ?>>
-    <a href="/booklist"><?php __("Book Listing"); ?></a>
+       <li<?php if (substr($_SERVER["REQUEST_URI"],0,9)=="/bookedit") echo ' class="active"'; ?>>
+    <a href="/bookedit"><?php __("Book Editor"); ?></a>
               </li>
 
        <li<?php if (substr($_SERVER["REQUEST_URI"],0,7)=="/events") echo ' class="active"'; ?>>

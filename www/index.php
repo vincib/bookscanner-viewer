@@ -14,6 +14,7 @@ case "/logout":
   require_once("logout.php"); 
   break;
 case "/booklist":
+case "/bookedit":
   require_once("booklist.php"); 
   break;
 case "/events":
