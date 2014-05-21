@@ -28,6 +28,27 @@ echo mysql_error();
 
 <div class="row">
 <div class="span12">
+    <h1><?php __("Book Listing"); ?></h1>
+<form method="get" action="">
+  <label for="q"><?php __("Search for"); ?></label>
+  <input type="text" name="q" id="q" value="<?php eher("q"); ?>" />
+  <label for="step"><?php __("At step"); ?></label>
+  <select name="step" id="step" onchange="form.submit()">
+  <option value=""><?php __("--- Any step ---"); ?></option>
+  <option value="1"><?php __("Scanned"); ?></option>
+  <option value="2"><?php __("Scantailor-ing"); ?></option>
+  <option value="3"><?php __("Scantailor-ed"); ?></option>
+  <option value="4"><?php __("Image PDF"); ?></option>
+  <option value="5"><?php __("ocr"); ?></option>
+  </select>
+  <input type="submit" name="go" value="<?php __("Search"); ?>" />
+</form>
+</div>
+</div>
+
+
+<div class="row">
+<div class="span12">
 
   <?php if ($url=="/booklist") { 
  /*
@@ -36,7 +57,6 @@ echo mysql_error();
     ********************************************************************************
  */ ?>
 
-    <h1><?php __("Book Listing"); ?></h1>
 
 <table class="matable">
     <tr>
@@ -163,8 +183,6 @@ echo mysql_error();
      BOOK EDITOR TABLE
     ********************************************************************************
  */ ?>
-
-    <h1><?php __("Book Editor"); ?></h1>
 
 <table class="matable">
     <tr>

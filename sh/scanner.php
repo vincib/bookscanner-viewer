@@ -1,10 +1,14 @@
-#!/usr/bin/php
+#!/usr/bin/env php
 <?php
 
-// This php-cli script scans all the project folders
-// search for metadata, and update the database accordingly
+   /**
+    * This php-cli script scans all the project folders
+    * search for metadata, and update the database accordingly
+    * it should be scheduled once a day or a little bit more
+    * (better not schedule it during a scan/post-process meeting) 
+    */
 
-require_once("common.php"); 
+require_once("../www/common.php"); 
 
 $d=opendir(PROJECT_ROOT);
 while (($project=readdir($d))!==false) {
