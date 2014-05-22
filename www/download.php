@@ -42,6 +42,21 @@ if (
 
 switch($_REQUEST["type"]) {
 
+  // send a tar file of all jpg files, either 
+case "tar":
+  $root=PROJECT_ROOT."/".$book["projectname"]."/";
+  header("Content-Type: application/x-tar");
+  header("Content-Disposition: attachment; filename=\"".$book["projectname"].".tar"."\""); // TODO: compute a better filename here ?
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  chdir($root);
+  if (is_dir($root."book")) {
+    passthru("tar -hc book");
+  } else {
+    passthru("tar -hc left right");
+  }
+  break;
+
 case "pdf":
   $file=PROJECT_ROOT."/".$book["projectname"]."/book.pdf";
   header("Content-Type: text/pdf");
@@ -51,6 +66,7 @@ case "pdf":
   header("Content-Length: ".filesize($file));
   readfile($file);
   break;
+
 case "odt":
   $file=PROJECT_ROOT."/".$book["projectname"]."/book.odt";
   header("Content-Type: application/vnd.oasis.opendocument.text");
@@ -60,6 +76,7 @@ case "odt":
   header("Content-Length: ".filesize($file));
   readfile($file);
   break;
+
 case "epub":
   $file=PROJECT_ROOT."/".$book["projectname"]."/book.epub";
   header("Content-Type: application/epub+zip");
