@@ -35,7 +35,7 @@ case "doedit":
       $_REQUEST["error"]=_("This login is already used, please choose another one"); 
       $_REQUEST["action"]="edit";
     }
-    mq("UPDATE users SET firstname='".addslashes($_POST["firstname"])."', lastname=='".addslashes($_POST["lasttname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."' WHERE id='".intval($_POST["id"])."';");
+    mq("UPDATE users SET firstname='".addslashes($_POST["firstname"])."', lastname='".addslashes($_POST["lastname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."' WHERE id='".intval($_POST["id"])."';");
     $_REQUEST["msg"]=_("Account edited successfully"); 
     $_REQUEST["action"]="";
   }
@@ -51,7 +51,7 @@ case "docreate":
       $_REQUEST["action"]="create";
     } else {
       $pass=mkpass();
-      mq("INSERT INTO users SET firstname='".addslashes($_POST["firstname"])."', lastname='".addslashes($_POST["lasttname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."', pass='".crypt($pass,getSalt())."', role=0;"); // FIXME: set the default role
+      mq("INSERT INTO users SET firstname='".addslashes($_POST["firstname"])."', lastname='".addslashes($_POST["lastname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."', pass='".crypt($pass,getSalt())."', role=0;"); // FIXME: set the default role
       // Send the new password to the user's email :
       mail($_POST["email"],sprintf(_("Account created on http://%s"),$_SERVER["HTTP_HOST"]), 
 	   sprintf(_("Hello,
@@ -118,7 +118,6 @@ case "delete":
 default:
 
 $r=mq("SELECT * FROM users ORDER BY login;");
-echo mysql_error();
 ?>
 
 
