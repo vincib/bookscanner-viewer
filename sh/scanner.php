@@ -95,11 +95,13 @@ function scanproject($project) {
     $scan_ts=max(filemtime($root."left"),filemtime($root."right"));
     $d=opendir($root."left");
     $leftcount=0;
+    $scansize=0;
     while (($c=readdir($d))!==false) {
       if (substr($c,0,1)==".") continue;
       if (is_file($root."left/".$c)) {
 	$scan_ts=max($scan_ts,filemtime($root."left/".$c));
 	$leftcount++;
+	$scansize+=filesize($root."left/".$c);
       }
     } 
     closedir($d);
@@ -110,6 +112,7 @@ function scanproject($project) {
       if (is_file($root."right/".$c)) {
 	$scan_ts=max($scan_ts,filemtime($root."right/".$c));
 	$rightcount++;
+	$scansize+=filesize($root."right/".$c);
       }
     } 
     closedir($d);
@@ -118,6 +121,7 @@ function scanproject($project) {
     $changed=max($changed,intval($scan_ts));
     $attribs["leftcount"]=$leftcount;
     $attribs["rightcount"]=$rightcount;
+    $attribs["scan_size"]=$scansize;
   } // scan_ts changed / created ?
 
   // Scantailor project file
@@ -157,6 +161,16 @@ function scanproject($project) {
     $attribs["odt_size"]=filesize($root."book.odt");
   } // odt_ts changed / created ?
 
+  // EPUB result
+  if (is_file($root."book.epub")
+      && $data["epub_ts"]<filemtime($root."book.epub")
+      ) {
+    if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"EPUB text updated");
+    mq("UPDATE books SET epub_ts=".filemtime($root."book.epub")." WHERE id=".$data["id"].";");
+    if (mysql_errno()) echo "ERR: ".mysql_error()."\n";
+    $changed=max($changed,filemtime($root."book.epub"));
+    $attribs["epub_size"]=filesize($root."book.epub");
+  } // odt_ts changed / created ?
 
   // booktif and ocr requires booktif/ folder
   if (is_dir($root."booktif")) {

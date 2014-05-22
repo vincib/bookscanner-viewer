@@ -6,6 +6,9 @@ $url=$_SERVER["REQUEST_URI"];
 if (($p=strpos($_SERVER["REQUEST_URI"],"?"))!==false) {
   $url=substr($_SERVER["REQUEST_URI"],0,$p);
 }
+
+if ($url=="/") { header("Location: /booklist"); exit(); }
+
 $urls=array(
 	   "/download" => "download.php",
 	   "/signin" => "login.php",

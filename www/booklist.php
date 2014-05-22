@@ -70,12 +70,21 @@ echo mysql_error();
     </tr>
 <?php
     while ($c=mysql_fetch_array($r)) { 
+      $attribs=json_decode($c["attribs"],true);
 ?>
 <tr>
 	<td><?php 
+	if ($c["scan_ts"]) {
+	  echo "<a href=\"/download?id=".$c["id"]."&type=tar\">";
+	  echo "<img src=\"/assets/img/tarball.png\" alt=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" />";
+	  echo "</a>";
+	} else {
+	  echo "<img src=\"/assets/img/nothing.png\" />";
+	}
+
 	if ($c["bookpdf_ts"]) {
 	  echo "<a href=\"/download?id=".$c["id"]."&type=pdf\">";
-	  echo "<img src=\"/assets/img/pdf.png\" alt=\""._("Download PDF image")."\" title=\""._("Download PDF image")."\" />";
+	  echo "<img src=\"/assets/img/pdf.png\" alt=\"".sprintf(_("Download PDF image (%sMB)"),intval($attribs["bookpdf_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download PDF image (%sMB)"),intval($attribs["bookpdf_size"]/1024/102.4)/10)."\" />";
 	  echo "</a>";
 	} else {
 	  echo "<img src=\"/assets/img/nothing.png\" />";
@@ -83,7 +92,7 @@ echo mysql_error();
 
 	if ($c["odt_ts"]) {
 	  echo "<a href=\"/download?id=".$c["id"]."&type=odt\">";
-	  echo "<img src=\"/assets/img/odt.png\" alt=\""._("Download ODT text file")."\" title=\""._("Download ODT text file")."\" />";
+	  echo "<img src=\"/assets/img/odt.png\" alt=\"".sprintf(_("Download ODT text file (%sKB)"),intval($attribs["odt_size"]/102.4)/10)."\" title=\"".sprintf(_("Download ODT text file (%sKB)"),intval($attribs["odt_size"]/102.4)/10)."\" />";
 	  echo "</a>";
 	} else {
 	  echo "<img src=\"/assets/img/nothing.png\" />";
@@ -91,7 +100,7 @@ echo mysql_error();
 
 	if ($c["epub_ts"]) {
 	  echo "<a href=\"/download?id=".$c["id"]."&type=epub\">";
-	  echo "<img src=\"/assets/img/epub.png\" alt=\""._("Download EPUB book")."\" title=\""._("Download EPUB book")."\" />";
+	  echo "<img src=\"/assets/img/epub.png\" alt=\"".sprintf(_("Download EPUB book (%sKB)"),intval($attribs["epub_size"]/102.4)/10)."\" title=\"".sprintf(_("Download EPUB book (%sKB)"),intval($attribs["epub_size"]/102.4)/10)."\" />";
 	  echo "</a>";
 	} else {
 	  echo "<img src=\"/assets/img/nothing.png\" />";
