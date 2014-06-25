@@ -20,7 +20,15 @@ if (!isset($_REQUEST["offset"])) {
 if ($count<=0 || $count>1000) $count=100;
 if ($offset<0) $offset=0;
 
-$r=mq("SELECT * FROM books ORDER BY changed DESC LIMIT $offset,$count;");
+if (!$_SESSION["id"]) {
+  $sql.=" AND license IN (".implode(",",$freelicenses).")";
+}
+
+if (isset($_REQUEST["collection"])) {
+  $sql.=" AND collection = ".intval($_REQUEST["collection"])." ";
+}
+
+$r=mq("SELECT * FROM books WHERE 1 $sql ORDER BY changed DESC LIMIT $offset,$count;");
 echo mysql_error();
 ?>
 
@@ -29,17 +37,26 @@ echo mysql_error();
 <div class="row">
 <div class="span12">
     <h1><?php __("Book Listing"); ?></h1>
-<form method="get" action="">
+<form method="get" action="" class="form-inline">
   <label for="q"><?php __("Search for"); ?></label>
-  <input type="text" name="q" id="q" value="<?php eher("q"); ?>" />
+  <input type="text" class="form-control" name="q" id="q" value="<?php eher("q"); ?>" />
+
+<!--
   <label for="step"><?php __("At step"); ?></label>
-  <select name="step" id="step" onchange="form.submit()">
+  <select name="step" class="form-control" id="step" onchange="form.submit()">
   <option value=""><?php __("--- Any step ---"); ?></option>
   <option value="1"><?php __("Scanned"); ?></option>
   <option value="2"><?php __("Scantailor-ing"); ?></option>
   <option value="3"><?php __("Scantailor-ed"); ?></option>
   <option value="4"><?php __("Image PDF"); ?></option>
   <option value="5"><?php __("ocr"); ?></option>
+  </select>
+ -->
+  <label for="collection"><?php __("In collection"); ?></label>
+  <select name="collection" class="form-control" id="collection" onchange="form.submit()">
+  <option value=""><?php __("--- Any collection ---"); ?></option>
+  <option value="0"><?php __("--- No collection ---"); ?></option>
+<?php eoption("collections",$_REQUEST["collection"],array("id","name")); ?>
   </select>
   <input type="submit" name="go" value="<?php __("Search"); ?>" />
 </form>
@@ -108,6 +125,7 @@ echo mysql_error();
 
 ?></td>
         <td><?php echo htmlentities($c["title"]); 
+	if (!$c["title"]) echo "<i>".htmlentities($c["projectname"])."</i>";
       $author=explode("\n",$c["authors"]);
       echo "<br />".htmlentities($author[0]);
       if (count($author)>1) echo " ...";

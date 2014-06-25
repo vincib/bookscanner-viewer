@@ -11,6 +11,7 @@ if (isset($_POST["login"]) && isset($_POST["password"])) {
     if ($me["pass"]!=crypt($_POST["password"],$me["pass"])) {
       $error=_("Incorrect username or password");
     } else {
+      mq("UPDATE users SET lastlogin=NOW() WHERE id=".$me["id"].";");
       $_SESSION["id"]=$me["id"];
       $_SESSION["me"]=$me;
       session_write_close();

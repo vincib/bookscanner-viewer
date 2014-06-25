@@ -49,7 +49,7 @@ require_once("common.php");
  <?php } else { ?> 
 <div id="gravatar" class="pull-right" style="padding-left: 10px; padding-top:4px"><img src="user2.png"></div>
 <div id="user" class="pull-right btn-group"><button class="btn dropdown-toggle btn-info" onclick="document.location='/signin'">
-   <?php __("Anonymous"); ?> <span class="caret"></span>
+   <?php __("Sign in"); ?> <span class="caret"></span>
    </button>  
  <?php } ?>
 

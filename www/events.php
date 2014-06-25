@@ -33,7 +33,7 @@ echo mysql_error();
     <tr>
     <th><?php __("Date of event"); ?></th>
     <th><?php __("Event Type"); ?></th>
-    <th><?php __("Book"); ?></th>
+    <th style="width: 600px"><?php __("Book"); ?></th>
     <th><?php __("Event"); ?></th>
     </tr>
 <?php
