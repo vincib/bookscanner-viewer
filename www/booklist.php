@@ -27,6 +27,14 @@ if (!$_SESSION["id"]) {
 if (isset($_REQUEST["collection"])) {
   $sql.=" AND collection = ".intval($_REQUEST["collection"])." ";
 }
+if (isset($_REQUEST["q"])) {
+  $q=explode(" ",$_REQUEST["q"]);
+  foreach($q as $word) {
+    if (trim($word)) {
+      $sql.=" AND (title LIKE '%".addslashes($word)."%' OR authors LIKE '%".addslashes($word)."%' OR ISBN='".addslashes($word)."' ) ";
+    }
+  }
+}
 
 $r=mq("SELECT * FROM books WHERE 1 $sql ORDER BY changed DESC LIMIT $offset,$count;");
 echo mysql_error();
