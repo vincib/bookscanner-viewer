@@ -132,7 +132,7 @@ echo mysql_error();
 	}
 
 ?></td>
-        <td><?php echo htmlentities($c["title"]); 
+        <td title="<?php echo htmlentities($c["projectname"]) ; ?>"><?php echo htmlentities($c["title"]); 
 	if (!$c["title"]) echo "<i>".htmlentities($c["projectname"])."</i>";
       $author=explode("\n",$c["authors"]);
       echo "<br />".htmlentities($author[0]);
