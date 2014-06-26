@@ -34,7 +34,10 @@ function booklog($book,$type,$message) {
 // FIXME : cache this in a serialized txt file.
 $alicense=array();
 $t=mq("SELECT * FROM license");
+$freelicenses=array();
 while($c=mysql_fetch_assoc($t)) {
   $alicense[$c["id"]]=$c;
+  if ($c["free"]) $freelicenses[]=$c["id"];
 }
+
 

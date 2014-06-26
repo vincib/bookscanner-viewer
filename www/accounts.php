@@ -131,6 +131,7 @@ $r=mq("SELECT * FROM users ORDER BY login;");
     <th><?php __("Login"); ?></th>
     <th><?php __("Name"); ?></th>
     <th><?php __("Role"); ?></th>
+    <th><?php __("Last Login"); ?></th>
     </tr>
 <?php
     while ($c=mysql_fetch_array($r)) { 
@@ -153,6 +154,7 @@ $first=true;
 	}
       }
  ?></td>
+      <td><?php echo date_my2fr($c["lastlogin"],true); ?></td>
       </tr>
 	<?php } ?>
 

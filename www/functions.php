@@ -18,7 +18,6 @@ function do_radio($name,$mat,$cur) {
 Affiche (echo) les champs de sélection du tableau $mat avec pour valeur par défaut $current
 */
 function do_select($mat,$current,$style=false) {
-	global $db;
 	if (is_array($mat)) {
 		reset($mat);
 		while (list($key,$val)=each($mat)) {
@@ -29,15 +28,35 @@ function do_select($mat,$current,$style=false) {
 			if ($key==$current) echo " SELECTED";
 			echo ">$val</option>\n";
 		}
-	} else {
-		$db->query("SELECT id,data FROM $mat;");
-		while ($db->next_record()) {
-			echo "<option value=\"".$db->Record["id"]."\"";
-			if ($db->Record["id"]==$current) echo " SELECTED";
-			echo ">".$db->Record["data"]."</option>\n";
-		}
 	}
 }
+
+/* select_values($arr,$cur) echo des <option> du tableau $values ou de la table sql $values
+   selectionne $current par defaut. Par defaut prends les champs 0 comme id et 1 comme 
+   donnees pour la table. sinon utilise $info[0] et $info[1].
+*/
+function eoption($values,$cur,$info="") {
+  if (is_array($values)) {
+    foreach ($values as $k=>$v) {
+      echo "<option value=\"$k\"";
+      if ($k==$cur) echo " selected=\"selected\"";
+      echo ">".$v."</option>";
+    }
+  } else {
+    if (is_array($info)) {
+      $r=mqlist("SELECT ".$info[0].", ".$info[1]." FROM $values ORDER BY ".$info[0].";");
+    } else {
+      $r=mqlist("SELECT * FROM $values ORDER BY 2;");
+    }
+
+    foreach ($r as $c) {
+      echo "<option value=\"".$c[0]."\"";
+      if ($c[0]==$cur) echo " selected=\"selected\"";
+      echo ">".($c[1])."</option>";
+    }
+  }
+}
+
 
 /* Check an email address, use checkloginmail and checkfqdn */
 function checkmail($mail,$force=0) {
