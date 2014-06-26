@@ -43,7 +43,10 @@ require_once("common.php");
    </button>
    <ul class="dropdown-menu">
    <li id="ca-logout"><a href="/logout"><?php __("Logout"); ?></a></li>
- <?php if ($me["role"] & ROLE_ADMIN) { ?>   <li id="ca-edit"><a href="/accounts"><?php __("Edit accounts"); ?></a></li> <?php } ?>
+ <?php if ($me["role"] & ROLE_ADMIN) { ?> 
+  <li id="ca-edit"><a href="/accounts"><?php __("Edit accounts"); ?></a></li>
+  <li id="ca-edit"><a href="/collections"><?php __("Edit collections"); ?></a></li>
+ <?php } ?>
 <li id="ca-my"><a href="/accounts?action=edit&id=<?php echo $me["id"]; ?>"><?php __("My account"); ?></a></li>
    </ul>
 </div>

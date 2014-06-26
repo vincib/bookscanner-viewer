@@ -17,6 +17,7 @@ $urls=array(
 	   "/bookedit" => "booklist.php",
 	   "/events" => "events.php",
 	   "/accounts" => "accounts.php",
+	   "/collections" => "collections.php",
 	   );
 if (isset($urls[$url])) {
   require_once($urls[$url]);
