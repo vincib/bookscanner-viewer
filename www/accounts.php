@@ -2,8 +2,11 @@
 
 require_once("common.php");
 
-if (!($me["role"] & ROLE_ADMIN)) {
-  header("Location: /");
+if (!($me["role"] & ROLE_ADMIN)
+    || !($me["id"]==$_REQUEST["id"] && ($_REQUEST["action"]=="edit" || $_REQUEST["action"]=="doedit") )
+    ) {
+  $_REQUEST["error"]=_("You are not allowed to see this page. Sorry"); 
+  require_once("nothing.php");
   exit();
 }
 

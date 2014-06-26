@@ -19,18 +19,9 @@ $urls=array(
 	   "/accounts" => "accounts.php",
 	   );
 if (isset($urls[$url])) {
-
   require_once($urls[$url]);
-
 } else {
-
-  require_once("head.php");
-  require_once("menu.php");
-  require("messagebox.php");
-  //  print_r($_SERVER);
-  require_once("foot.php");
-  break;
-
+  require_once("nothing.php");
 }
 
 ?>
