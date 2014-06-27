@@ -46,15 +46,31 @@ switch($_REQUEST["type"]) {
 case "tar":
   $root=PROJECT_ROOT."/".$book["projectname"]."/";
   header("Content-Type: application/x-tar");
-  header("Content-Disposition: attachment; filename=\"".$book["projectname"].".tar"."\""); // TODO: compute a better filename here ?
+  header("Content-Disposition: attachment; filename=\"".$book["projectname"].".origin.tar"."\""); // TODO: compute a better filename here ?
   header("Cache-Control: no-cache, must-revalidate");
   header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
   chdir($root);
-  if (is_dir($root."book")) {
-    passthru("tar -hc book");
-  } else {
-    passthru("tar -hc left right");
-  }
+  passthru("tar -hc left right");
+  break;
+
+case "tarbook":
+  $root=PROJECT_ROOT."/".$book["projectname"]."/";
+  header("Content-Type: application/x-tar");
+  header("Content-Disposition: attachment; filename=\"".$book["projectname"].".book.tar"."\""); // TODO: compute a better filename here ?
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  chdir($root);
+  passthru("tar -hc book");
+  break;
+
+case "tartiff":
+  $root=PROJECT_ROOT."/".$book["projectname"]."/";
+  header("Content-Type: application/x-tar");
+  header("Content-Disposition: attachment; filename=\"".$book["projectname"].".tiff.tar"."\""); // TODO: compute a better filename here ?
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  chdir($root);
+  passthru("tar -hc booktif");
   break;
 
 case "pdf":
