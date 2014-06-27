@@ -18,6 +18,7 @@ case "edit":
 case "doedit":
   $id=intval($_REQUEST["id"]);
   $book=mqone("SELECT * FROM books WHERE id='$id';");
+  $attribs=@json_decode($book["attribs"],true);
   if (!$book) {
     $_REQUEST["error"]=_("Book not found"); 
     require_once("head.php");
@@ -74,7 +75,7 @@ case "create":
    <label for="publisher"><?php __("Book Publisher"); ?></label><input type="text" name="publisher" id="publisher" value="<?php eher("publisher"); ?>" style="width: 300px"/>
    <label for="isbn"><?php __("Book Isbn"); ?></label><input type="text" name="isbn" id="isbn" value="<?php eher("isbn"); ?>" style="width: 300px"/>
    <label for="collection"><?php __("Book Collection"); ?></label><select name="collection" id="collection"><option value="0"><?php __("--- No collection ---"); ?></option><?php eoption("collections",$_REQUEST["collection"],array("id","name")); ?></select>
-																															   <label for="locked"><?php __("Locked by"); ?></label><select name="locked" id="locked"><option value="0"><?php __("--- Nobody ---"); ?></option><?php eoption("users",$_REQUEST["locked"],array("id","login")); ?></select><?php if ($_REQUEST["locktime"] && $_REQUEST["locktime"]!="0000-00-00 00:00:00") echo sprintf("Locked on %s",date_my2fr($_REQUEST["locktime"])); ?>
+																															   <label for="locked"><?php __("Locked by"); ?></label><select name="locked" id="locked"><option value="0"><?php __("--- Nobody ---"); ?></option><?php eoption("users",$_REQUEST["locked"],array("id","login")); ?></select><?php if ($_REQUEST["locktime"] && $_REQUEST["locktime"]!="0000-00-00 00:00:00") echo  " ".sprintf("Locked on %s",date_my2fr($_REQUEST["locktime"])); ?>
 <div>
       <input type="submit" name="go" value="<?php  
 if ($_REQUEST["action"]=="edit") __("Edit this book"); 
@@ -87,15 +88,70 @@ else __("Create this book");
    break; // ACTION EDIT / CREATE
 
     } // SWITCH ACTION
+
+function dateif($ts) {
+  if ($ts) 
+    return date("Y-m-d H:i:s",$ts);
+}
+
 ?>
 </div> <!-- col -->
 
 <div class="span6">
 
-<?php
-    // Internal status of this book : 
-    
-?>
+<table class="matable">
+    <tr><td><?php __("Metadata changed on"); ?></td>
+    <td><?php echo dateif($_REQUEST["meta_ts"]); ?></td></tr>
+
+    <tr><td><?php __("Last scanned picture on"); ?></td>
+    <td><?php echo dateif($_REQUEST["scan_ts"]); ?></td></tr>
+
+<?php    if ($attribs["leftcount"]>0 && $attribs["rightcount"]>0) { ?>
+    <tr><td><?php __("Number of pictures"); ?></td>
+    <td><?php echo $attribs["leftcount"]." left and ".$attribs["rightcount"]." right"; ?></td></tr>
+<?php } else { ?>
+    <tr><td><?php __("No pictures scanned yet"); ?></td>
+    <td></td></tr>
+<?php } ?>
+
+<?php    if ($attribs["scantailor_ts"]>0) { ?>
+    <tr><td><?php __("Scantailor project made on"); ?></td>
+    <td><?php echo dateif($_REQUEST["scantailor_ts"]); ?></td></tr>
+<?php } else { ?>
+    <tr><td><?php __("No scantailor project created yet"); ?></td>
+    <td><a href="scantailor.php?id=<?php echo $book["id"]; ?>"><?php __("Create this book's scantailor's project"); ?></a></td></tr>
+<?php } ?>
+
+
+<?php    if ($attribs["booktif_ts"]>0) { ?>
+    <tr><td><?php __("Scantailor output made on"); ?></td>
+    <td><?php echo dateif($_REQUEST["booktif_ts"]); ?></td></tr>
+<?php } else { ?>
+    <tr><td><?php __("No scantailor output made yet"); ?></td>
+    <td></td></tr>
+<?php } ?>
+
+
+<?php    if ($attribs["boopdf_ts"]>0) { ?>
+    <tr><td><?php __("Image PDF created on"); ?></td>
+    <td><?php echo dateif($_REQUEST["bookpdf_ts"]); ?></td></tr>
+<?php } else { ?>
+    <tr><td><?php __("No Image PDF created yet"); ?></td>
+    <td></td></tr>
+<?php } ?>
+
+
+<?php    if ($attribs["ocr_ts"]>0) { ?>
+    <tr><td><?php __("OCR files made on"); ?></td>
+    <td><?php echo dateif($_REQUEST["ocr_ts"]); ?></td></tr>
+<?php } else { ?>
+    <tr><td><?php __("No OCR made yet"); ?></td>
+    <td></td></tr>
+<?php } ?>
+
+
+</table>
+
 
 </div> <!-- col -->
 
