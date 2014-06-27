@@ -41,3 +41,8 @@ while($c=mysql_fetch_assoc($t)) {
 }
 
 
+function user_login($id) {
+  list($login)=@mysql_fetch_array(mysql_query("SELECT login FROM users WHERE id='".intval($id)."';"));
+  return $login;
+}
+

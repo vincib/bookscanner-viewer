@@ -215,8 +215,8 @@ echo mysql_error();
  <td><img src="/assets/img/blue.png" style="width: <?php echo $step*10; ?>px; height: 16px" /></td>
 <?php } ?>
  <td><?php echo $stepstring; ?></td>
- <td><?php echo $status; ?></td>
-			       <td><?php if (isset($alicense[$c["license"]])) { __($alicense[$c["license"]]["name"]); } ?></td>
+ <td><?php if ($c["locked"]) echo sprintf("Locked by %s on %s",user_login($c["locked"]),date_my2fr($c["locktime"]));; ?></td>
+ <td><?php if (isset($alicense[$c["license"]])) { __($alicense[$c["license"]]["name"]); } ?></td>
 </tr>
 	<?php } ?>
 </table>
