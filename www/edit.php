@@ -2,6 +2,11 @@
 
 require_once("common.php");
 
+// used by scanner()
+function debug($str) {
+  
+}
+
 if (!$_SESSION["id"]) {
   $_REQUEST["error"]=_("You are not allowed to see this page. Sorry"); 
   require_once("nothing.php");
@@ -13,7 +18,27 @@ $id=intval($_REQUEST["id"]);
 if (!isset($_REQUEST["action"])) {
   $_REQUEST["action"]="edit";
 }
+
+$book=mqone("SELECT * FROM books WHERE id=".intval($_REQUEST["id"]).";");
+if (!$book) {
+  $_REQUEST["error"]=_("Book not found");
+  require_once("nothing.php");
+  exit();
+}
+
+
 switch ($_REQUEST["action"]) {
+
+case "scantailor":
+  include("gen-scantailor.php"); 
+  $_REQUEST["substitute"]=PROJECT_ROOT;
+  $_REQUEST["out"]=$book["projectname"].".scantailor";
+  gen_scantailor($book["projectname"]);
+  // update the project's status :
+  scanproject($book["projectname"]);
+  header("Location: /edit?id=".$id."&msg=".urlencode("Scantailor project created"));
+  exit();
+  break;
 case "edit":
 case "doedit":
   $id=intval($_REQUEST["id"]);
@@ -106,47 +131,47 @@ function dateif($ts) {
     <tr><td><?php __("Last scanned picture on"); ?></td>
     <td><?php echo dateif($_REQUEST["scan_ts"]); ?></td></tr>
 
-<?php    if ($attribs["leftcount"]>0 && $attribs["rightcount"]>0) { ?>
+<?php    if ($attribs["leftcount"]>0 && $attribs["rightcount"]>0) { $ok1=true;  ?>
     <tr><td><?php __("Number of pictures"); ?></td>
     <td><?php echo $attribs["leftcount"]." left and ".$attribs["rightcount"]." right"; ?></td></tr>
-<?php } else { ?>
+<?php } else { $ok1=false; ?>
     <tr><td><?php __("No pictures scanned yet"); ?></td>
     <td></td></tr>
 <?php } ?>
 
-<?php    if ($attribs["scantailor_ts"]>0) { ?>
+<?php    if ($_REQUEST["scantailor_ts"]>0) { $ok2=true; ?>
     <tr><td><?php __("Scantailor project made on"); ?></td>
     <td><?php echo dateif($_REQUEST["scantailor_ts"]); ?></td></tr>
-<?php } else { ?>
+<?php } else { $ok2=false; ?>
     <tr><td><?php __("No scantailor project created yet"); ?></td>
-    <td><a href="scantailor.php?id=<?php echo $book["id"]; ?>"><?php __("Create this book's scantailor's project"); ?></a></td></tr>
+    <td><?php if ($ok1) { ?><a href="edit.php?action=scantailor&id=<?php echo $book["id"]; ?>"><?php __("Create this book's scantailor's project"); ?></a><?php } ?></td></tr>
 <?php } ?>
 
 
-<?php    if ($attribs["booktif_ts"]>0) { ?>
+<?php    if ($_REQUEST["booktif_ts"]>0) { $ok3=true; ?>
     <tr><td><?php __("Scantailor output made on"); ?></td>
     <td><?php echo dateif($_REQUEST["booktif_ts"]); ?></td></tr>
-<?php } else { ?>
+<?php } else { $ok3=false; ?>
     <tr><td><?php __("No scantailor output made yet"); ?></td>
-    <td></td></tr>
+    <td><?php if ($ok2) {  __("Use VNC to make the scantailor process"); } ?></td></tr>
 <?php } ?>
 
 
-<?php    if ($attribs["boopdf_ts"]>0) { ?>
+<?php    if ($_REQUEST["boopdf_ts"]>0) { $ok4=true; ?>
     <tr><td><?php __("Image PDF created on"); ?></td>
     <td><?php echo dateif($_REQUEST["bookpdf_ts"]); ?></td></tr>
-<?php } else { ?>
-    <tr><td><?php __("No Image PDF created yet"); ?></td>
-    <td></td></tr>
+<?php } else { $ok4=false; ?>
+    <tr><td><?php __("No PDF Image created yet"); ?></td>
+    <td><?php if ($ok3) { ?><a href="edit.php?action=pdfimage&id=<?php echo $book["id"]; ?>"><?php __("Create a PDF Image"); ?></a><?php } ?></td></tr>
 <?php } ?>
 
 
-<?php    if ($attribs["ocr_ts"]>0) { ?>
+<?php    if ($_REQUEST["ocr_ts"]>0) { $ok5=true;  ?>
     <tr><td><?php __("OCR files made on"); ?></td>
     <td><?php echo dateif($_REQUEST["ocr_ts"]); ?></td></tr>
-<?php } else { ?>
+<?php } else { $ok5=false; ?>
     <tr><td><?php __("No OCR made yet"); ?></td>
-    <td></td></tr>
+    <td><?php if ($ok3) { ?><a href="edit.php?action=ocr&id=<?php echo $book["id"]; ?>"><?php __("Launch the OCR"); ?></a><?php } ?></td></tr>
 <?php } ?>
 
 
