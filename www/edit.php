@@ -39,6 +39,11 @@ case "scantailor":
   header("Location: /edit?id=".$id."&msg=".urlencode("Scantailor project created"));
   exit();
   break;
+case "pdfimage":
+  touch(PROJECT_ROOT."/".$book["projectname"]."/genpdf");
+  header("Location: /edit?id=".$id."&msg=".urlencode("PDF Image building requested, please come back later"));
+  exit();
+  break;
 case "edit":
 case "doedit":
   $id=intval($_REQUEST["id"]);
@@ -63,8 +68,8 @@ case "doedit":
       $locktime="";
     }
     mq("UPDATE books SET title='".addslashes($_POST["title"])."', authors='".addslashes($_POST["authors"])."', publisher='".addslashes($_POST["publisher"])."', isbn='".addslashes($_POST["isbn"])."', collection='".addslashes($_POST["collection"])."', `locked`='".addslashes($_POST["locked"])."' $locktime WHERE id='".intval($_POST["id"])."';");
-    $_REQUEST["msg"]=_("Book edited successfully"); 
-    $_REQUEST["action"]="edit";
+    header("Location: /edit?id=".$id."&msg=".urlencode("Book edited successfully"));
+    exit();
   }
   break;
 
@@ -141,7 +146,7 @@ function dateif($ts) {
 
 <?php    if ($_REQUEST["scantailor_ts"]>0) { $ok2=true; ?>
     <tr><td><?php __("Scantailor project made on"); ?></td>
-    <td><?php echo dateif($_REQUEST["scantailor_ts"]); ?></td></tr>
+    <td><?php echo dateif($_REQUEST["scantailor_ts"]); ?> <a onclick="return confirm('<?php __("Do you really want to overwrite the scantailor and booktif files ?"); ?>')" href="edit.php?action=scantailor&id=<?php echo $book["id"]; ?>"><?php __("Regenerate"); ?></a></td></tr>
 <?php } else { $ok2=false; ?>
     <tr><td><?php __("No scantailor project created yet"); ?></td>
     <td><?php if ($ok1) { ?><a href="edit.php?action=scantailor&id=<?php echo $book["id"]; ?>"><?php __("Create this book's scantailor's project"); ?></a><?php } ?></td></tr>
@@ -157,12 +162,16 @@ function dateif($ts) {
 <?php } ?>
 
 
-<?php    if ($_REQUEST["boopdf_ts"]>0) { $ok4=true; ?>
-    <tr><td><?php __("Image PDF created on"); ?></td>
-    <td><?php echo dateif($_REQUEST["bookpdf_ts"]); ?></td></tr>
+<?php    if ($attribs["bookpdf_size"]>0) { $ok4=true; ?>
+    <tr><td><?php __("Image PDF created"); ?></td>
+    <td><?php printf(_("It has %d pages"),$attribs["bookpdf_pages"]); ?></td></tr>
 <?php } else { $ok4=false; ?>
     <tr><td><?php __("No PDF Image created yet"); ?></td>
-    <td><?php if ($ok3) { ?><a href="edit.php?action=pdfimage&id=<?php echo $book["id"]; ?>"><?php __("Create a PDF Image"); ?></a><?php } ?></td></tr>
+    <td><?php if ($ok3) {
+  if (file_exists(PROJECT_ROOT."/".$book["projectname"]."/genpdf")) {
+    printf(_("PDF Image requested on %s"),date("Y-m-d H:i:s",filemtime(PROJECT_ROOT."/".$book["projectname"]."/genpdf")));;
+  } else {
+    ?><a href="edit.php?action=pdfimage&id=<?php echo $book["id"]; ?>"><?php __("Create a PDF Image"); ?></a><?php } } ?></td></tr>
 <?php } ?>
 
 
