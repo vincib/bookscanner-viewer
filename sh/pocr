@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# aptitude install tesseract-ocr tesseract-ocr-fra tesseract-ocr-deu tesseract-ocr-eng 
+#cd "`dirname $0`"
+#HERE="`pwd`"
+
+if [ "$1" != "" ]
+then
+   LANGUAGE=$1
+else 
+   LANGUAGE=fra
+fi
+#LANGUAGE=deu
+#LANAUAGE=eng
+#LANGUAGE=fra
+MAX_PROCESSES=`cat /proc/cpuinfo |grep ^processor | wc -l`
+
+for i in *.tif
+do
+    RUNNING="`jobs -p |wc -l`"
+    while [ "$RUNNING" -ge "$MAX_PROCESSES" ]
+    do
+    sleep 2
+    RUNNING="`jobs -p |wc -l`"
+    done
+    if [ ! -e "${i}.txt" -o "$i" -nt "${i}.txt" ]
+    then
+    echo "Launching $i"
+    ( tesseract "$i" "${i}" -l $LANGUAGE ; echo "Finished $i" ) &
+    fi
+done
+
