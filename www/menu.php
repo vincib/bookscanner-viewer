@@ -30,6 +30,9 @@ require_once("common.php");
        <li<?php if (substr($_SERVER["REQUEST_URI"],0,10)=="/proofread") echo ' class="active"'; ?>>
     <a href="/proofread"><?php __("Proof reading"); ?></a>
               </li>
+       <li<?php if (substr($_SERVER["REQUEST_URI"],0,5)=="/misc") echo ' class="active"'; ?>>
+    <a href="/misc"><?php __("Misc."); ?></a>
+              </li>
   <?php } ?>
               <li class="">
                 <a href=""></a>

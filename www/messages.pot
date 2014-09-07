@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BookscannerManager 2014.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 17:50+0200\n"
+"POT-Creation-Date: 2014-09-07 23:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: accounts.php:8 bookeditor.php:9 booklist.php:10 collections.php:7
-#: edit.php:11
+#: edit.php:11 misc.php:10
 msgid "You are not allowed to see this page. Sorry"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "Create this account"
 msgstr ""
 
-#: accounts.php:111 collections.php:102 edit.php:122
+#: accounts.php:111 collections.php:102 edit.php:151
 msgid "Cancel"
 msgstr ""
 
@@ -145,7 +145,7 @@ msgstr ""
 msgid "--- Any collection ---"
 msgstr ""
 
-#: bookeditor.php:77 booklist.php:84 edit.php:115
+#: bookeditor.php:77 booklist.php:84 edit.php:144
 msgid "--- No collection ---"
 msgstr ""
 
@@ -399,144 +399,184 @@ msgstr ""
 msgid "This book's requested file is not available."
 msgstr ""
 
-#: edit.php:24 edit.php:61
+#: edit.php:24 edit.php:90
 msgid "Book not found"
 msgstr ""
 
-#: edit.php:96 menu.php:23
+#: edit.php:41
+msgid "Last left picture deleted"
+msgstr ""
+
+#: edit.php:55
+msgid "First right picture deleted"
+msgstr ""
+
+#: edit.php:125 menu.php:23
 msgid "Book Editor"
 msgstr ""
 
-#: edit.php:105
+#: edit.php:134
 #, php-format
 msgid "Editing book %s"
 msgstr ""
 
-#: edit.php:106
+#: edit.php:135
 msgid "Creating new book"
 msgstr ""
 
-#: edit.php:111
+#: edit.php:140
 msgid "Book Title"
 msgstr ""
 
-#: edit.php:112
+#: edit.php:141
 msgid "Book Authors"
 msgstr ""
 
-#: edit.php:113
+#: edit.php:142
 msgid "Book Publisher"
 msgstr ""
 
-#: edit.php:114
+#: edit.php:143
 msgid "Book Isbn"
 msgstr ""
 
-#: edit.php:115
+#: edit.php:144
 msgid "Book Collection"
 msgstr ""
 
-#: edit.php:116
+#: edit.php:145
 msgid "Locked by"
 msgstr ""
 
-#: edit.php:116
+#: edit.php:145
 msgid "--- Nobody ---"
 msgstr ""
 
-#: edit.php:119
+#: edit.php:148
 msgid "Edit this book"
 msgstr ""
 
-#: edit.php:120
+#: edit.php:149
 msgid "Create this book"
 msgstr ""
 
-#: edit.php:141
+#: edit.php:170
 msgid "Metadata changed on"
 msgstr ""
 
-#: edit.php:144
+#: edit.php:173
 msgid "Last scanned picture on"
 msgstr ""
 
-#: edit.php:148
+#: edit.php:177
 msgid "Number of pictures"
 msgstr ""
 
-#: edit.php:151
+#: edit.php:180
 msgid "No pictures scanned yet"
 msgstr ""
 
-#: edit.php:156
+#: edit.php:185
 msgid "Scantailor project made on"
 msgstr ""
 
-#: edit.php:157
+#: edit.php:186
 msgid "Do you really want to overwrite the scantailor and booktif files ?"
 msgstr ""
 
-#: edit.php:157
+#: edit.php:186
 msgid "Regenerate"
 msgstr ""
 
-#: edit.php:159
+#: edit.php:188
 msgid "No scantailor project created yet"
 msgstr ""
 
-#: edit.php:160
+#: edit.php:189
 msgid "Create this book's scantailor's project"
 msgstr ""
 
-#: edit.php:165
+#: edit.php:194
 msgid "Scantailor output made on"
 msgstr ""
 
-#: edit.php:168
+#: edit.php:197
 msgid "No scantailor output made yet"
 msgstr ""
 
-#: edit.php:169
+#: edit.php:198
 msgid "Use VNC to make the scantailor process"
 msgstr ""
 
-#: edit.php:174
+#: edit.php:203
 msgid "Image PDF created"
 msgstr ""
 
-#: edit.php:175
+#: edit.php:204
 #, php-format
 msgid "It has %d pages"
 msgstr ""
 
-#: edit.php:177
+#: edit.php:206
 msgid "No PDF Image created yet"
 msgstr ""
 
-#: edit.php:180
+#: edit.php:209
 #, php-format
 msgid "PDF Image requested on %s"
 msgstr ""
 
-#: edit.php:182
+#: edit.php:211
 msgid "Create a PDF Image"
 msgstr ""
 
-#: edit.php:187
+#: edit.php:216
 msgid "OCR files made on"
 msgstr ""
 
-#: edit.php:190
+#: edit.php:219
 msgid "No OCR made yet"
 msgstr ""
 
-#: edit.php:193
+#: edit.php:222
 #, php-format
 msgid "OCR requested on %s"
 msgstr ""
 
-#: edit.php:195
+#: edit.php:224
 msgid "Do the OCR"
+msgstr ""
+
+#: edit.php:248
+msgid "Can't read left folder, please check"
+msgstr ""
+
+#: edit.php:264
+msgid "Can't read right folder, please check"
+msgstr ""
+
+#: edit.php:270
+msgid "First and last <b>left</b> pictures"
+msgstr ""
+
+#: edit.php:272
+msgid "Please confirm you want to delete the last picture"
+msgstr ""
+
+#: edit.php:272
+msgid "Delete last"
+msgstr ""
+
+#: edit.php:276
+msgid "First and last <b>right</b> pictures"
+msgstr ""
+
+#: edit.php:278
+msgid "Please confirm you want to delete the first picture"
+msgstr ""
+
+#: edit.php:278
+msgid "Delete first"
 msgstr ""
 
 #: events.php:30 menu.php:27
@@ -579,7 +619,7 @@ msgstr ""
 msgid "Password"
 msgstr ""
 
-#: login.php:40 menu.php:56
+#: login.php:40 menu.php:59
 msgid "Sign in"
 msgstr ""
 
@@ -591,18 +631,26 @@ msgstr ""
 msgid "Proof reading"
 msgstr ""
 
-#: menu.php:45
-msgid "Logout"
-msgstr ""
-
-#: menu.php:47
-msgid "Edit accounts"
+#: menu.php:34 misc.php:62
+msgid "Misc."
 msgstr ""
 
 #: menu.php:48
-msgid "Edit collections"
+msgid "Logout"
 msgstr ""
 
 #: menu.php:50
+msgid "Edit accounts"
+msgstr ""
+
+#: menu.php:51
+msgid "Edit collections"
+msgstr ""
+
+#: menu.php:53
 msgid "My account"
+msgstr ""
+
+#: misc.php:64
+msgid "Possible status of book projects"
 msgstr ""

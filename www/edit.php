@@ -29,6 +29,35 @@ if (!$book) {
 
 switch ($_REQUEST["action"]) {
 
+case "del_last_left":
+  // for real we *move* it and *remember* its previous place, just in case ...
+  $pic=$_REQUEST["pic"];
+  if ($_REQUEST["code"]==md5(SECRET_CODE."-".$pic)) {
+    $f=fopen(DELETE_LOG,"ab");
+    if ($f) {
+      fputs($f,"moving for project '".$book["projectname"]."' the last left named '$pic' to ".DELETE_BIN."\n");
+      fclose($f);
+      rename(PROJECT_ROOT."/".$book["projectname"]."/left/".$pic,DELETE_BIN."/".$pic);
+      header("Location: /edit?id=".$id."&msg=".urlencode(_("Last left picture deleted")));
+      exit();
+    }
+  }
+  break;
+case "del_first_right":
+  // for real we *move* it and *remember* its previous place, just in case ...
+  $pic=$_REQUEST["pic"];
+  if ($_REQUEST["code"]==md5(SECRET_CODE."-".$pic)) {
+    $f=fopen(DELETE_LOG,"ab");
+    if ($f) {
+      fputs($f,"moving for project '".$book["projectname"]."' the first right named '$pic' to ".DELETE_BIN."\n");
+      fclose($f);
+      rename(PROJECT_ROOT."/".$book["projectname"]."/right/".$pic,DELETE_BIN."/".$pic);
+      header("Location: /edit?id=".$id."&msg=".urlencode(_("First right picture deleted")));
+      exit();
+    }
+  }
+  break;
+
 case "scantailor":
   include("gen-scantailor.php"); 
   $_REQUEST["substitute"]=PROJECT_ROOT;
@@ -197,6 +226,60 @@ function dateif($ts) {
 
 
 </table>
+
+<p>&nbsp;<p>
+<!-- thumbnail of first and last page of right/left -->
+<?php 
+
+$d=opendir(PROJECT_ROOT."/".$book["projectname"]."/left");
+$firstl="";
+$lastl="";
+if ($d) {
+while (($file=readdir($d))!==false) {
+  if (preg_match("#.jpg#i",$file)) {
+    if (!$firstl) $firstl=$file;
+    if (!$lastl) $lastl=$file;
+    if ($file<$firstl) $firstl=$file;
+    if ($file>$lastl) $lastl=$file;
+  }
+}
+closedir($d);
+} else {
+  echo "<p>"._("Can't read left folder, please check")."</p>";
+}
+$d=opendir(PROJECT_ROOT."/".$book["projectname"]."/right");
+$firstr="";
+$lastr="";
+if ($d) {
+while (($file=readdir($d))!==false) {
+  if (preg_match("#.jpg#i",$file)) {
+    if (!$firstr) $firstr=$file;
+    if (!$lastr) $lastr=$file;
+    if ($file<$firstr) $firstr=$file;
+    if ($file>$lastr) $lastr=$file;
+  }
+}
+closedir($d);
+} else {
+  echo "<p>"._("Can't read right folder, please check")."</p>";
+}
+
+function pic($path) {
+  return THUMBNAILS_URL."/normal/".md5("file://".$path).".png";
+}
+echo "<p>"._("First and last <b>left</b> pictures")." &nbsp; ";
+$code=md5(SECRET_CODE."-".$lastl);
+echo "<a href=\"edit?id=".$book["id"]."&action=del_last_left&pic=".$lastl."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the last picture"))."');\">"._("Delete last")."</a>";
+echo "</p>";
+echo "<p><img alt=\"first left : ".$firstl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$firstl)."\"> ";
+echo "<img alt=\"last left : ".$lastl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$lastl)."\"></p>";
+echo "<p>"._("First and last <b>right</b> pictures")." &nbsp; ";
+$code=md5(SECRET_CODE."-".$firstr);
+echo "<a href=\"edit?id=".$book["id"]."&action=del_first_right&pic=".$firstr."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the first picture"))."');\">"._("Delete first")."</a>";
+echo "</p>";
+echo "<p><img alt=\"first right : ".$firstr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$firstr)."\"> ";
+echo "<img alt=\"last right : ".$lastr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$lastr)."\"></p>";
+?>
 
 
 </div> <!-- col -->

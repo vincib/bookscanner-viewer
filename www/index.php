@@ -19,6 +19,7 @@ $urls=array(
 	   "/accounts" => "accounts.php",
 	   "/collections" => "collections.php",
 	   "/edit" => "edit.php", 
+	   "/misc" => "misc.php", 
 	   );
 if (isset($urls[$url])) {
   require_once($urls[$url]);

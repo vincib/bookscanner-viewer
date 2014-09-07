@@ -112,7 +112,7 @@ function checkfqdn($fqdn) {
 0123456789
 		Convertion d'une date MYsql en une date FRancaise et l'inverse :
 */
-function date_my2fr($str,$long) {
+function date_my2fr($str,$long=false) {
 	if (!$str) return "";
 	if ($long) {
 	  return substr($str,8,2)."/".substr($str,5,2)."/".substr($str,0,4)." ".substr($str,11,8);

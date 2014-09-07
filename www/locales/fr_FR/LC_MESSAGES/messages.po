@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BookscannerManager 2014.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 17:34+0200\n"
+"POT-Creation-Date: 2014-09-07 23:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #: accounts.php:8 bookeditor.php:9 booklist.php:10 collections.php:7
-#: edit.php:11
+#: edit.php:11 misc.php:10
 msgid "You are not allowed to see this page. Sorry"
 msgstr "Vous n'êtes pas autorisé à voir cette page. Désolé"
 
@@ -43,7 +43,15 @@ msgid ""
 "and your password is %s\n"
 "\n"
 "Thanks\n"
-msgstr "Bonjour,\nVotre nouveau compte a été créé sur https://%s\nMerci de votre rendre à cette adresse, de vous connecter et de modifier votre mot de passe.\nVotre nom d'utilisateur est %s\net votre mot de passe est %s\n\nMerci\n"
+msgstr ""
+"Bonjour,\n"
+"Votre nouveau compte a été créé sur https://%s\n"
+"Merci de votre rendre à cette adresse, de vous connecter et de modifier "
+"votre mot de passe.\n"
+"Votre nom d'utilisateur est %s\n"
+"et votre mot de passe est %s\n"
+"\n"
+"Merci\n"
 
 #: accounts.php:70
 msgid "Account created successfully"
@@ -86,7 +94,7 @@ msgstr "Modifier ce compte"
 msgid "Create this account"
 msgstr "Créer ce compte"
 
-#: accounts.php:111 collections.php:102 edit.php:122
+#: accounts.php:111 collections.php:102 edit.php:151
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -139,7 +147,7 @@ msgstr "Dans la collection"
 msgid "--- Any collection ---"
 msgstr "--- N'importe laquelle ---"
 
-#: bookeditor.php:77 booklist.php:84 edit.php:115
+#: bookeditor.php:77 booklist.php:84 edit.php:144
 msgid "--- No collection ---"
 msgstr "--- Pas affecté à une collection ---"
 
@@ -211,7 +219,9 @@ msgstr "Scan en cours"
 msgid ""
 "the project is in scanning state. we are scanning the book, it's not ended "
 "yet."
-msgstr "Ce projet est à l'état de scan en cours. Nous scannons le livre, il n'est pas terminé."
+msgstr ""
+"Ce projet est à l'état de scan en cours. Nous scannons le livre, il n'est "
+"pas terminé."
 
 #: bookfuncs.php:39
 msgid "Scan OK, wait Scantailor"
@@ -221,7 +231,10 @@ msgstr "Scan OK, attente Scantailor"
 msgid ""
 "all the pictures are here in right order, empty pictures at the start of "
 "left folder and end of right folder have been removed, ready for scantailor !"
-msgstr "Toutes les images sont là dans le bon ordre. les images vides au début et à la fin des dossiers left et right ont été enlevées, projet prêt pour Scantailor !"
+msgstr ""
+"Toutes les images sont là dans le bon ordre. les images vides au début et à "
+"la fin des dossiers left et right ont été enlevées, projet prêt pour "
+"Scantailor !"
 
 #: bookfuncs.php:40
 msgid "Doing Scantailor 1-5"
@@ -232,7 +245,10 @@ msgid ""
 "the project is currently processed by scantailor for step 1 to 5 by an "
 "automatic program. the scantailor project named projectname_5.scantailor "
 "will be saved in projectname_6.scantailor"
-msgstr "Ce projet est en train d'être traité par Scantailor pour les étapes 1 à 5 par un programme automatique. Le project scantailor nommé nomduproject_5.scantailor sera sauvé dans nomduprojet_6.scantailor"
+msgstr ""
+"Ce projet est en train d'être traité par Scantailor pour les étapes 1 à 5 "
+"par un programme automatique. Le project scantailor nommé nomduproject_5."
+"scantailor sera sauvé dans nomduprojet_6.scantailor"
 
 #: bookfuncs.php:41
 msgid "Scantailor waiting for user"
@@ -243,7 +259,11 @@ msgid ""
 "The user need to manually open the scantailor project and check step 4 for "
 "proper content recognition. After changing it and saving it, the user can "
 "allow the project to go to step 5."
-msgstr "L'utilisateur doit maintenant ouvrir le projet scantailor manuellement et vérifier que l'étape 4 s'est bien déroulée. Une fois la vérification terminée et le projet sauvé, l'utilisateur peut autoriser le passage à l'étape suivante."
+msgstr ""
+"L'utilisateur doit maintenant ouvrir le projet scantailor manuellement et "
+"vérifier que l'étape 4 s'est bien déroulée. Une fois la vérification "
+"terminée et le projet sauvé, l'utilisateur peut autoriser le passage à "
+"l'étape suivante."
 
 #: bookfuncs.php:42
 msgid "User OK, wait Scantailor 6"
@@ -253,7 +273,9 @@ msgstr "Scantailor prêt pour étape 6"
 msgid ""
 "the project is ready to be processed by Scantailor at step 6 (and other "
 "treatments)"
-msgstr "Le projet est prêt à être traité par Scantailor à l'étape 6 (ainsi que les traitements suivants)"
+msgstr ""
+"Le projet est prêt à être traité par Scantailor à l'étape 6 (ainsi que les "
+"traitements suivants)"
 
 #: bookfuncs.php:43
 msgid "Doing Scantailor step 6"
@@ -262,7 +284,9 @@ msgstr "Scantailor 6 en cours"
 #: bookfuncs.php:43
 msgid ""
 "A program is taking the last scantailor project, encoding everything to tiff"
-msgstr "Un programme automatique est en train de produire les TIFF de ce projet via Scantailor"
+msgstr ""
+"Un programme automatique est en train de produire les TIFF de ce projet via "
+"Scantailor"
 
 #: bookfuncs.php:44
 msgid "Scantailor OK, wait for OCR/PDF"
@@ -272,7 +296,9 @@ msgstr "Scantailor OK, attente OCR/PDF"
 msgid ""
 "Scantailor built the TIFF files, project is ready to be OCR-ed, PDF and DJVU "
 "+ TEXT version made"
-msgstr "Scantailor a construit les TIFF de ce projet, il peut maintenant être passé à l'OCR, PDF et DJVU"
+msgstr ""
+"Scantailor a construit les TIFF de ce projet, il peut maintenant être passé "
+"à l'OCR, PDF et DJVU"
 
 #: bookfuncs.php:45
 msgid "OCR in progress"
@@ -280,7 +306,9 @@ msgstr "OCR en cours"
 
 #: bookfuncs.php:45
 msgid "the OCR, the PDF image, the DJVU and the TEXT ocr are in progress"
-msgstr "L'OCR, le PDF et le fichier DJVU ainsi que l'OCR texte sont en cours de création"
+msgstr ""
+"L'OCR, le PDF et le fichier DJVU ainsi que l'OCR texte sont en cours de "
+"création"
 
 #: bookfuncs.php:46
 msgid "OCR done, Proofread in progress"
@@ -290,7 +318,9 @@ msgstr "OCR ok, relecture en cours"
 msgid ""
 "The OCR PDF DJVU and TEXT ocr have been made, the humans are now "
 "proofreading the book"
-msgstr "Les fichiers OCR, PDF, DJVU et ocr TEXTE ont été créés, il faut maintenant effectuer la relecture manuelle"
+msgstr ""
+"Les fichiers OCR, PDF, DJVU et ocr TEXTE ont été créés, il faut maintenant "
+"effectuer la relecture manuelle"
 
 #: bookfuncs.php:47
 msgid "Status Unknown, ERROR"
@@ -393,145 +423,186 @@ msgstr "Ce livre n'est pas sous la bonne licence"
 msgid "This book's requested file is not available."
 msgstr "Le fichier demandé n'existe pas pour ce livre"
 
-#: edit.php:24 edit.php:61
+#: edit.php:24 edit.php:90
 msgid "Book not found"
 msgstr "Livre non trouvé"
 
-#: edit.php:96 menu.php:23
-msgid "Book Editor"
-msgstr "Éditeur de livre"
+#: edit.php:41
+msgid "Last left picture deleted"
+msgstr "Dernière image de gauche supprimée"
 
-#: edit.php:105
+#: edit.php:55
+msgid "First right picture deleted"
+msgstr "Première image de droite supprimée"
+
+#: edit.php:125 menu.php:23
+msgid "Book Editor"
+msgstr "Éditeur de livres"
+
+#: edit.php:134
 #, php-format
 msgid "Editing book %s"
 msgstr "Modification du livre %s"
 
-#: edit.php:106
+#: edit.php:135
 msgid "Creating new book"
 msgstr "Création d'un nouveau livre"
 
-#: edit.php:111
+#: edit.php:140
 msgid "Book Title"
 msgstr "Titre du livre"
 
-#: edit.php:112
+#: edit.php:141
 msgid "Book Authors"
 msgstr "Auteur du livre"
 
-#: edit.php:113
+#: edit.php:142
 msgid "Book Publisher"
 msgstr "Éditeur du livre"
 
-#: edit.php:114
+#: edit.php:143
 msgid "Book Isbn"
 msgstr "ISBN du livre"
 
-#: edit.php:115
+#: edit.php:144
 msgid "Book Collection"
 msgstr "Collection du livre"
 
-#: edit.php:116
+#: edit.php:145
 msgid "Locked by"
 msgstr "Verrouillé par"
 
-#: edit.php:116
+#: edit.php:145
 msgid "--- Nobody ---"
 msgstr "--- Personne ---"
 
-#: edit.php:119
+#: edit.php:148
 msgid "Edit this book"
 msgstr "Modifier ce livre"
 
-#: edit.php:120
+#: edit.php:149
 msgid "Create this book"
 msgstr "Créer ce livre"
 
-#: edit.php:141
+#: edit.php:170
 msgid "Metadata changed on"
 msgstr "Métadonnées modifiées le"
 
-#: edit.php:144
+#: edit.php:173
 msgid "Last scanned picture on"
 msgstr "Dernière image scannée le "
 
-#: edit.php:148
+#: edit.php:177
 msgid "Number of pictures"
 msgstr "Nombre d'images"
 
-#: edit.php:151
+#: edit.php:180
 msgid "No pictures scanned yet"
 msgstr "Aucune image pour l'instant"
 
-#: edit.php:156
+#: edit.php:185
 msgid "Scantailor project made on"
 msgstr "Project scantailor créé le"
 
-#: edit.php:157
+#: edit.php:186
 msgid "Do you really want to overwrite the scantailor and booktif files ?"
-msgstr "Voulez-vous réellement écraser le project scantailor et les fichier booktif ?"
+msgstr ""
+"Voulez-vous réellement écraser le project scantailor et les fichier booktif ?"
 
-#: edit.php:157
+#: edit.php:186
 msgid "Regenerate"
 msgstr "Régénérer"
 
-#: edit.php:159
+#: edit.php:188
 msgid "No scantailor project created yet"
 msgstr "Aucun projet scantailor créé pour l'instant"
 
-#: edit.php:160
+#: edit.php:189
 msgid "Create this book's scantailor's project"
 msgstr "Créer le projet scantailor de ce livre"
 
-#: edit.php:165
+#: edit.php:194
 msgid "Scantailor output made on"
 msgstr "Scantailor lancé le "
 
-#: edit.php:168
+#: edit.php:197
 msgid "No scantailor output made yet"
 msgstr "Aucun lancement de scantailor "
 
-#: edit.php:169
+#: edit.php:198
 msgid "Use VNC to make the scantailor process"
 msgstr "Utiliser VNC pour terminer le projet scantailor"
 
-#: edit.php:174
+#: edit.php:203
 msgid "Image PDF created"
 msgstr "PDF image créé"
 
-#: edit.php:175
+#: edit.php:204
 #, php-format
 msgid "It has %d pages"
 msgstr "Il fait %d pages"
 
-#: edit.php:177
+#: edit.php:206
 msgid "No PDF Image created yet"
 msgstr "Aucun fichier PDF image créé"
 
-#: edit.php:180
+#: edit.php:209
 #, php-format
 msgid "PDF Image requested on %s"
 msgstr "Fichier PDF image demandé le %s"
 
-#: edit.php:182
+#: edit.php:211
 msgid "Create a PDF Image"
 msgstr "Créer un fichier PDF image"
 
-#: edit.php:187
+#: edit.php:216
 msgid "OCR files made on"
 msgstr "OCR créé le "
 
-#: edit.php:190
+#: edit.php:219
 msgid "No OCR made yet"
 msgstr "Aucun OCR pour l'instant"
 
-#: edit.php:193
+#: edit.php:222
 #, php-format
 msgid "OCR requested on %s"
 msgstr "OCR demandé le %s"
 
-#: edit.php:195
+#: edit.php:224
 msgid "Do the OCR"
 msgstr "Lancer l'OCR"
+
+#: edit.php:248
+msgid "Can't read left folder, please check"
+msgstr "Impossible de lire le dossier left, vérifiez les droits"
+
+#: edit.php:264
+msgid "Can't read right folder, please check"
+msgstr "Impossible de lire le dossier right, vérifiez les droits"
+
+#: edit.php:270
+msgid "First and last <b>left</b> pictures"
+msgstr "Première et dernière images de <b>left</b> (gauche)"
+
+#: edit.php:272
+msgid "Please confirm you want to delete the last picture"
+msgstr "Merci de confirmer que vous souhaitez effacer la dernière image"
+
+#: edit.php:272
+msgid "Delete last"
+msgstr "Effacer la dernière"
+
+#: edit.php:276
+msgid "First and last <b>right</b> pictures"
+msgstr "Première et dernière images de <b>right</b> (droite)"
+
+#: edit.php:278
+msgid "Please confirm you want to delete the first picture"
+msgstr "Merci de confirmer que vous souhaitez effacer la première image"
+
+#: edit.php:278
+msgid "Delete first"
+msgstr "Effacer la première"
 
 #: events.php:30 menu.php:27
 msgid "Last events"
@@ -573,7 +644,7 @@ msgstr "Merci de vous connecter"
 msgid "Password"
 msgstr "Mot de passe"
 
-#: login.php:40 menu.php:56
+#: login.php:40 menu.php:59
 msgid "Sign in"
 msgstr "Se connecter"
 
@@ -585,18 +656,26 @@ msgstr "Vous avez été déconnecté"
 msgid "Proof reading"
 msgstr "Relecture"
 
-#: menu.php:45
+#: menu.php:34 misc.php:62
+msgid "Misc."
+msgstr "Divers."
+
+#: menu.php:48
 msgid "Logout"
 msgstr "Se déconnecter"
 
-#: menu.php:47
+#: menu.php:50
 msgid "Edit accounts"
 msgstr "Modifier les comptes"
 
-#: menu.php:48
+#: menu.php:51
 msgid "Edit collections"
 msgstr "Modifier les collections"
 
-#: menu.php:50
+#: menu.php:53
 msgid "My account"
 msgstr "Mon compte"
+
+#: misc.php:64
+msgid "Possible status of book projects"
+msgstr "États possible des projets de scan de livre"
