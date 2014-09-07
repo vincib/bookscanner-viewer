@@ -39,11 +39,19 @@ case "scantailor":
   header("Location: /edit?id=".$id."&msg=".urlencode("Scantailor project created"));
   exit();
   break;
+
 case "pdfimage":
   touch(PROJECT_ROOT."/".$book["projectname"]."/genpdf");
   header("Location: /edit?id=".$id."&msg=".urlencode("PDF Image building requested, please come back later"));
   exit();
   break;
+
+case "ocr":
+  touch(PROJECT_ROOT."/".$book["projectname"]."/genocr");
+  header("Location: /edit?id=".$id."&msg=".urlencode("OCR requested, please come back later"));
+  exit();
+  break;
+
 case "edit":
 case "doedit":
   $id=intval($_REQUEST["id"]);
@@ -180,7 +188,11 @@ function dateif($ts) {
     <td><?php echo dateif($_REQUEST["ocr_ts"]); ?></td></tr>
 <?php } else { $ok5=false; ?>
     <tr><td><?php __("No OCR made yet"); ?></td>
-    <td><?php if ($ok3) { ?><a href="edit.php?action=ocr&id=<?php echo $book["id"]; ?>"><?php __("Launch the OCR"); ?></a><?php } ?></td></tr>
+    <td><?php if ($ok3) {
+  if (file_exists(PROJECT_ROOT."/".$book["projectname"]."/genocr")) {
+    printf(_("OCR requested on %s"),date("Y-m-d H:i:s",filemtime(PROJECT_ROOT."/".$book["projectname"]."/genocr")));;
+  } else {
+    ?><a href="edit.php?action=ocr&id=<?php echo $book["id"]; ?>"><?php __("Do the OCR"); ?></a><?php } } ?></td></tr>
 <?php } ?>
 
 
