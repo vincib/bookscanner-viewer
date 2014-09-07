@@ -29,6 +29,13 @@ if (!$book) {
 
 switch ($_REQUEST["action"]) {
 
+case "status":
+  $status=intval($_REQUEST["status"]);
+  mq("UPDATE books SET status=".$status." WHERE id=".$id.";");
+  header("Location: /edit?id=".$id."&msg=".urlencode(_("Status changed")));
+  exit();
+  break;
+
 case "del_last_left":
   // for real we *move* it and *remember* its previous place, just in case ...
   $pic=$_REQUEST["pic"];
@@ -166,6 +173,88 @@ function dateif($ts) {
 
 <div class="span6">
 
+<!-- Status table -->
+<?php
+  echo "<h3>"._("Current status of the project:")."</h3>";
+echo "<p><b>".$astatus[$book["status"]][0]."</b></p>\n";
+
+$changeto=0; // Which status changes are allowed FROM THE USER will:
+if ($book["status"] == STATUS_SCANNING) {  $changeto=STATUS_SCANOK;  }
+if ($book["status"] == STATUS_WAITUSERTAILOR) {  $changeto=STATUS_USEROKTAILOR6;  }
+echo "<p>";
+if ($changeto) {
+  echo "<a href=\"edit.php?id=".$book["id"]."&action=status&status=".$changeto."\">".sprintf(_("Change the status to '%s'"),$astatus[$changeto][0])."</a><br />";
+}
+echo "<a href=\"edit.php?id=".$book["id"]."&action=status&status=".STATUS_UNKNOWN."\">".sprintf(_("Change the status to '%s'"),$astatus[STATUS_UNKNOWN][0])."</a>";
+echo "</p>";
+?>
+<p><?php __("To know the status list, click on the 'Misc' link in the menu"); ?></p>
+<p>&nbsp;</p>
+
+<!-- thumbnail of first and last page of right/left -->
+<?php 
+
+$d=opendir(PROJECT_ROOT."/".$book["projectname"]."/left");
+$firstl="";
+$lastl="";
+if ($d) {
+while (($file=readdir($d))!==false) {
+  if (preg_match("#.jpg#i",$file)) {
+    if (!$firstl) $firstl=$file;
+    if (!$lastl) $lastl=$file;
+    if ($file<$firstl) $firstl=$file;
+    if ($file>$lastl) $lastl=$file;
+  }
+}
+closedir($d);
+} else {
+  echo "<p>"._("Can't read left folder, please check")."</p>";
+}
+$d=opendir(PROJECT_ROOT."/".$book["projectname"]."/right");
+$firstr="";
+$lastr="";
+if ($d) {
+while (($file=readdir($d))!==false) {
+  if (preg_match("#.jpg#i",$file)) {
+    if (!$firstr) $firstr=$file;
+    if (!$lastr) $lastr=$file;
+    if ($file<$firstr) $firstr=$file;
+    if ($file>$lastr) $lastr=$file;
+  }
+}
+closedir($d);
+} else {
+  echo "<p>"._("Can't read right folder, please check")."</p>";
+}
+
+function pic($path) {
+  return THUMBNAILS_URL."/normal/".md5("file://".$path).".png";
+}
+echo "<p>"._("First and last <b>left</b> pictures")." &nbsp; ";
+$code=md5(SECRET_CODE."-".$lastl);
+echo "<a href=\"edit?id=".$book["id"]."&action=del_last_left&pic=".$lastl."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the last picture"))."');\">"._("Delete last")."</a>";
+echo "</p>";
+echo "<p><img alt=\"first left : ".$firstl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$firstl)."\"> ";
+echo "<img alt=\"last left : ".$lastl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$lastl)."\"></p>";
+echo "<p>"._("First and last <b>right</b> pictures")." &nbsp; ";
+$code=md5(SECRET_CODE."-".$firstr);
+echo "<a href=\"edit?id=".$book["id"]."&action=del_first_right&pic=".$firstr."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the first picture"))."');\">"._("Delete first")."</a>";
+echo "</p>";
+echo "<p><img alt=\"first right : ".$firstr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$firstr)."\"> ";
+echo "<img alt=\"last right : ".$lastr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$lastr)."\"></p>";
+?>
+
+
+
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<h3>Ancienne table d'état, ne plus utiliser !!</h3>
+
 <table class="matable">
     <tr><td><?php __("Metadata changed on"); ?></td>
     <td><?php echo dateif($_REQUEST["meta_ts"]); ?></td></tr>
@@ -226,60 +315,6 @@ function dateif($ts) {
 
 
 </table>
-
-<p>&nbsp;<p>
-<!-- thumbnail of first and last page of right/left -->
-<?php 
-
-$d=opendir(PROJECT_ROOT."/".$book["projectname"]."/left");
-$firstl="";
-$lastl="";
-if ($d) {
-while (($file=readdir($d))!==false) {
-  if (preg_match("#.jpg#i",$file)) {
-    if (!$firstl) $firstl=$file;
-    if (!$lastl) $lastl=$file;
-    if ($file<$firstl) $firstl=$file;
-    if ($file>$lastl) $lastl=$file;
-  }
-}
-closedir($d);
-} else {
-  echo "<p>"._("Can't read left folder, please check")."</p>";
-}
-$d=opendir(PROJECT_ROOT."/".$book["projectname"]."/right");
-$firstr="";
-$lastr="";
-if ($d) {
-while (($file=readdir($d))!==false) {
-  if (preg_match("#.jpg#i",$file)) {
-    if (!$firstr) $firstr=$file;
-    if (!$lastr) $lastr=$file;
-    if ($file<$firstr) $firstr=$file;
-    if ($file>$lastr) $lastr=$file;
-  }
-}
-closedir($d);
-} else {
-  echo "<p>"._("Can't read right folder, please check")."</p>";
-}
-
-function pic($path) {
-  return THUMBNAILS_URL."/normal/".md5("file://".$path).".png";
-}
-echo "<p>"._("First and last <b>left</b> pictures")." &nbsp; ";
-$code=md5(SECRET_CODE."-".$lastl);
-echo "<a href=\"edit?id=".$book["id"]."&action=del_last_left&pic=".$lastl."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the last picture"))."');\">"._("Delete last")."</a>";
-echo "</p>";
-echo "<p><img alt=\"first left : ".$firstl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$firstl)."\"> ";
-echo "<img alt=\"last left : ".$lastl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$lastl)."\"></p>";
-echo "<p>"._("First and last <b>right</b> pictures")." &nbsp; ";
-$code=md5(SECRET_CODE."-".$firstr);
-echo "<a href=\"edit?id=".$book["id"]."&action=del_first_right&pic=".$firstr."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the first picture"))."');\">"._("Delete first")."</a>";
-echo "</p>";
-echo "<p><img alt=\"first right : ".$firstr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$firstr)."\"> ";
-echo "<img alt=\"last right : ".$lastr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$lastr)."\"></p>";
-?>
 
 
 </div> <!-- col -->

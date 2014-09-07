@@ -38,6 +38,10 @@ if (isset($_REQUEST["collection"]) && $_REQUEST["collection"] ) {
   }
 }
 
+if (isset($_REQUEST["status"])) {
+    $sql.=" AND status = ".intval($_REQUEST["status"])." ";
+}
+
 if (isset($_REQUEST["q"])) {
   $q=explode(" ",$_REQUEST["q"]);
   foreach($q as $word) {
@@ -62,9 +66,9 @@ echo mysql_error();
   <label for="q"><?php __("Search for"); ?></label>
   <input type="text" class="form-control" name="q" id="q" value="<?php eher("q"); ?>" />
 
-  <label for="step"><?php __("At step"); ?></label>
-  <select name="step" class="form-control" id="step" onchange="form.submit()">
-  <option value=""><?php __("--- Any step ---"); ?></option>
+  <label for="status"><?php __("Having status"); ?></label>
+  <select name="status" class="form-control" id="status" onchange="form.submit()">
+  <option value=""><?php __("--- Any status ---"); ?></option>
   <?php foreach($astatus as $k=>$v) {
   echo "<option value=\"".$k."\">[".$k."] ".$v[0]."</option>";
   }

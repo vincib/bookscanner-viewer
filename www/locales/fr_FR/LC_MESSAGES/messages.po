@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BookscannerManager 2014.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-07 23:48+0200\n"
+"POT-Creation-Date: 2014-09-08 00:39+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,7 +94,7 @@ msgstr "Modifier ce compte"
 msgid "Create this account"
 msgstr "Créer ce compte"
 
-#: accounts.php:111 collections.php:102 edit.php:151
+#: accounts.php:111 collections.php:102 edit.php:158
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -102,7 +102,7 @@ msgstr "Annuler"
 msgid "Create new account"
 msgstr "Créer un nouveau compte"
 
-#: accounts.php:132 accounts.php:144 bookeditor.php:106 booklist.php:148
+#: accounts.php:132 accounts.php:144 bookeditor.php:110 booklist.php:148
 #: collections.php:122 collections.php:131
 msgid "Edit"
 msgstr "Modifier"
@@ -123,91 +123,91 @@ msgstr "Dernière connexion"
 msgid "Delete"
 msgstr "Effacer"
 
-#: bookeditor.php:57 booklist.php:62 menu.php:18
+#: bookeditor.php:61 booklist.php:62 menu.php:18
 msgid "Book Listing"
 msgstr "Liste des livres"
 
-#: bookeditor.php:62 booklist.php:67
+#: bookeditor.php:66 booklist.php:67
 msgid "Search for"
 msgstr "Rechercher"
 
-#: bookeditor.php:65 booklist.php:71
-msgid "At step"
-msgstr "À l'étape"
+#: bookeditor.php:69
+msgid "Having status"
+msgstr "À l'état"
 
-#: bookeditor.php:67 booklist.php:73
-msgid "--- Any step ---"
-msgstr "--- N'importe laquelle ---"
+#: bookeditor.php:71
+msgid "--- Any status ---"
+msgstr "--- N'importe lequel ---"
 
-#: bookeditor.php:74 booklist.php:81
+#: bookeditor.php:78 booklist.php:81
 msgid "In collection"
 msgstr "Dans la collection"
 
-#: bookeditor.php:76 booklist.php:83
+#: bookeditor.php:80 booklist.php:83
 msgid "--- Any collection ---"
 msgstr "--- N'importe laquelle ---"
 
-#: bookeditor.php:77 booklist.php:84 edit.php:144
+#: bookeditor.php:81 booklist.php:84 edit.php:151
 msgid "--- No collection ---"
 msgstr "--- Pas affecté à une collection ---"
 
-#: bookeditor.php:80 booklist.php:87
+#: bookeditor.php:84 booklist.php:87
 msgid "Search"
 msgstr "Chercher"
 
-#: bookeditor.php:92 booklist.php:99
+#: bookeditor.php:96 booklist.php:99
 msgid "Download"
 msgstr "Télécharger"
 
-#: bookeditor.php:93 booklist.php:100
+#: bookeditor.php:97 booklist.php:100
 msgid "Title, Author"
 msgstr "Titre, Auteur"
 
-#: bookeditor.php:94 booklist.php:101
+#: bookeditor.php:98 booklist.php:101
 msgid "Date"
 msgstr "Date"
 
-#: bookeditor.php:95
+#: bookeditor.php:99
 msgid "(Old Status)"
 msgstr "(État ancienne mode)"
 
-#: bookeditor.php:97 booklist.php:105
+#: bookeditor.php:101 booklist.php:105
 msgid "Status"
 msgstr "État"
 
-#: bookeditor.php:98 booklist.php:107
+#: bookeditor.php:102 booklist.php:107
 msgid "License"
 msgstr "Licence"
 
-#: bookeditor.php:123 booklist.php:74 booklist.php:166
+#: bookeditor.php:127 booklist.php:74 booklist.php:166
 msgid "Scanned"
 msgstr "Scanné"
 
-#: bookeditor.php:129 booklist.php:75 booklist.php:172
+#: bookeditor.php:133 booklist.php:75 booklist.php:172
 msgid "Scantailor-ing"
 msgstr "Scantailor en cours"
 
-#: bookeditor.php:137 booklist.php:76 booklist.php:180
+#: bookeditor.php:141 booklist.php:76 booklist.php:180
 msgid "Scantailor-ed"
 msgstr "Scantailor OK"
 
-#: bookeditor.php:145 booklist.php:77 booklist.php:188
+#: bookeditor.php:149 booklist.php:77 booklist.php:188
 msgid "Image PDF"
 msgstr "PDF Image"
 
-#: bookeditor.php:153 booklist.php:78 booklist.php:196
+#: bookeditor.php:157 booklist.php:78 booklist.php:196
 msgid "ocr"
 msgstr "ocr"
 
-#: bookeditor.php:159 booklist.php:202
+#: bookeditor.php:163 booklist.php:202
 msgid "odt"
 msgstr "texte odt"
 
-#: bookeditor.php:165 booklist.php:208
+#: bookeditor.php:169 booklist.php:208
 msgid "epub"
 msgstr "livre epub"
 
-#: bookeditor.php:170 booklist.php:213
+#: bookeditor.php:174 booklist.php:213
 msgid "Y-m-d"
 msgstr "d/m/Y"
 
@@ -330,6 +330,14 @@ msgstr "Etat inconnu, ERREUR"
 msgid "Project in erroneous state, to be fixed by a human"
 msgstr "Le projet est dans un état inconnu, qui doit être résolu par un humain"
 
+#: booklist.php:71
+msgid "At step"
+msgstr "À l'état"
+
+#: booklist.php:73
+msgid "--- Any step ---"
+msgstr "--- N'importe laquelle ---"
+
 #: booklist.php:103
 msgid "Step"
 msgstr "État"
@@ -423,186 +431,203 @@ msgstr "Ce livre n'est pas sous la bonne licence"
 msgid "This book's requested file is not available."
 msgstr "Le fichier demandé n'existe pas pour ce livre"
 
-#: edit.php:24 edit.php:90
+#: edit.php:24 edit.php:97
 msgid "Book not found"
 msgstr "Livre non trouvé"
 
-#: edit.php:41
+#: edit.php:35
+msgid "Status changed"
+msgstr "État modifié"
+
+#: edit.php:48
 msgid "Last left picture deleted"
 msgstr "Dernière image de gauche supprimée"
 
-#: edit.php:55
+#: edit.php:62
 msgid "First right picture deleted"
 msgstr "Première image de droite supprimée"
 
-#: edit.php:125 menu.php:23
+#: edit.php:132 menu.php:23
 msgid "Book Editor"
 msgstr "Éditeur de livres"
 
-#: edit.php:134
+#: edit.php:141
 #, php-format
 msgid "Editing book %s"
 msgstr "Modification du livre %s"
 
-#: edit.php:135
+#: edit.php:142
 msgid "Creating new book"
 msgstr "Création d'un nouveau livre"
 
-#: edit.php:140
+#: edit.php:147
 msgid "Book Title"
 msgstr "Titre du livre"
 
-#: edit.php:141
+#: edit.php:148
 msgid "Book Authors"
 msgstr "Auteur du livre"
 
-#: edit.php:142
+#: edit.php:149
 msgid "Book Publisher"
 msgstr "Éditeur du livre"
 
-#: edit.php:143
+#: edit.php:150
 msgid "Book Isbn"
 msgstr "ISBN du livre"
 
-#: edit.php:144
+#: edit.php:151
 msgid "Book Collection"
 msgstr "Collection du livre"
 
-#: edit.php:145
+#: edit.php:152
 msgid "Locked by"
 msgstr "Verrouillé par"
 
-#: edit.php:145
+#: edit.php:152
 msgid "--- Nobody ---"
 msgstr "--- Personne ---"
 
-#: edit.php:148
+#: edit.php:155
 msgid "Edit this book"
 msgstr "Modifier ce livre"
 
-#: edit.php:149
+#: edit.php:156
 msgid "Create this book"
 msgstr "Créer ce livre"
 
-#: edit.php:170
+#: edit.php:178
+msgid "Current status of the project:"
+msgstr "État actuel du projet :"
+
+#: edit.php:186 edit.php:188
+#, php-format
+msgid "Change the status to '%s'"
+msgstr "Changer l'état pour '%s'"
+
+#: edit.php:191
+msgid "To know the status list, click on the 'Misc' link in the menu"
+msgstr "Pour connaître la liste des états, cliquz sur le lien 'Divers' dans le menu"
+
+#: edit.php:211
+msgid "Can't read left folder, please check"
+msgstr "Impossible de lire le dossier left, vérifiez les droits"
+
+#: edit.php:227
+msgid "Can't read right folder, please check"
+msgstr "Impossible de lire le dossier right, vérifiez les droits"
+
+#: edit.php:233
+msgid "First and last <b>left</b> pictures"
+msgstr "Première et dernière images de <b>left</b> (gauche)"
+
+#: edit.php:235
+msgid "Please confirm you want to delete the last picture"
+msgstr "Merci de confirmer que vous souhaitez effacer la dernière image"
+
+#: edit.php:235
+msgid "Delete last"
+msgstr "Effacer la dernière"
+
+#: edit.php:239
+msgid "First and last <b>right</b> pictures"
+msgstr "Première et dernière images de <b>right</b> (droite)"
+
+#: edit.php:241
+msgid "Please confirm you want to delete the first picture"
+msgstr "Merci de confirmer que vous souhaitez effacer la première image"
+
+#: edit.php:241
+msgid "Delete first"
+msgstr "Effacer la première"
+
+#: edit.php:259
 msgid "Metadata changed on"
 msgstr "Métadonnées modifiées le"
 
-#: edit.php:173
+#: edit.php:262
 msgid "Last scanned picture on"
 msgstr "Dernière image scannée le "
 
-#: edit.php:177
+#: edit.php:266
 msgid "Number of pictures"
 msgstr "Nombre d'images"
 
-#: edit.php:180
+#: edit.php:269
 msgid "No pictures scanned yet"
 msgstr "Aucune image pour l'instant"
 
-#: edit.php:185
+#: edit.php:274
 msgid "Scantailor project made on"
 msgstr "Project scantailor créé le"
 
-#: edit.php:186
+#: edit.php:275
 msgid "Do you really want to overwrite the scantailor and booktif files ?"
 msgstr ""
 "Voulez-vous réellement écraser le project scantailor et les fichier booktif ?"
 
-#: edit.php:186
+#: edit.php:275
 msgid "Regenerate"
 msgstr "Régénérer"
 
-#: edit.php:188
+#: edit.php:277
 msgid "No scantailor project created yet"
 msgstr "Aucun projet scantailor créé pour l'instant"
 
-#: edit.php:189
+#: edit.php:278
 msgid "Create this book's scantailor's project"
 msgstr "Créer le projet scantailor de ce livre"
 
-#: edit.php:194
+#: edit.php:283
 msgid "Scantailor output made on"
 msgstr "Scantailor lancé le "
 
-#: edit.php:197
+#: edit.php:286
 msgid "No scantailor output made yet"
 msgstr "Aucun lancement de scantailor "
 
-#: edit.php:198
+#: edit.php:287
 msgid "Use VNC to make the scantailor process"
 msgstr "Utiliser VNC pour terminer le projet scantailor"
 
-#: edit.php:203
+#: edit.php:292
 msgid "Image PDF created"
 msgstr "PDF image créé"
 
-#: edit.php:204
+#: edit.php:293
 #, php-format
 msgid "It has %d pages"
 msgstr "Il fait %d pages"
 
-#: edit.php:206
+#: edit.php:295
 msgid "No PDF Image created yet"
 msgstr "Aucun fichier PDF image créé"
 
-#: edit.php:209
+#: edit.php:298
 #, php-format
 msgid "PDF Image requested on %s"
 msgstr "Fichier PDF image demandé le %s"
 
-#: edit.php:211
+#: edit.php:300
 msgid "Create a PDF Image"
 msgstr "Créer un fichier PDF image"
 
-#: edit.php:216
+#: edit.php:305
 msgid "OCR files made on"
 msgstr "OCR créé le "
 
-#: edit.php:219
+#: edit.php:308
 msgid "No OCR made yet"
 msgstr "Aucun OCR pour l'instant"
 
-#: edit.php:222
+#: edit.php:311
 #, php-format
 msgid "OCR requested on %s"
 msgstr "OCR demandé le %s"
 
-#: edit.php:224
+#: edit.php:313
 msgid "Do the OCR"
 msgstr "Lancer l'OCR"
-
-#: edit.php:248
-msgid "Can't read left folder, please check"
-msgstr "Impossible de lire le dossier left, vérifiez les droits"
-
-#: edit.php:264
-msgid "Can't read right folder, please check"
-msgstr "Impossible de lire le dossier right, vérifiez les droits"
-
-#: edit.php:270
-msgid "First and last <b>left</b> pictures"
-msgstr "Première et dernière images de <b>left</b> (gauche)"
-
-#: edit.php:272
-msgid "Please confirm you want to delete the last picture"
-msgstr "Merci de confirmer que vous souhaitez effacer la dernière image"
-
-#: edit.php:272
-msgid "Delete last"
-msgstr "Effacer la dernière"
-
-#: edit.php:276
-msgid "First and last <b>right</b> pictures"
-msgstr "Première et dernière images de <b>right</b> (droite)"
-
-#: edit.php:278
-msgid "Please confirm you want to delete the first picture"
-msgstr "Merci de confirmer que vous souhaitez effacer la première image"
-
-#: edit.php:278
-msgid "Delete first"
-msgstr "Effacer la première"
 
 #: events.php:30 menu.php:27
 msgid "Last events"
