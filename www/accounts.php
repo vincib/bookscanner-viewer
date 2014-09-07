@@ -56,12 +56,12 @@ case "docreate":
       $pass=mkpass();
       mq("INSERT INTO users SET firstname='".addslashes($_POST["firstname"])."', lastname='".addslashes($_POST["lastname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."', pass='".crypt($pass,getSalt())."', role=0;"); // FIXME: set the default role
       // Send the new password to the user's email :
-      mail($_POST["email"],sprintf(_("Account created on http://%s"),$_SERVER["HTTP_HOST"]), 
+      mail($_POST["email"],sprintf(_("Account created on https://%s"),$_SERVER["HTTP_HOST"]), 
 	   sprintf(_("Hello,
-Your new account has just been created on http://%s
+Your new account has just been created on https://%s
 Please go there to login and change your password.
 Your login is %s
-and your passwrd is %s
+and your password is %s
 
 Thanks
 "),$_SERVER["HTTP_HOST"],$_REQUEST["login"],$pass)

@@ -22,6 +22,33 @@ $abltype=array(
 	       BOOKLOG_HUMAN => "Human Information",
 	       );
 
+define("STATUS_SCANNING","10");
+define("STATUS_SCANOK","20");
+define("STATUS_DOINGTAILOR1","30");
+define("STATUS_WAITUSERTAILOR","40");
+define("STATUS_USEROKTAILOR6","50");
+define("STATUS_DOINGTAILOR6","60");
+define("STATUS_TAILOROK","70");
+define("STATUS_OCRING","80");
+define("STATUS_PROOFREADING","90");
+
+define("STATUS_UNKNOWN","999");
+
+$astatus=array(
+	       STATUS_SCANNING => array(_("Scanning"),_("the project is in scanning state. we are scanning the book, it's not ended yet.")),
+	       STATUS_SCANOK   => array(_("Scan OK, wait Scantailor"),_("all the pictures are here in right order, empty pictures at the start of left folder and end of right folder have been removed, ready for scantailor !")),
+	       STATUS_DOINGTAILOR1 => array(_("Doing Scantailor 1-5"),_("the project is currently processed by scantailor for step 1 to 5 by an automatic program. the scantailor project named projectname_5.scantailor will be saved in projectname_6.scantailor")),
+	       STATUS_WAITUSERTAILOR => array(_("Scantailor waiting for user"),_("The user need to manually open the scantailor project and check step 4 for proper content recognition. After changing it and saving it, the user can allow the project to go to step 5.")),
+	       STATUS_USEROKTAILOR6 => array(_("User OK, wait Scantailor 6"),_("the project is ready to be processed by Scantailor at step 6 (and other treatments)")),
+	       STATUS_DOINGTAILOR6 => array(_("Doing Scantailor step 6"),_("A program is taking the last scantailor project, encoding everything to tiff")),
+	       STATUS_TAILOROK => array(_("Scantailor OK, wait for OCR/PDF"),_("Scantailor built the TIFF files, project is ready to be OCR-ed, PDF and DJVU + TEXT version made")),
+	       STATUS_OCRING => array(_("OCR in progress"),_("the OCR, the PDF image, the DJVU and the TEXT ocr are in progress")),
+	       STATUS_PROOFREADING => array(_("OCR done, Proofread in progress"),_("The OCR PDF DJVU and TEXT ocr have been made, the humans are now proofreading the book")),
+	       STATUS_UNKNOWN => array(_("Status Unknown, ERROR"),_("Project in erroneous state, to be fixed by a human")),
+	       );
+
+
+
 function booklog($book,$type,$message) {
   global $abltype;
   if (!isset($abltype[$type])) {

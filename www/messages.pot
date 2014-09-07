@@ -1,0 +1,608 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BookscannerManager 2014.1\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-07 17:50+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: accounts.php:8 bookeditor.php:9 booklist.php:10 collections.php:7
+#: edit.php:11
+msgid "You are not allowed to see this page. Sorry"
+msgstr ""
+
+#: accounts.php:23
+msgid "Account not found"
+msgstr ""
+
+#: accounts.php:38 accounts.php:53
+msgid "This login is already used, please choose another one"
+msgstr ""
+
+#: accounts.php:42
+msgid "Account edited successfully"
+msgstr ""
+
+#: accounts.php:59
+#, php-format
+msgid "Account created on https://%s"
+msgstr ""
+
+#: accounts.php:60
+#, php-format
+msgid ""
+"Hello,\n"
+"Your new account has just been created on https://%s\n"
+"Please go there to login and change your password.\n"
+"Your login is %s\n"
+"and your password is %s\n"
+"\n"
+"Thanks\n"
+msgstr ""
+
+#: accounts.php:70
+msgid "Account created successfully"
+msgstr ""
+
+#: accounts.php:87
+msgid "Accounts"
+msgstr ""
+
+#: accounts.php:96
+#, php-format
+msgid "Editing account %s"
+msgstr ""
+
+#: accounts.php:97
+msgid "Creating new account"
+msgstr ""
+
+#: accounts.php:102
+msgid "Firstname"
+msgstr ""
+
+#: accounts.php:103
+msgid "Lastname"
+msgstr ""
+
+#: accounts.php:104
+msgid "Email"
+msgstr ""
+
+#: accounts.php:105 accounts.php:134 login.php:38
+msgid "Login"
+msgstr ""
+
+#: accounts.php:108
+msgid "Edit this account"
+msgstr ""
+
+#: accounts.php:109
+msgid "Create this account"
+msgstr ""
+
+#: accounts.php:111 collections.php:102 edit.php:122
+msgid "Cancel"
+msgstr ""
+
+#: accounts.php:128
+msgid "Create new account"
+msgstr ""
+
+#: accounts.php:132 accounts.php:144 bookeditor.php:106 booklist.php:148
+#: collections.php:122 collections.php:131
+msgid "Edit"
+msgstr ""
+
+#: accounts.php:135 collections.php:123
+msgid "Name"
+msgstr ""
+
+#: accounts.php:136
+msgid "Role"
+msgstr ""
+
+#: accounts.php:137
+msgid "Last Login"
+msgstr ""
+
+#: accounts.php:145 collections.php:132
+msgid "Delete"
+msgstr ""
+
+#: bookeditor.php:57 booklist.php:62 menu.php:18
+msgid "Book Listing"
+msgstr ""
+
+#: bookeditor.php:62 booklist.php:67
+msgid "Search for"
+msgstr ""
+
+#: bookeditor.php:65 booklist.php:71
+msgid "At step"
+msgstr ""
+
+#: bookeditor.php:67 booklist.php:73
+msgid "--- Any step ---"
+msgstr ""
+
+#: bookeditor.php:74 booklist.php:81
+msgid "In collection"
+msgstr ""
+
+#: bookeditor.php:76 booklist.php:83
+msgid "--- Any collection ---"
+msgstr ""
+
+#: bookeditor.php:77 booklist.php:84 edit.php:115
+msgid "--- No collection ---"
+msgstr ""
+
+#: bookeditor.php:80 booklist.php:87
+msgid "Search"
+msgstr ""
+
+#: bookeditor.php:92 booklist.php:99
+msgid "Download"
+msgstr ""
+
+#: bookeditor.php:93 booklist.php:100
+msgid "Title, Author"
+msgstr ""
+
+#: bookeditor.php:94 booklist.php:101
+msgid "Date"
+msgstr ""
+
+#: bookeditor.php:95
+msgid "(Old Status)"
+msgstr ""
+
+#: bookeditor.php:97 booklist.php:105
+msgid "Status"
+msgstr ""
+
+#: bookeditor.php:98 booklist.php:107
+msgid "License"
+msgstr ""
+
+#: bookeditor.php:123 booklist.php:74 booklist.php:166
+msgid "Scanned"
+msgstr ""
+
+#: bookeditor.php:129 booklist.php:75 booklist.php:172
+msgid "Scantailor-ing"
+msgstr ""
+
+#: bookeditor.php:137 booklist.php:76 booklist.php:180
+msgid "Scantailor-ed"
+msgstr ""
+
+#: bookeditor.php:145 booklist.php:77 booklist.php:188
+msgid "Image PDF"
+msgstr ""
+
+#: bookeditor.php:153 booklist.php:78 booklist.php:196
+msgid "ocr"
+msgstr ""
+
+#: bookeditor.php:159 booklist.php:202
+msgid "odt"
+msgstr ""
+
+#: bookeditor.php:165 booklist.php:208
+msgid "epub"
+msgstr ""
+
+#: bookeditor.php:170 booklist.php:213
+msgid "Y-m-d"
+msgstr ""
+
+#: bookfuncs.php:38
+msgid "Scanning"
+msgstr ""
+
+#: bookfuncs.php:38
+msgid ""
+"the project is in scanning state. we are scanning the book, it's not ended "
+"yet."
+msgstr ""
+
+#: bookfuncs.php:39
+msgid "Scan OK, wait Scantailor"
+msgstr ""
+
+#: bookfuncs.php:39
+msgid ""
+"all the pictures are here in right order, empty pictures at the start of "
+"left folder and end of right folder have been removed, ready for scantailor !"
+msgstr ""
+
+#: bookfuncs.php:40
+msgid "Doing Scantailor 1-5"
+msgstr ""
+
+#: bookfuncs.php:40
+msgid ""
+"the project is currently processed by scantailor for step 1 to 5 by an "
+"automatic program. the scantailor project named projectname_5.scantailor "
+"will be saved in projectname_6.scantailor"
+msgstr ""
+
+#: bookfuncs.php:41
+msgid "Scantailor waiting for user"
+msgstr ""
+
+#: bookfuncs.php:41
+msgid ""
+"The user need to manually open the scantailor project and check step 4 for "
+"proper content recognition. After changing it and saving it, the user can "
+"allow the project to go to step 5."
+msgstr ""
+
+#: bookfuncs.php:42
+msgid "User OK, wait Scantailor 6"
+msgstr ""
+
+#: bookfuncs.php:42
+msgid ""
+"the project is ready to be processed by Scantailor at step 6 (and other "
+"treatments)"
+msgstr ""
+
+#: bookfuncs.php:43
+msgid "Doing Scantailor step 6"
+msgstr ""
+
+#: bookfuncs.php:43
+msgid ""
+"A program is taking the last scantailor project, encoding everything to tiff"
+msgstr ""
+
+#: bookfuncs.php:44
+msgid "Scantailor OK, wait for OCR/PDF"
+msgstr ""
+
+#: bookfuncs.php:44
+msgid ""
+"Scantailor built the TIFF files, project is ready to be OCR-ed, PDF and DJVU "
+"+ TEXT version made"
+msgstr ""
+
+#: bookfuncs.php:45
+msgid "OCR in progress"
+msgstr ""
+
+#: bookfuncs.php:45
+msgid "the OCR, the PDF image, the DJVU and the TEXT ocr are in progress"
+msgstr ""
+
+#: bookfuncs.php:46
+msgid "OCR done, Proofread in progress"
+msgstr ""
+
+#: bookfuncs.php:46
+msgid ""
+"The OCR PDF DJVU and TEXT ocr have been made, the humans are now "
+"proofreading the book"
+msgstr ""
+
+#: bookfuncs.php:47
+msgid "Status Unknown, ERROR"
+msgstr ""
+
+#: bookfuncs.php:47
+msgid "Project in erroneous state, to be fixed by a human"
+msgstr ""
+
+#: booklist.php:103
+msgid "Step"
+msgstr ""
+
+#: booklist.php:106
+msgid "Page Count"
+msgstr ""
+
+#: booklist.php:118
+#, php-format
+msgid "Download TAR of all original pictures (%sMB)"
+msgstr ""
+
+#: booklist.php:126
+#, php-format
+msgid "Download PDF image (%sMB)"
+msgstr ""
+
+#: booklist.php:134
+#, php-format
+msgid "Download ODT text file (%sKB)"
+msgstr ""
+
+#: booklist.php:142
+#, php-format
+msgid "Download EPUB book (%sKB)"
+msgstr ""
+
+#: collections.php:21
+msgid "Collection not found"
+msgstr ""
+
+#: collections.php:36 collections.php:51
+msgid "This collection is already used, please choose another one"
+msgstr ""
+
+#: collections.php:40
+msgid "Collection renamed successfully"
+msgstr ""
+
+#: collections.php:56
+msgid "Collection created successfully"
+msgstr ""
+
+#: collections.php:65
+msgid "Collection deleted successfully"
+msgstr ""
+
+#: collections.php:81
+msgid "Collections"
+msgstr ""
+
+#: collections.php:90
+#, php-format
+msgid "Editing collection %s"
+msgstr ""
+
+#: collections.php:91
+msgid "Creating new collection"
+msgstr ""
+
+#: collections.php:96
+msgid "Collection name"
+msgstr ""
+
+#: collections.php:99
+msgid "Edit this collection"
+msgstr ""
+
+#: collections.php:100
+msgid "Create this collection"
+msgstr ""
+
+#: collections.php:118
+msgid "Create new collection"
+msgstr ""
+
+#: collections.php:124
+msgid "# books"
+msgstr ""
+
+#: download.php:9
+msgid "The requested book has not been found"
+msgstr ""
+
+#: download.php:21
+msgid "This book is not under a proper license"
+msgstr ""
+
+#: download.php:35
+msgid "This book's requested file is not available."
+msgstr ""
+
+#: edit.php:24 edit.php:61
+msgid "Book not found"
+msgstr ""
+
+#: edit.php:96 menu.php:23
+msgid "Book Editor"
+msgstr ""
+
+#: edit.php:105
+#, php-format
+msgid "Editing book %s"
+msgstr ""
+
+#: edit.php:106
+msgid "Creating new book"
+msgstr ""
+
+#: edit.php:111
+msgid "Book Title"
+msgstr ""
+
+#: edit.php:112
+msgid "Book Authors"
+msgstr ""
+
+#: edit.php:113
+msgid "Book Publisher"
+msgstr ""
+
+#: edit.php:114
+msgid "Book Isbn"
+msgstr ""
+
+#: edit.php:115
+msgid "Book Collection"
+msgstr ""
+
+#: edit.php:116
+msgid "Locked by"
+msgstr ""
+
+#: edit.php:116
+msgid "--- Nobody ---"
+msgstr ""
+
+#: edit.php:119
+msgid "Edit this book"
+msgstr ""
+
+#: edit.php:120
+msgid "Create this book"
+msgstr ""
+
+#: edit.php:141
+msgid "Metadata changed on"
+msgstr ""
+
+#: edit.php:144
+msgid "Last scanned picture on"
+msgstr ""
+
+#: edit.php:148
+msgid "Number of pictures"
+msgstr ""
+
+#: edit.php:151
+msgid "No pictures scanned yet"
+msgstr ""
+
+#: edit.php:156
+msgid "Scantailor project made on"
+msgstr ""
+
+#: edit.php:157
+msgid "Do you really want to overwrite the scantailor and booktif files ?"
+msgstr ""
+
+#: edit.php:157
+msgid "Regenerate"
+msgstr ""
+
+#: edit.php:159
+msgid "No scantailor project created yet"
+msgstr ""
+
+#: edit.php:160
+msgid "Create this book's scantailor's project"
+msgstr ""
+
+#: edit.php:165
+msgid "Scantailor output made on"
+msgstr ""
+
+#: edit.php:168
+msgid "No scantailor output made yet"
+msgstr ""
+
+#: edit.php:169
+msgid "Use VNC to make the scantailor process"
+msgstr ""
+
+#: edit.php:174
+msgid "Image PDF created"
+msgstr ""
+
+#: edit.php:175
+#, php-format
+msgid "It has %d pages"
+msgstr ""
+
+#: edit.php:177
+msgid "No PDF Image created yet"
+msgstr ""
+
+#: edit.php:180
+#, php-format
+msgid "PDF Image requested on %s"
+msgstr ""
+
+#: edit.php:182
+msgid "Create a PDF Image"
+msgstr ""
+
+#: edit.php:187
+msgid "OCR files made on"
+msgstr ""
+
+#: edit.php:190
+msgid "No OCR made yet"
+msgstr ""
+
+#: edit.php:193
+#, php-format
+msgid "OCR requested on %s"
+msgstr ""
+
+#: edit.php:195
+msgid "Do the OCR"
+msgstr ""
+
+#: events.php:30 menu.php:27
+msgid "Last events"
+msgstr ""
+
+#: events.php:34
+msgid "Date of event"
+msgstr ""
+
+#: events.php:35
+msgid "Event Type"
+msgstr ""
+
+#: events.php:36
+msgid "Book"
+msgstr ""
+
+#: events.php:37
+msgid "Event"
+msgstr ""
+
+#: head.php:8
+msgid "Bookscanner Reader & Correction Manager"
+msgstr ""
+
+#: login.php:12 login.php:22
+msgid "Incorrect username or password"
+msgstr ""
+
+#: login.php:18
+msgid "Welcome"
+msgstr ""
+
+#: login.php:37
+msgid "Please sign in"
+msgstr ""
+
+#: login.php:39
+msgid "Password"
+msgstr ""
+
+#: login.php:40 menu.php:56
+msgid "Sign in"
+msgstr ""
+
+#: logout.php:8
+msgid "You have been logged out"
+msgstr ""
+
+#: menu.php:31
+msgid "Proof reading"
+msgstr ""
+
+#: menu.php:45
+msgid "Logout"
+msgstr ""
+
+#: menu.php:47
+msgid "Edit accounts"
+msgstr ""
+
+#: menu.php:48
+msgid "Edit collections"
+msgstr ""
+
+#: menu.php:50
+msgid "My account"
+msgstr ""
