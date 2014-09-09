@@ -175,20 +175,31 @@ function dateif($ts) {
 
 <!-- Status table -->
 <?php
+
   echo "<h3>"._("Current status of the project:")."</h3>";
-echo "<p><b>".$astatus[$book["status"]][0]."</b></p>\n";
+echo "<div style=\"float: right\"><a onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to set this project to ERROR status"))."');\" href=\"edit.php?id=".$book["id"]."&action=status&status=".STATUS_UNKNOWN."\" title=\""._("Click to set the project to ERROR status")."\"><img src=\"/assets/img/delete.png\"></a></div>";
+echo "<p><b>".$astatus[$book["status"]][0]."</b>";
+if ($book["status"]==STATUS_DOINGTAILOR1 || $book["status"]==STATUS_DOINGTAILOR6 || $book["status"]==STATUS_OCRING) {
+  echo " (<img src=\"/assets/img/loading_web.gif\"> "._("Please wait").")";
+}
+echo "</p>\n";
 
 $changeto=0; // Which status changes are allowed FROM THE USER will:
 if ($book["status"] == STATUS_SCANNING) {  $changeto=STATUS_SCANOK;  }
 if ($book["status"] == STATUS_WAITUSERTAILOR) {  $changeto=STATUS_USEROKTAILOR6;  }
+
 echo "<p>";
+if ($book["status"] == STATUS_WAITUSERTAILOR) {
+  if ($_SERVER["REMOTE_ADDR"]=="127.0.0.1") {
+    echo "<p><a href=\"#\" onclick=\"$.ajax('launch-scantailor.php?id=".$book["id"]."'); return false;\"><img src=\"/assets/img/scantailor.png\"> "._("Launch Scantailor to check the pages")."</a></p>";
+  }
+}
 if ($changeto) {
   echo "<a href=\"edit.php?id=".$book["id"]."&action=status&status=".$changeto."\">".sprintf(_("Change the status to '%s'"),$astatus[$changeto][0])."</a><br />";
 }
-echo "<a href=\"edit.php?id=".$book["id"]."&action=status&status=".STATUS_UNKNOWN."\">".sprintf(_("Change the status to '%s'"),$astatus[STATUS_UNKNOWN][0])."</a>";
 echo "</p>";
 ?>
-<p><?php __("To know the status list, click on the 'Misc' link in the menu"); ?></p>
+<p><?php __("To know the status list, click on the '<a href=\"/misc\">Misc</a>' link in the menu"); ?></p>
 <p>&nbsp;</p>
 
 <!-- thumbnail of first and last page of right/left -->
@@ -228,6 +239,10 @@ closedir($d);
 }
 
 function pic($path) {
+  if (!is_file(THUMBNAILS_ROOT."/normal/".md5("file://".$path).".png")) {
+    // generate the thumbnail
+    exec("/home/bookscanner/bin/pics_thumbnailer ".escapeshellarg($path)." ".escapeshellarg(THUMBNAILS_ROOT."/normal/".md5("file://".$path).".png"));
+  }
   return THUMBNAILS_URL."/normal/".md5("file://".$path).".png";
 }
 echo "<p>"._("First and last <b>left</b> pictures")." &nbsp; ";

@@ -310,12 +310,16 @@ function _l($str) {
 function mq($query) {
   global $er;
   $r=@mysql_query($query);
+  if (mysql_errno()==2006) {
+    connect();
+    $r=mysql_query($query);
+  } 
   if (mysql_errno()) {
     // TODO : probleme lors du RAISE : il lance un "log" donc fait un mysql insert !!!
     //       echo "ERREUR MYSQL : ".mysql_error()."<br>QUERY: ".$query."<br>\n";
     //    $er->raise(1,mysql_error());
     //$er->log(ERROR_LEVEL_FPUT,"mqerr",array("query"=>$query,"ERROR"=>mysql_error()));
-    echo "ERR: ".mysql_error()." <br />"; 
+    echo "ERR: ".mysql_error()." <br />\nQUERY: $query<br />\n"; 
   } else {
     // Uncomment this to log every request : 
     //$er->log(ERROR_LEVEL_FPUT,"mqok",array("query"=>$query));

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BookscannerManager 2014.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-08 00:39+0200\n"
+"POT-Creation-Date: 2014-09-09 23:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -496,136 +496,156 @@ msgstr "Modifier ce livre"
 msgid "Create this book"
 msgstr "Créer ce livre"
 
-#: edit.php:178
+#: edit.php:179
 msgid "Current status of the project:"
 msgstr "État actuel du projet :"
 
-#: edit.php:186 edit.php:188
+#: edit.php:180
+#, fuzzy
+msgid "Please confirm you want to set this project to ERROR status"
+msgstr "Merci de confirmer que vous souhaitez effacer la première image"
+
+#: edit.php:180
+msgid "Click to set the project to ERROR status"
+msgstr ""
+
+#: edit.php:183
+msgid "Please wait"
+msgstr "Merci de patienter"
+
+#: edit.php:194
+msgid "Launch Scantailor to check the pages"
+msgstr "Lancer Scantailor pour vérifier les pages"
+
+#: edit.php:198
 #, php-format
 msgid "Change the status to '%s'"
 msgstr "Changer l'état pour '%s'"
 
-#: edit.php:191
-msgid "To know the status list, click on the 'Misc' link in the menu"
-msgstr "Pour connaître la liste des états, cliquz sur le lien 'Divers' dans le menu"
+#: edit.php:202
+msgid ""
+"To know the status list, click on the '<a href=\"/misc\">Misc</a>' link in "
+"the menu"
+msgstr ""
+"Pour connaître la liste des états, cliquz sur le lien '<a href=\"/misc\">Divers</a>' dans le menu"
 
-#: edit.php:211
+#: edit.php:222
 msgid "Can't read left folder, please check"
 msgstr "Impossible de lire le dossier left, vérifiez les droits"
 
-#: edit.php:227
+#: edit.php:238
 msgid "Can't read right folder, please check"
 msgstr "Impossible de lire le dossier right, vérifiez les droits"
 
-#: edit.php:233
+#: edit.php:248
 msgid "First and last <b>left</b> pictures"
 msgstr "Première et dernière images de <b>left</b> (gauche)"
 
-#: edit.php:235
+#: edit.php:250
 msgid "Please confirm you want to delete the last picture"
 msgstr "Merci de confirmer que vous souhaitez effacer la dernière image"
 
-#: edit.php:235
+#: edit.php:250
 msgid "Delete last"
 msgstr "Effacer la dernière"
 
-#: edit.php:239
+#: edit.php:254
 msgid "First and last <b>right</b> pictures"
 msgstr "Première et dernière images de <b>right</b> (droite)"
 
-#: edit.php:241
+#: edit.php:256
 msgid "Please confirm you want to delete the first picture"
 msgstr "Merci de confirmer que vous souhaitez effacer la première image"
 
-#: edit.php:241
+#: edit.php:256
 msgid "Delete first"
 msgstr "Effacer la première"
 
-#: edit.php:259
+#: edit.php:274
 msgid "Metadata changed on"
 msgstr "Métadonnées modifiées le"
 
-#: edit.php:262
+#: edit.php:277
 msgid "Last scanned picture on"
 msgstr "Dernière image scannée le "
 
-#: edit.php:266
+#: edit.php:281
 msgid "Number of pictures"
 msgstr "Nombre d'images"
 
-#: edit.php:269
+#: edit.php:284
 msgid "No pictures scanned yet"
 msgstr "Aucune image pour l'instant"
 
-#: edit.php:274
+#: edit.php:289
 msgid "Scantailor project made on"
 msgstr "Project scantailor créé le"
 
-#: edit.php:275
+#: edit.php:290
 msgid "Do you really want to overwrite the scantailor and booktif files ?"
 msgstr ""
 "Voulez-vous réellement écraser le project scantailor et les fichier booktif ?"
 
-#: edit.php:275
+#: edit.php:290
 msgid "Regenerate"
 msgstr "Régénérer"
 
-#: edit.php:277
+#: edit.php:292
 msgid "No scantailor project created yet"
 msgstr "Aucun projet scantailor créé pour l'instant"
 
-#: edit.php:278
+#: edit.php:293
 msgid "Create this book's scantailor's project"
 msgstr "Créer le projet scantailor de ce livre"
 
-#: edit.php:283
+#: edit.php:298
 msgid "Scantailor output made on"
 msgstr "Scantailor lancé le "
 
-#: edit.php:286
+#: edit.php:301
 msgid "No scantailor output made yet"
 msgstr "Aucun lancement de scantailor "
 
-#: edit.php:287
+#: edit.php:302
 msgid "Use VNC to make the scantailor process"
 msgstr "Utiliser VNC pour terminer le projet scantailor"
 
-#: edit.php:292
+#: edit.php:307
 msgid "Image PDF created"
 msgstr "PDF image créé"
 
-#: edit.php:293
+#: edit.php:308
 #, php-format
 msgid "It has %d pages"
 msgstr "Il fait %d pages"
 
-#: edit.php:295
+#: edit.php:310
 msgid "No PDF Image created yet"
 msgstr "Aucun fichier PDF image créé"
 
-#: edit.php:298
+#: edit.php:313
 #, php-format
 msgid "PDF Image requested on %s"
 msgstr "Fichier PDF image demandé le %s"
 
-#: edit.php:300
+#: edit.php:315
 msgid "Create a PDF Image"
 msgstr "Créer un fichier PDF image"
 
-#: edit.php:305
+#: edit.php:320
 msgid "OCR files made on"
 msgstr "OCR créé le "
 
-#: edit.php:308
+#: edit.php:323
 msgid "No OCR made yet"
 msgstr "Aucun OCR pour l'instant"
 
-#: edit.php:311
+#: edit.php:326
 #, php-format
 msgid "OCR requested on %s"
 msgstr "OCR demandé le %s"
 
-#: edit.php:313
+#: edit.php:328
 msgid "Do the OCR"
 msgstr "Lancer l'OCR"
 

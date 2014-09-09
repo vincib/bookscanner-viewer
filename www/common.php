@@ -2,6 +2,15 @@
 
 require_once("config.php");
 
+function connect() {
+  global $MY;
+  mysql_connect($MY[0],$MY[1],$MY[2]);
+  mysql_select_db($MY[3]);
+  mysql_query("SET NAMES UTF8;");
+}
+
+connect();
+
 session_name("bookviewer");
 session_start();
 

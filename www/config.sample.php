@@ -3,8 +3,7 @@
 // we will see that later :) 
 $lang="en";
 
-mysql_connect("localhost","bv","poipoi");
-mysql_select_db("bv");
+$MY=array("localhost","bv","poipoi","bv"); // host user pass database
 mysql_query("SET NAMES UTF8;");
 
 // Path where the projects will be stored (in the filesystem) NO ENDING / !!!

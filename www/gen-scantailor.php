@@ -34,6 +34,7 @@ function gen_scantailor($name) {
     define("XML_ROOT",$_REQUEST["substitute"]);
   } else {
     define("XML_ROOT",PROJECT_ROOT);
+    define("XML_WINDOWS",false);
   }
   
   $left=0; $right=0;
@@ -98,6 +99,7 @@ if (XML_WINDOWS) {
   reset($allleft);
   reset($allright);
 $images=array();
+$page=0;
 while ($found) {
   $found=false;
   if ($v=each($allleft)) {

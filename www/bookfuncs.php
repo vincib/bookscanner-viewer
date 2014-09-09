@@ -266,3 +266,43 @@ function scanproject($project) {
     mq("UPDATE books SET changed=$changed WHERE id=".$data["id"].";");
   }
 }
+
+
+/* create the scantailor project
+   then launch scantailor-cli for step 1 to 5, save the project to projectname_5.scantailor
+*/
+function scantailor1($book) {
+  require_once("gen-scantailor.php");
+  ob_start();
+  gen_scantailor($book["projectname"]);
+  $content=ob_get_clean();
+  file_put_contents(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".scantailor",$content);
+  if (!is_file(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".scantailor") ||
+      filesize(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".scantailor")<1000) {
+    echo "gen-scantailor failed\n";
+    return false;
+  }
+  // now launch scantailor
+  chdir(PROJECT_ROOT."/".$book["projectname"]);
+  passthru("scantailor-cli --start-filter=1 --end-filter=5 --output-project=".escapeshellarg($book["projectname"]."_5.scantailor")."  ".escapeshellarg($book["projectname"].".scantailor")." ".escapeshellarg(PROJECT_ROOT."/".$book["projectname"]."/booktif")." 2>&1",$ret);
+  if ($ret!=0) {
+    echo "scantailor-cli failed\n";
+    return false;
+  }
+  return true;
+}
+
+
+/* launch scantailor-cli for step 6, save the project to projectname_6.scantailor
+*/
+function scantailor6($book) {
+
+  chdir(PROJECT_ROOT."/".$book["projectname"]);
+  passthru("scantailor-cli --start-filter=6 --end-filter=6 --output-project=".escapeshellarg($book["projectname"]."_6.scantailor")."  ".escapeshellarg($book["projectname"]."_5.scantailor")." ".escapeshellarg(PROJECT_ROOT."/".$book["projectname"]."/booktif")." 2>&1",$ret);
+  if ($ret!=0) {
+    echo "scantailor-cli failed\n";
+    return false;
+  }
+  return true;
+}
+
