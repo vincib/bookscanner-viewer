@@ -298,7 +298,7 @@ function scantailor1($book) {
 function scantailor6($book) {
 
   chdir(PROJECT_ROOT."/".$book["projectname"]);
-  passthru("scantailor-cli --start-filter=6 --end-filter=6 --output-project=".escapeshellarg($book["projectname"]."_6.scantailor")."  ".escapeshellarg($book["projectname"]."_5.scantailor")." ".escapeshellarg(PROJECT_ROOT."/".$book["projectname"]."/booktif")." 2>&1",$ret);
+  passthru("scantailor-cli --start-filter=6 --end-filter=6 --color-mode=mixed --output-project=".escapeshellarg($book["projectname"]."_6.scantailor")."  ".escapeshellarg($book["projectname"]."_5.scantailor")." ".escapeshellarg(PROJECT_ROOT."/".$book["projectname"]."/booktif")." 2>&1",$ret);
   if ($ret!=0) {
     echo "scantailor-cli failed\n";
     return false;
