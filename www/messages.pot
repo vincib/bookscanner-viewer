@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BookscannerManager 2014.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-09 23:57+0200\n"
+"POT-Creation-Date: 2014-09-17 22:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgstr ""
 msgid "Create new account"
 msgstr ""
 
-#: accounts.php:132 accounts.php:144 bookeditor.php:110 booklist.php:148
+#: accounts.php:132 accounts.php:144 bookeditor.php:112 booklist.php:148
 #: collections.php:122 collections.php:131
 msgid "Edit"
 msgstr ""
@@ -137,75 +137,75 @@ msgstr ""
 msgid "--- Any status ---"
 msgstr ""
 
-#: bookeditor.php:78 booklist.php:81
+#: bookeditor.php:80 booklist.php:81
 msgid "In collection"
 msgstr ""
 
-#: bookeditor.php:80 booklist.php:83
+#: bookeditor.php:82 booklist.php:83
 msgid "--- Any collection ---"
 msgstr ""
 
-#: bookeditor.php:81 booklist.php:84 edit.php:151
+#: bookeditor.php:83 booklist.php:84 edit.php:151
 msgid "--- No collection ---"
 msgstr ""
 
-#: bookeditor.php:84 booklist.php:87
+#: bookeditor.php:86 booklist.php:87
 msgid "Search"
 msgstr ""
 
-#: bookeditor.php:96 booklist.php:99
+#: bookeditor.php:98 booklist.php:99
 msgid "Download"
 msgstr ""
 
-#: bookeditor.php:97 booklist.php:100
+#: bookeditor.php:99 booklist.php:100
 msgid "Title, Author"
 msgstr ""
 
-#: bookeditor.php:98 booklist.php:101
+#: bookeditor.php:100 booklist.php:101
 msgid "Date"
 msgstr ""
 
-#: bookeditor.php:99
+#: bookeditor.php:101
 msgid "(Old Status)"
 msgstr ""
 
-#: bookeditor.php:101 booklist.php:105
+#: bookeditor.php:103 booklist.php:105
 msgid "Status"
 msgstr ""
 
-#: bookeditor.php:102 booklist.php:107
+#: bookeditor.php:104 booklist.php:107
 msgid "License"
 msgstr ""
 
-#: bookeditor.php:127 booklist.php:74 booklist.php:166
+#: bookeditor.php:129 booklist.php:74 booklist.php:166
 msgid "Scanned"
 msgstr ""
 
-#: bookeditor.php:133 booklist.php:75 booklist.php:172
+#: bookeditor.php:135 booklist.php:75 booklist.php:172
 msgid "Scantailor-ing"
 msgstr ""
 
-#: bookeditor.php:141 booklist.php:76 booklist.php:180
+#: bookeditor.php:143 booklist.php:76 booklist.php:180
 msgid "Scantailor-ed"
 msgstr ""
 
-#: bookeditor.php:149 booklist.php:77 booklist.php:188
+#: bookeditor.php:151 booklist.php:77 booklist.php:188
 msgid "Image PDF"
 msgstr ""
 
-#: bookeditor.php:157 booklist.php:78 booklist.php:196
+#: bookeditor.php:159 booklist.php:78 booklist.php:196
 msgid "ocr"
 msgstr ""
 
-#: bookeditor.php:163 booklist.php:202
+#: bookeditor.php:165 booklist.php:202
 msgid "odt"
 msgstr ""
 
-#: bookeditor.php:169 booklist.php:208
+#: bookeditor.php:171 booklist.php:208
 msgid "epub"
 msgstr ""
 
-#: bookeditor.php:174 booklist.php:213
+#: bookeditor.php:176 booklist.php:213
 msgid "Y-m-d"
 msgstr ""
 
@@ -511,114 +511,114 @@ msgstr ""
 msgid "Can't read right folder, please check"
 msgstr ""
 
-#: edit.php:248
+#: edit.php:250
 msgid "First and last <b>left</b> pictures"
 msgstr ""
 
-#: edit.php:250
+#: edit.php:252
 msgid "Please confirm you want to delete the last picture"
 msgstr ""
 
-#: edit.php:250
+#: edit.php:252
 msgid "Delete last"
 msgstr ""
 
-#: edit.php:254
+#: edit.php:256
 msgid "First and last <b>right</b> pictures"
 msgstr ""
 
-#: edit.php:256
+#: edit.php:258
 msgid "Please confirm you want to delete the first picture"
 msgstr ""
 
-#: edit.php:256
+#: edit.php:258
 msgid "Delete first"
 msgstr ""
 
-#: edit.php:274
+#: edit.php:277
 msgid "Metadata changed on"
 msgstr ""
 
-#: edit.php:277
+#: edit.php:280
 msgid "Last scanned picture on"
 msgstr ""
 
-#: edit.php:281
+#: edit.php:284
 msgid "Number of pictures"
 msgstr ""
 
-#: edit.php:284
+#: edit.php:287
 msgid "No pictures scanned yet"
 msgstr ""
 
-#: edit.php:289
+#: edit.php:292
 msgid "Scantailor project made on"
 msgstr ""
 
-#: edit.php:290
+#: edit.php:293
 msgid "Do you really want to overwrite the scantailor and booktif files ?"
 msgstr ""
 
-#: edit.php:290
+#: edit.php:293
 msgid "Regenerate"
 msgstr ""
 
-#: edit.php:292
+#: edit.php:295
 msgid "No scantailor project created yet"
 msgstr ""
 
-#: edit.php:293
+#: edit.php:296
 msgid "Create this book's scantailor's project"
 msgstr ""
 
-#: edit.php:298
+#: edit.php:301
 msgid "Scantailor output made on"
 msgstr ""
 
-#: edit.php:301
+#: edit.php:304
 msgid "No scantailor output made yet"
 msgstr ""
 
-#: edit.php:302
+#: edit.php:305
 msgid "Use VNC to make the scantailor process"
 msgstr ""
 
-#: edit.php:307
+#: edit.php:310
 msgid "Image PDF created"
 msgstr ""
 
-#: edit.php:308
+#: edit.php:311
 #, php-format
 msgid "It has %d pages"
 msgstr ""
 
-#: edit.php:310
+#: edit.php:313
 msgid "No PDF Image created yet"
 msgstr ""
 
-#: edit.php:313
+#: edit.php:316
 #, php-format
 msgid "PDF Image requested on %s"
 msgstr ""
 
-#: edit.php:315
+#: edit.php:318
 msgid "Create a PDF Image"
 msgstr ""
 
-#: edit.php:320
+#: edit.php:323
 msgid "OCR files made on"
 msgstr ""
 
-#: edit.php:323
+#: edit.php:326
 msgid "No OCR made yet"
 msgstr ""
 
-#: edit.php:326
+#: edit.php:329
 #, php-format
 msgid "OCR requested on %s"
 msgstr ""
 
-#: edit.php:328
+#: edit.php:331
 msgid "Do the OCR"
 msgstr ""
 

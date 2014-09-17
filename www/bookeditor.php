@@ -38,7 +38,7 @@ if (isset($_REQUEST["collection"]) && $_REQUEST["collection"] ) {
   }
 }
 
-if (isset($_REQUEST["status"])) {
+if (isset($_REQUEST["status"]) && $_REQUEST["status"]) {
     $sql.=" AND status = ".intval($_REQUEST["status"])." ";
 }
 
@@ -70,7 +70,9 @@ echo mysql_error();
   <select name="status" class="form-control" id="status" onchange="form.submit()">
   <option value=""><?php __("--- Any status ---"); ?></option>
   <?php foreach($astatus as $k=>$v) {
-  echo "<option value=\"".$k."\">[".$k."] ".$v[0]."</option>";
+  echo "<option value=\"".$k."\"";
+if ($_REQUEST["status"]==$k) echo " selected=\"selected\"";
+echo ">[".$k."] ".$v[0]."</option>";
   }
 ?>
   </select>

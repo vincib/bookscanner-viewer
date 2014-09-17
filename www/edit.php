@@ -245,19 +245,22 @@ function pic($path) {
   }
   return THUMBNAILS_URL."/normal/".md5("file://".$path).".png";
 }
-echo "<p>"._("First and last <b>left</b> pictures")." &nbsp; ";
-$code=md5(SECRET_CODE."-".$lastl);
-echo "<a href=\"edit?id=".$book["id"]."&action=del_last_left&pic=".$lastl."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the last picture"))."');\">"._("Delete last")."</a>";
-echo "</p>";
-echo "<p><img alt=\"first left : ".$firstl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$firstl)."\"> ";
-echo "<img alt=\"last left : ".$lastl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$lastl)."\"></p>";
-echo "<p>"._("First and last <b>right</b> pictures")." &nbsp; ";
-$code=md5(SECRET_CODE."-".$firstr);
-echo "<a href=\"edit?id=".$book["id"]."&action=del_first_right&pic=".$firstr."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the first picture"))."');\">"._("Delete first")."</a>";
-echo "</p>";
-echo "<p><img alt=\"first right : ".$firstr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$firstr)."\"> ";
-echo "<img alt=\"last right : ".$lastr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$lastr)."\"></p>";
-?>
+
+if ($book["status"]==STATUS_SCANNING) {
+  echo "<p>"._("First and last <b>left</b> pictures")." &nbsp; ";
+  $code=md5(SECRET_CODE."-".$lastl);
+  echo "<a href=\"edit?id=".$book["id"]."&action=del_last_left&pic=".$lastl."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the last picture"))."');\">"._("Delete last")."</a>";
+  echo "</p>";
+  echo "<p><img alt=\"first left : ".$firstl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$firstl)."\"> ";
+  echo "<img alt=\"last left : ".$lastl."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/left/".$lastl)."\"></p>";
+  echo "<p>"._("First and last <b>right</b> pictures")." &nbsp; ";
+  $code=md5(SECRET_CODE."-".$firstr);
+  echo "<a href=\"edit?id=".$book["id"]."&action=del_first_right&pic=".$firstr."&code=".$code."\" onclick=\"return confirm('".str_replace("'","\\'",_("Please confirm you want to delete the first picture"))."');\">"._("Delete first")."</a>";
+  echo "</p>";
+  echo "<p><img alt=\"first right : ".$firstr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$firstr)."\"> ";
+  echo "<img alt=\"last right : ".$lastr."\" src=\"".pic(PROJECT_ROOT."/".$book["projectname"]."/right/".$lastr)."\"></p>";
+}
+  ?>
 
 
 
