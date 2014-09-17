@@ -111,7 +111,7 @@ case "doedit":
     } else {
       $locktime="";
     }
-    mq("UPDATE books SET title='".addslashes($_POST["title"])."', authors='".addslashes($_POST["authors"])."', publisher='".addslashes($_POST["publisher"])."', isbn='".addslashes($_POST["isbn"])."', collection='".addslashes($_POST["collection"])."', `locked`='".addslashes($_POST["locked"])."' $locktime WHERE id='".intval($_POST["id"])."';");
+    mq("UPDATE books SET title='".addslashes($_POST["title"])."', license='".intval($_POST["license"])."', status='".intval($_POST["status"])."', authors='".addslashes($_POST["authors"])."', publisher='".addslashes($_POST["publisher"])."', isbn='".addslashes($_POST["isbn"])."', collection='".addslashes($_POST["collection"])."', `locked`='".addslashes($_POST["locked"])."' $locktime WHERE id='".intval($_POST["id"])."';");
     header("Location: /edit?id=".$id."&msg=".urlencode("Book edited successfully"));
     exit();
   }
@@ -149,6 +149,12 @@ case "create":
    <label for="publisher"><?php __("Book Publisher"); ?></label><input type="text" name="publisher" id="publisher" value="<?php eher("publisher"); ?>" style="width: 300px"/>
    <label for="isbn"><?php __("Book Isbn"); ?></label><input type="text" name="isbn" id="isbn" value="<?php eher("isbn"); ?>" style="width: 300px"/>
    <label for="collection"><?php __("Book Collection"); ?></label><select name="collection" id="collection"><option value="0"><?php __("--- No collection ---"); ?></option><?php eoption("collections",$_REQUEST["collection"],array("id","name")); ?></select>
+   <label for="license"><?php __("Book License"); ?></label><select name="license" id="license"><?php eoption($alicense2,$_REQUEST["license"]); ?></select>
+
+ <a href="#" onclick="$('#bst').show(); return false"><?php __("Set status too"); ?></a>
+<div id="bst" style="display: none">
+   <label for="status"><?php __("Book Scan Status"); ?></label><select name="status" id="status"><?php eoption($astatus2,$_REQUEST["status"]); ?></select>
+</div>
 																															   <label for="locked"><?php __("Locked by"); ?></label><select name="locked" id="locked"><option value="0"><?php __("--- Nobody ---"); ?></option><?php eoption("users",$_REQUEST["locked"],array("id","login")); ?></select><?php if ($_REQUEST["locktime"] && $_REQUEST["locktime"]!="0000-00-00 00:00:00") echo  " ".sprintf("Locked on %s",date_my2fr($_REQUEST["locktime"])); ?>
 <div>
       <input type="submit" name="go" value="<?php  
