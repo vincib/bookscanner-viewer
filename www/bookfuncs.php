@@ -47,7 +47,9 @@ $astatus=array(
 	       STATUS_UNKNOWN => array(_("Status Unknown, ERROR"),_("Project in erroneous state, to be fixed by a human")),
 	       );
 
-
+foreach($astatus as $k=>$v) {
+  $astatus2[$k]=$v[0];
+}
 
 function booklog($book,$type,$message) {
   global $abltype;
@@ -60,11 +62,16 @@ function booklog($book,$type,$message) {
 
 // FIXME : cache this in a serialized txt file.
 $alicense=array();
+$alicense2=array();
 $t=mq("SELECT * FROM license");
 $freelicenses=array();
 while($c=mysql_fetch_assoc($t)) {
   $alicense[$c["id"]]=$c;
-  if ($c["free"]) $freelicenses[]=$c["id"];
+  $alicense2[$c["id"]]=$c["name"];
+  if ($c["free"]) {
+    $freelicenses[]=$c["id"];
+    $alicense2[$c["id"]].=" ("._("free").")";
+  }
 }
 
 

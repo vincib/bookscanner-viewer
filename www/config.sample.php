@@ -4,7 +4,6 @@
 $lang="en";
 
 $MY=array("localhost","bv","poipoi","bv"); // host user pass database
-mysql_query("SET NAMES UTF8;");
 
 // Path where the projects will be stored (in the filesystem) NO ENDING / !!!
 define("PROJECT_ROOT","/tr2/bookscanner/bookscanner");
