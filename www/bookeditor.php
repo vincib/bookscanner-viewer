@@ -11,6 +11,19 @@ if (!$_SESSION["id"]) {
   exit();
 }
 
+$params=array("count","offset","collection","status","q");
+$hasparams=false;
+foreach($params as $param) {
+  if (isset($_REQUEST[$param])) $hasparams=true;
+}
+if (!$hasparams) {
+  foreach($params as $param) {
+    if (isset($_SESSION["bookedit"][$param])) 
+      $_REQUEST[$param]=$_SESSION["bookedit"][$param];
+  }
+}
+
+
 if (!isset($_REQUEST["count"])) {
   $count=0;
 } else {
@@ -50,6 +63,12 @@ if (isset($_REQUEST["q"])) {
     }
   }
 }
+
+
+foreach($params as $param) {
+  $_SESSION["bookedit"][$param] = $_REQUEST[$param];
+}
+
 $r=mq("SELECT * FROM books WHERE 1 $sql ORDER BY changed DESC LIMIT $offset,$count;");
 echo mysql_error();
 ?>
