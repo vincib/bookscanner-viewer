@@ -1,3 +1,4 @@
 gravatars/
 config.php
 www/locales/*/LC_MESSAGES/*.mo
+*~
