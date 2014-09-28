@@ -313,3 +313,33 @@ function scantailor6($book) {
   return true;
 }
 
+
+
+/* launch OCR for the project, then DJVU then PDF image.
+*/
+function ocr_djvu_pdf($book) {
+  chdir(PROJECT_ROOT."/".$book["projectname"]."/booktif");
+  passthru("pocr 2>&1",$ret);
+  if ($ret!=0) {
+    echo "pocr failed\n";
+    return false;
+  }
+  passthru("djvubind 2>&1",$ret);
+  $djvu=PROJECT_ROOT."/".$book["projectname"]."/booktif/book.djvu";
+  if ($ret!=0 || !file_exists($djvu) ) {
+    echo "djvu failed\n";
+    return false;
+  }
+  rename($djvu, PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".djvu");
+
+  // now build a PDF from the same file
+  passthru("tif2pdf.sh 2>&1",$ret);
+  $pdf=PROJECT_ROOT."/".$book["projectname"]."/book.pdf";
+  if ($ret!=0 || !file_exists($pdf) ) {
+    echo "pdf failed\n";
+    return false;
+  }
+  rename($pdf, PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".pdf");
+  return true;
+}
+

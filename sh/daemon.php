@@ -18,6 +18,9 @@ if (is_file($PIDFILE)) {
 file_put_contents($PIDFILE,getmypid());
 
 
+/* -------------------------------------------------------------------------- */
+/** Processing SCANTAILOR 1 for book projects
+ */
 mq("LOCK TABLES books WRITE");
 $r=mq("SELECT * FROM books WHERE status=".STATUS_SCANOK." LIMIT 1;");
 $c=mysql_fetch_assoc($r);
@@ -39,6 +42,10 @@ if ($c) {
   }
 }
 
+
+/* -------------------------------------------------------------------------- */
+/** Processing SCANTAILOR 6 for book projects
+ */
 mq("LOCK TABLES books WRITE");
 $r=mq("SELECT * FROM books WHERE status=".STATUS_USEROKTAILOR6." LIMIT 1;");
 $c=mysql_fetch_assoc($r);
@@ -57,6 +64,32 @@ if ($c) {
   } else {
     mq("UPDATE books SET status=".STATUS_UNKNOWN." WHERE id=".$c["id"].";");
     mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='ERROR DOING Scantailor step 6';");
+  }
+  
+}
+
+
+/* -------------------------------------------------------------------------- */
+/** Processing OCR & DJVU & PDF for book projects
+ */
+mq("LOCK TABLES books WRITE");
+$r=mq("SELECT * FROM books WHERE status=".STATUS_TAILOROK." LIMIT 1;");
+$c=mysql_fetch_assoc($r);
+
+if ($c) {
+  mq("UPDATE books SET status=".STATUS_OCRING." WHERE id=".$c["id"].";");
+}
+mq("UNLOCK TABLES");
+if ($c) {
+  echo "doing ocr for book '".$c["projectname"]."' having id ".$c["id"]."\n";
+
+  
+  if (ocr_djvu_pdf($c)) {
+    mq("UPDATE books SET status=".STATUS_PROOFREADING." WHERE id=".$c["id"].";");
+    mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='OCR, DJVU, PDF done';");
+  } else {
+    mq("UPDATE books SET status=".STATUS_UNKNOWN." WHERE id=".$c["id"].";");
+    mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='ERROR DOING OCR-DJVU-PDF';");
   }
   
 }
