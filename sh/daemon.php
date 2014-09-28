@@ -2,6 +2,9 @@
 
 require_once("../www/common.php");
 
+/* The functions called in this daemon are in www/bookfuncs.php
+ */
+
 $t="";
 if (isset($argv[1])) $t="-".$argv[1];
 $PIDFILE="/tmp/bookscanner-viewer-daemon".$t.".pid";

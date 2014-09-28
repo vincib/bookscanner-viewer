@@ -5,16 +5,7 @@ require_once("head.php");
 require_once("menu.php");
 require("messagebox.php");
 
-if ($url=="/bookedit") {
-  if (!$_SESSION["id"]) {
-    $_REQUEST["error"]=_("You are not allowed to see this page. Sorry"); 
-    require_once("nothing.php");
-    exit();
-  }
-  define("ISEDIT",true);
-} else {
-  define("ISEDIT",false);
-}
+define("ISEDIT",false);
 
 if (!isset($_REQUEST["count"])) {
   $count=0;
@@ -34,6 +25,7 @@ if ($offset<0) $offset=0;
 if (!$_SESSION["id"]) {
   $sql.=" AND license IN (".implode(",",$freelicenses).")";
 }
+// FIXME: exclude private books ?
 
 if (isset($_REQUEST["collection"]) && $_REQUEST["collection"] ) {
   if ($_REQUEST["collection"]=="-1") {
@@ -51,6 +43,13 @@ if (isset($_REQUEST["q"])) {
     }
   }
 }
+if (isset($_REQUEST["status"]) && $_REQUEST["status"]) {
+    $sql.=" AND status = ".intval($_REQUEST["status"])." ";
+} else {
+  $sql.=" AND status != ".intval(STATUS_UNKNOWN)." ";
+}
+
+
 $r=mq("SELECT * FROM books WHERE 1 $sql ORDER BY changed DESC LIMIT $offset,$count;");
 echo mysql_error();
 ?>
@@ -67,17 +66,17 @@ echo mysql_error();
   <label for="q"><?php __("Search for"); ?></label>
   <input type="text" class="form-control" name="q" id="q" value="<?php eher("q"); ?>" />
 
-<!--
-  <label for="step"><?php __("At step"); ?></label>
-  <select name="step" class="form-control" id="step" onchange="form.submit()">
-  <option value=""><?php __("--- Any step ---"); ?></option>
-  <option value="1"><?php __("Scanned"); ?></option>
-  <option value="2"><?php __("Scantailor-ing"); ?></option>
-  <option value="3"><?php __("Scantailor-ed"); ?></option>
-  <option value="4"><?php __("Image PDF"); ?></option>
-  <option value="5"><?php __("ocr"); ?></option>
+  <label for="status"><?php __("Having status"); ?></label>
+  <select name="status" class="form-control" id="status" onchange="form.submit()">
+  <option value=""><?php __("--- Any status ---"); ?></option>
+  <?php foreach($astatus as $k=>$v) {
+  echo "<option value=\"".$k."\"";
+if ($_REQUEST["status"]==$k) echo " selected=\"selected\"";
+echo ">[".$k."] ".$v[0]."</option>";
+  }
+?>
   </select>
- -->
+
   <label for="collection"><?php __("In collection"); ?></label>
   <select name="collection" class="form-control" id="collection" onchange="form.submit()">
   <option value=""><?php __("--- Any collection ---"); ?></option>
@@ -99,11 +98,7 @@ echo mysql_error();
     <th><?php __("Download"); ?></th>
     <th><?php __("Title, Author"); ?></th>
     <th><?php __("Date"); ?></th>
-<?php if (ISEDIT) { ?>
-    <th><?php __("Step"); ?></th>
-<?php } ?>
-    <th style="width: 140px"><?php __("Status"); ?></th>
-    <th><?php __("Page Count"); ?></th>
+    <th colspan="2" style="width: 240px"><?php __("Status"); ?></th>
     <th><?php __("License"); ?></th>
     </tr>
 <?php
@@ -112,22 +107,41 @@ echo mysql_error();
 ?>
 <tr>
 	<td><?php 
- if (!ISEDIT) { 
-	if ($c["scan_ts"]) {
-	  echo "<a href=\"/download?id=".$c["id"]."&type=tar\">";
-	  echo "<img src=\"/assets/img/tarball.png\" alt=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" />";
-	  echo "</a>";
-	} else {
-	  echo "<img src=\"/assets/img/nothing.png\" />";
-	}
+   // Which download are available ? (tar, tarbook, tartiff)
+   if ($c["status"] < STATUS_DOINGTAILOR1) {
+     echo "<a href=\"/download?id=".$c["id"]."&type=tar\">";
+     echo "<img src=\"/assets/img/tarball.png\" alt=\"".sprintf(_("Download TAR of all original pictures (UNSORTED) (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" />";
+     echo "</a>";
+   } else if ($c["status"] < STATUS_TAILOROK) {
+     echo "<a href=\"/download?id=".$c["id"]."&type=tarbook\">";
+     echo "<img src=\"/assets/img/tarball.png\" alt=\"".sprintf(_("Download TAR of all original pictures (SORTED) (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" />";
+     echo "</a>";
+   } else if ($c["status"] >= STATUS_TAILOROK) {
+     echo "<a href=\"/download?id=".$c["id"]."&type=tartiff\">";
+     echo "<img src=\"/assets/img/tarball.png\" alt=\"".sprintf(_("Download TAR of all original pictures (SORTED AND ENHANCED) (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download TAR of all original pictures (%sMB)"),intval($attribs["scan_size"]/1024/102.4)/10)."\" />";
+     echo "</a>";
+   } else {
+     echo "<img src=\"/assets/img/nothing.png\" />";
+   }
+      
+      if ($c["status"] >= STATUS_TAILOROK) {
 
-	if ($c["bookpdf_ts"]) {
-	  echo "<a href=\"/download?id=".$c["id"]."&type=pdf\">";
-	  echo "<img src=\"/assets/img/pdf.png\" alt=\"".sprintf(_("Download PDF image (%sMB)"),intval($attribs["bookpdf_size"]/1024/102.4)/10)."\" title=\"".sprintf(_("Download PDF image (%sMB)"),intval($attribs["bookpdf_size"]/1024/102.4)/10)."\" />";
-	  echo "</a>";
-	} else {
-	  echo "<img src=\"/assets/img/nothing.png\" />";
-	}
+	// pdf
+	echo "<a href=\"/download?id=".$c["id"]."&type=pdf\">";
+	$fsize=intval(filesize(PROJECT_ROOT."/".$c["projectname"]."/".$c["projectname"].".pdf")/1024/102.4)/10;
+	echo "<img src=\"/assets/img/pdf.png\" alt=\"".sprintf(_("Download PDF image file (%sMB)"),$fsize)."\" title=\"".sprintf(_("Download PDF image (%sMB)"),$fsize)."\" />";
+	echo "</a>";
+
+	// djvu
+	echo "<a href=\"/download?id=".$c["id"]."&type=djvu\">";
+	$fsize=intval(filesize(PROJECT_ROOT."/".$c["projectname"]."/".$c["projectname"].".djvu")/1024/102.4)/10;
+	echo "<img src=\"/assets/img/djvu.png\" alt=\"".sprintf(_("Download DJVU image file (%sMB)"),$fsize)."\" title=\"".sprintf(_("Download DJVU image (%sMB)"),$fsize)."\" />";
+	echo "</a>";
+	
+      } else {
+	echo "<img src=\"/assets/img/nothing.png\" />";
+	echo "<img src=\"/assets/img/nothing.png\" />";
+      }
 
 	if ($c["odt_ts"]) {
 	  echo "<a href=\"/download?id=".$c["id"]."&type=odt\">";
@@ -144,9 +158,7 @@ echo mysql_error();
 	} else {
 	  echo "<img src=\"/assets/img/nothing.png\" />";
 	}
- } else {
-   echo "<a href=\"edit?id=".$c["id"]."\"><img src=\"/assets/img/edit.png\" /> "._("Edit")."</a>";
- }
+
 ?></td>
         <td title="<?php echo htmlentities($c["projectname"]) ; ?>"><?php echo htmlentities($c["title"]); 
 	if (!$c["title"]) echo "<i>".htmlentities($c["projectname"])."</i>";
@@ -154,68 +166,41 @@ echo mysql_error();
       echo "<br />".htmlentities($author[0]);
       if (count($author)>1) echo " ...";
 ?></td>
+
+      <?php if ($c["status"]!=STATUS_UNKNOWN) { ?> 
+      <td><img src="/assets/img/blue.png" style="width: <?php echo $c["status"]; ?>px; height: 16px" /></td>
+	<?php } else { ?> 
+	<td><img src="/assets/img/orange.png" style="width: 100px; height: 16px" /></td>
+	<?php } ?>
+	<td><?php echo $astatus[$c["status"]][0]; ?></td>
 <?php
 
  $attribs=@json_decode($c["attribs"],true);
-
+ 
  if ($c["scan_ts"]) {
-   $step=1; 
-   $status="";
-   if (isset($attribs["leftcount"]) && isset($attribs["rightcount"])) 
-     $status=$attribs["leftcount"].",".$attribs["rightcount"];
-   $stepstring=_("Scanned");
    $date=$c["scan_ts"];
  }
  if ($c["scantailor_ts"]) {
-   $step=2;
-   $status="";
-   $stepstring=_("Scantailor-ing");
    $date=$c["scantailor_ts"];
  }
  if ($c["booktif_ts"]) {
-   $step=3;
-   $status="";
-   if (isset($attribs["booktifcount"])) 
-     $status=$attribs["booktifcount"];
-   $stepstring=_("Scantailor-ed");
    $date=$c["booktif_ts"];
  }
  if ($c["bookpdf_ts"]) {
-   $step=4;
-   $status="";
-   if (isset($attribs["bookpdf_pages"])) 
-     $status=$attribs["bookpdf_pages"];
-   $stepstring=_("Image PDF");
    $date=$c["bookpdf_ts"];
  }
  if ($c["ocr_ts"]) {
-   $step=5;
-   $status="";
-   if (isset($attribs["ocrcount"])) 
-     $status=$attribs["ocrcount"];
-   $stepstring=_("ocr");
    $date=$c["ocr_ts"];
  }
  if ($c["odt_ts"]) {
-   $step=6;
-   $status="";
-   $stepstring=_("odt");
    $date=$c["odt_ts"];
  }
  if ($c["epub_ts"]) {
-   $step=7;
-   $status="";
-   $stepstring=_("epub");
    $date=$c["epub_ts"];
  }
 
 ?>
  <td><?php echo date(_("Y-m-d"),$date); ?></td>
-<?php  if (ISEDIT) { ?>
- <td><img src="/assets/img/blue.png" style="width: <?php echo $step*10; ?>px; height: 16px" /></td>
-<?php } ?>
- <td><?php echo $stepstring; ?></td>
- <td><?php if ($c["locked"]) echo sprintf("Locked by %s on %s",user_login($c["locked"]),date_my2fr($c["locktime"]));; ?></td>
  <td><?php if (isset($alicense[$c["license"]])) { __($alicense[$c["license"]]["name"]); } ?></td>
 </tr>
 	<?php } ?>

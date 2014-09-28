@@ -29,6 +29,7 @@ if (!isset($_SESSION["id"]) && $license["free"]==0) {
 // Now search for the requested file
 if (
     ($_REQUEST["type"]=="pdf" && !$book["bookpdf_ts"])
+    ||      ($_REQUEST["type"]=="djvu" && !$book["bookpdf_ts"])
     ||      ($_REQUEST["type"]=="odt" && !$book["odt_ts"])
     ||      ($_REQUEST["type"]=="epub" && !$book["epub_ts"])
 ) {
