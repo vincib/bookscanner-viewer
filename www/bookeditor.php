@@ -195,9 +195,9 @@ echo ">[".$k."] ".$v[0]."</option>";
  <td><?php echo date(_("Y-m-d"),$date); ?></td>
  <td><?php echo $stepstring; ?></td>
 				   <?php if ($c["status"]!=STATUS_UNKNOWN) { ?> 
-<td><img src="/assets/img/blue.png" style="width: <?php echo $c["status"]; ?>px; height: 16px" /></td>
+<td><img src="/assets/img/blue.png" style="width: <?php echo 2*$c["status"]; ?>px; height: 16px" /></td>
 				   <?php } else { ?> 
-<td><img src="/assets/img/orange.png" style="width: 100px; height: 16px" /></td>
+<td><img src="/assets/img/orange.png" style="width: 180px; height: 16px" /></td>
 <?php } ?>
 	<td><?php echo $astatus[$c["status"]][0]; ?></td>
  <td><?php if ($c["locked"]) echo sprintf("Locked by %s on %s",user_login($c["locked"]),date_my2fr($c["locktime"]));; ?></td>

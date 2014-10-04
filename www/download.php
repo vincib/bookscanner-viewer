@@ -75,9 +75,19 @@ case "tartiff":
   break;
 
 case "pdf":
-  $file=PROJECT_ROOT."/".$book["projectname"]."/book.pdf";
+  $file=PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".pdf";
   header("Content-Type: text/pdf");
   header("Content-Disposition: attachment; filename=\"".$book["projectname"].".pdf"."\""); // TODO: compute a better filename here ?
+  header("Cache-Control: no-cache, must-revalidate");
+  header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
+  header("Content-Length: ".filesize($file));
+  readfile($file);
+  break;
+
+case "djvu":
+  $file=PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".djvu";
+  header("Content-Type: image/x.djvu");
+  header("Content-Disposition: attachment; filename=\"".$book["projectname"].".djvu"."\""); // TODO: compute a better filename here ?
   header("Cache-Control: no-cache, must-revalidate");
   header("Expires: Sat, 26 Jul 1997 05:00:00 GMT");
   header("Content-Length: ".filesize($file));

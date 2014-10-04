@@ -72,6 +72,18 @@ Thanks
     }
   break;
 
+case "delete":
+  // DELETE
+  $already=mqone("SELECT * FROM users WHERE id='".intval($_GET["id"])."';");
+  if (!$already) {
+    $_REQUEST["error"]=_("Can't find This login, please check");
+    unset($_REQUEST["action"]);
+  } else {
+    mq("DELETE FROM users WHERE id='".intval($_GET["id"])."';");
+    $_REQUEST["msg"]=_("Account deleted successfully");
+    $_REQUEST["action"]="";
+  }
+  break;
 } // SWITCH 
 
   require_once("head.php");
