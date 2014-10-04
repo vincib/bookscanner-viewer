@@ -14,65 +14,8 @@ if (!($me["role"] & ROLE_ADMIN)
 if (!isset($_REQUEST["action"])) {
   $_REQUEST["action"]="";
 }
-switch ($_REQUEST["action"]) {
-case "edit":
-case "doedit":
-  $id=intval($_REQUEST["id"]);
-  $account=mqone("SELECT * FROM users WHERE id='$id';");
-  if (!$account) {
-    $_REQUEST["error"]=_("Account not found"); 
-    require_once("head.php");
-    require_once("menu.php");
-    require("messagebox.php");
-    require_once("foot.php");
-    exit();
-  }
-  if ($_REQUEST["action"]=="edit") {
-    foreach($account as $k=>$v) $_REQUEST[$k]=$v;
-  }
-  if ($_REQUEST["action"]=="doedit") {
-    // UPDATE
-    // search for existing login : 
-    $already=mqone("SELECT * FROM users WHERE  id!='".intval($_POST["id"])."' AND login='".addslashes($_POST["login"])."';");
-    if ($already) {
-      $_REQUEST["error"]=_("This login is already used, please choose another one"); 
-      $_REQUEST["action"]="edit";
-    }
-    mq("UPDATE users SET firstname='".addslashes($_POST["firstname"])."', lastname='".addslashes($_POST["lastname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."' WHERE id='".intval($_POST["id"])."';");
-    $_REQUEST["msg"]=_("Account edited successfully"); 
-    $_REQUEST["action"]="";
-  }
-  break;
 
-
-case "docreate":
-  // CREATE
-  // search for existing login : 
-    $already=mqone("SELECT * FROM users WHERE login='".addslashes($_POST["login"])."';");
-    if ($already) {
-      $_REQUEST["error"]=_("This login is already used, please choose another one"); 
-      $_REQUEST["action"]="create";
-    } else {
-      $pass=mkpass();
-      mq("INSERT INTO users SET firstname='".addslashes($_POST["firstname"])."', lastname='".addslashes($_POST["lastname"])."', login='".addslashes($_POST["login"])."', email='".addslashes($_POST["email"])."', pass='".crypt($pass,getSalt())."', role=0;"); // FIXME: set the default role
-      // Send the new password to the user's email :
-      mail($_POST["email"],sprintf(_("Account created on https://%s"),$_SERVER["HTTP_HOST"]), 
-	   sprintf(_("Hello,
-Your new account has just been created on https://%s
-Please go there to login and change your password.
-Your login is %s
-and your password is %s
-
-Thanks
-"),$_SERVER["HTTP_HOST"],$_REQUEST["login"],$pass)
-	   );
-      
-      $_REQUEST["msg"]=_("Account created successfully"); 
-      $_REQUEST["action"]="";
-    }
-  break;
-
-} // SWITCH 
+  require_once("doaccounts.php");
 
   require_once("head.php");
   require_once("menu.php");
@@ -104,11 +47,16 @@ case "create":
 		   <label for="email"><?php __("Email"); ?></label><input type="text" name="email" id="email" value="<?php eher("email"); ?>" style="width: 200px"/>
 		   <label for="login"><?php __("Login"); ?></label><input type="text" name="login" id="login" value="<?php eher("login"); ?>" style="width: 100px"/>
 <div>
+<p>
       <input type="submit" name="go" value="<?php  
 if ($_REQUEST["action"]=="edit") __("Edit this account"); 
 else __("Create this account");
 ?>" />
  <input type="button" name="cancel" value="<?php __("Cancel"); ?>" onclick="document.location='/accounts'" />
+</p>
+<p>
+ <input type="button" name="sendpassword" value="<?php __("Reset and Send a new password by mail"); ?>" onclick="document.location='/accounts?action=sendpassword&id=<?php echo intval($_REQUEST["id"]); ?>'" />
+</p>
 </div>
 </form>
 <?php

@@ -28,6 +28,14 @@ table.matable tr:nth-child(even) td {
     background: #f8f8f8;
 }
 
+table.matable tr.private:nth-child(odd) td {
+    background: #ffc8c8;
+}
+table.matable tr.private:nth-child(even) td {
+    background: #ffd8d8;
+}
+
+
 span.history {
     color: #F00;
 }
