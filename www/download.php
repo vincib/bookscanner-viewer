@@ -29,8 +29,7 @@ if (!isset($_SESSION["id"]) && $license["free"]==0) {
 // check identity : refuse a download for a non-admin non-owner private book
 if ($book["privateid"]) {
   if (!isset($_SESSION["id"]) || 
-      !($me["role"] & ROLE_ADMIN) ||
-      $_SESSION["id"]!=$book["privateid"]
+      ( !($me["role"] & ROLE_ADMIN) && $_SESSION["id"]!=$book["privateid"] )
       ) {
     $_REQUEST["error"]=_("This book is not available to you, sorry");
     require_once("head.php");
