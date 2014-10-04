@@ -55,6 +55,11 @@ if (isset($_REQUEST["status"]) && $_REQUEST["status"]) {
     $sql.=" AND status = ".intval($_REQUEST["status"])." ";
 }
 
+if (!$me["role"] & ROLE_ADMIN) {
+  // non admin
+  $sql.=" AND privateid IN (0,".$_SESSION["id"].") ";
+}
+
 if (isset($_REQUEST["q"])) {
   $q=explode(" ",$_REQUEST["q"]);
   foreach($q as $word) {

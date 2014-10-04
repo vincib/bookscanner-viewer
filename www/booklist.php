@@ -49,6 +49,13 @@ if (isset($_REQUEST["status"]) && $_REQUEST["status"]) {
   $sql.=" AND status != ".intval(STATUS_UNKNOWN)." ";
 }
 
+if (!isset($_SESSION["id"])) {
+  // anonymous
+  $sql.=" AND privateid=0 ";
+} else if (!($me["role"] & ROLE_ADMIN)) {
+  // non admin
+  $sql.=" AND privateid IN (0,".$_SESSION["id"].") ";
+}
 
 $r=mq("SELECT * FROM books WHERE 1 $sql ORDER BY changed DESC LIMIT $offset,$count;");
 echo mysql_error();
@@ -94,7 +101,7 @@ echo ">[".$k."] ".$v[0]."</option>";
 
 
 <table class="matable">
-    <tr>
+  <tr>
     <th><?php __("Download"); ?></th>
     <th><?php __("Title, Author"); ?></th>
     <th><?php __("Date"); ?></th>
@@ -105,7 +112,7 @@ echo ">[".$k."] ".$v[0]."</option>";
     while ($c=mysql_fetch_array($r)) { 
       $attribs=json_decode($c["attribs"],true);
 ?>
-<tr>
+<tr<?php if ($c["privateid"]) echo " class=\"private\"" ; ?>>
 	<td><?php 
    // Which download are available ? (tar, tarbook, tartiff)
    if ($c["status"] < STATUS_DOINGTAILOR1) {

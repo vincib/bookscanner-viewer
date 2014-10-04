@@ -1,0 +1,3 @@
+
+
+ALTER TABLE books ADD privateid INT UNSIGNED NOT NULL DEFAULT 0;
