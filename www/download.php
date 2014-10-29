@@ -42,10 +42,10 @@ if ($book["privateid"]) {
 
 // Now search for the requested file
 if (
-    ($_REQUEST["type"]=="pdf" && !$book["bookpdf_ts"])
-    ||      ($_REQUEST["type"]=="djvu" && !$book["bookpdf_ts"])
-    ||      ($_REQUEST["type"]=="odt" && !$book["odt_ts"])
-    ||      ($_REQUEST["type"]=="epub" && !$book["epub_ts"])
+    ($_REQUEST["type"]=="pdf" && !is_file(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".pdf") )
+    ||      ($_REQUEST["type"]=="djvu" && !is_file(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".djvu"))
+    ||      ($_REQUEST["type"]=="odt" && !is_file(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".odt"))
+    ||      ($_REQUEST["type"]=="epub" && !is_file(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"].".epub"))
 ) {
   $_REQUEST["error"]=_("This book's requested file is not available."); 
   require_once("head.php");

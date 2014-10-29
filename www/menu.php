@@ -18,7 +18,7 @@ require_once("common.php");
     <a href="/booklist"><?php __("Book Listing"); ?></a>
               </li>
 <?php
-    if ($me["role"]!=0 || true) /* FIXME */ { ?>
+    if ($me["role"]!=0) /* FIXME */ { ?>
        <li<?php if (substr($_SERVER["REQUEST_URI"],0,9)=="/bookedit") echo ' class="active"'; ?>>
     <a href="/bookedit"><?php __("Book Editor"); ?></a>
               </li>
