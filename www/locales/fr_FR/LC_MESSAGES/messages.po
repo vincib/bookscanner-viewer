@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: BookscannerManager 2014.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-17 22:10+0200\n"
+"POT-Creation-Date: 2014-11-19 20:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -11,203 +11,166 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: accounts.php:8 bookeditor.php:9 booklist.php:10 collections.php:7
+#: accounts.php:8 bookeditor.php:9 collections.php:7 doaccounts.php:9
 #: edit.php:11 misc.php:10
 msgid "You are not allowed to see this page. Sorry"
 msgstr "Vous n'êtes pas autorisé à voir cette page. Désolé"
 
-#: accounts.php:23
-msgid "Account not found"
-msgstr "Compte non trouvé"
-
-#: accounts.php:38 accounts.php:53
-msgid "This login is already used, please choose another one"
-msgstr "Ce nom d'utilisateur existe déjà, merci d'en choisir un autre"
-
-#: accounts.php:42
-msgid "Account edited successfully"
-msgstr "Compte modifié avec succès"
-
-#: accounts.php:59
-#, php-format
-msgid "Account created on https://%s"
-msgstr "Compte créé sur https://%s"
-
-#: accounts.php:60
-#, php-format
-msgid ""
-"Hello,\n"
-"Your new account has just been created on https://%s\n"
-"Please go there to login and change your password.\n"
-"Your login is %s\n"
-"and your password is %s\n"
-"\n"
-"Thanks\n"
-msgstr ""
-"Bonjour,\n"
-"Votre nouveau compte a été créé sur https://%s\n"
-"Merci de votre rendre à cette adresse, de vous connecter et de modifier "
-"votre mot de passe.\n"
-"Votre nom d'utilisateur est %s\n"
-"et votre mot de passe est %s\n"
-"\n"
-"Merci\n"
-
-#: accounts.php:70
-msgid "Account created successfully"
-msgstr "Compte créé avec succès"
-
-#: accounts.php:87
+#: accounts.php:29
 msgid "Accounts"
 msgstr "Comptes"
 
-#: accounts.php:96
+#: accounts.php:38
 #, php-format
 msgid "Editing account %s"
 msgstr "Modification du compte %s"
 
-#: accounts.php:97
+#: accounts.php:39
 msgid "Creating new account"
 msgstr "Création d'un compte"
 
-#: accounts.php:102
+#: accounts.php:44
 msgid "Firstname"
 msgstr "Prénom"
 
-#: accounts.php:103
+#: accounts.php:45
 msgid "Lastname"
 msgstr "Nom"
 
-#: accounts.php:104
+#: accounts.php:46
 msgid "Email"
 msgstr "Email"
 
-#: accounts.php:105 accounts.php:134 login.php:38
+#: accounts.php:47 accounts.php:81 login.php:38
 msgid "Login"
 msgstr "Nom d'utilisateur"
 
-#: accounts.php:108
+#: accounts.php:51
 msgid "Edit this account"
 msgstr "Modifier ce compte"
 
-#: accounts.php:109
+#: accounts.php:52
 msgid "Create this account"
 msgstr "Créer ce compte"
 
-#: accounts.php:111 collections.php:102 edit.php:158
+#: accounts.php:54 collections.php:102 edit.php:177
 msgid "Cancel"
 msgstr "Annuler"
 
-#: accounts.php:128
+#: accounts.php:57
+msgid "Reset and Send a new password by mail"
+msgstr "Réinitialiser le mot de passe et l'envoyer par mail"
+
+#: accounts.php:75
 msgid "Create new account"
 msgstr "Créer un nouveau compte"
 
-#: accounts.php:132 accounts.php:144 bookeditor.php:112 booklist.php:148
-#: collections.php:122 collections.php:131
+#: accounts.php:79 accounts.php:91 bookeditor.php:136 collections.php:122
+#: collections.php:131
 msgid "Edit"
 msgstr "Modifier"
 
-#: accounts.php:135 collections.php:123
+#: accounts.php:82 collections.php:123
 msgid "Name"
 msgstr "Nom"
 
-#: accounts.php:136
+#: accounts.php:83
 msgid "Role"
 msgstr "Rôle"
 
-#: accounts.php:137
+#: accounts.php:84
 msgid "Last Login"
 msgstr "Dernière connexion"
 
-#: accounts.php:145 collections.php:132
+#: accounts.php:92 collections.php:132
 msgid "Delete"
 msgstr "Effacer"
 
-#: bookeditor.php:61 booklist.php:62 menu.php:18
+#: bookeditor.php:85 booklist.php:68 menu.php:18
 msgid "Book Listing"
 msgstr "Liste des livres"
 
-#: bookeditor.php:66 booklist.php:67
+#: bookeditor.php:90 booklist.php:75
 msgid "Search for"
 msgstr "Rechercher"
 
-#: bookeditor.php:69
+#: bookeditor.php:93 booklist.php:78
 msgid "Having status"
 msgstr "À l'état"
 
-#: bookeditor.php:71
+#: bookeditor.php:95 booklist.php:80
 msgid "--- Any status ---"
 msgstr "--- N'importe lequel ---"
 
-#: bookeditor.php:80 booklist.php:81
+#: bookeditor.php:104 booklist.php:89
 msgid "In collection"
 msgstr "Dans la collection"
 
-#: bookeditor.php:82 booklist.php:83
+#: bookeditor.php:106 booklist.php:91
 msgid "--- Any collection ---"
 msgstr "--- N'importe laquelle ---"
 
-#: bookeditor.php:83 booklist.php:84 edit.php:151
+#: bookeditor.php:107 booklist.php:92 edit.php:161
 msgid "--- No collection ---"
 msgstr "--- Pas affecté à une collection ---"
 
-#: bookeditor.php:86 booklist.php:87
+#: bookeditor.php:110 booklist.php:95
 msgid "Search"
 msgstr "Chercher"
 
-#: bookeditor.php:98 booklist.php:99
+#: bookeditor.php:122 booklist.php:107
 msgid "Download"
 msgstr "Télécharger"
 
-#: bookeditor.php:99 booklist.php:100
+#: bookeditor.php:123 booklist.php:108
 msgid "Title, Author"
 msgstr "Titre, Auteur"
 
-#: bookeditor.php:100 booklist.php:101
+#: bookeditor.php:124 booklist.php:109
 msgid "Date"
 msgstr "Date"
 
-#: bookeditor.php:101
+#: bookeditor.php:125
 msgid "(Old Status)"
 msgstr "(État ancienne mode)"
 
-#: bookeditor.php:103 booklist.php:105
+#: bookeditor.php:127 booklist.php:110
 msgid "Status"
 msgstr "État"
 
-#: bookeditor.php:104 booklist.php:107
+#: bookeditor.php:128 booklist.php:111
 msgid "License"
 msgstr "Licence"
 
-#: bookeditor.php:129 booklist.php:74 booklist.php:166
+#: bookeditor.php:153
 msgid "Scanned"
 msgstr "Scanné"
 
-#: bookeditor.php:135 booklist.php:75 booklist.php:172
+#: bookeditor.php:159
 msgid "Scantailor-ing"
 msgstr "Scantailor en cours"
 
-#: bookeditor.php:143 booklist.php:76 booklist.php:180
+#: bookeditor.php:167
 msgid "Scantailor-ed"
 msgstr "Scantailor OK"
 
-#: bookeditor.php:151 booklist.php:77 booklist.php:188
+#: bookeditor.php:175
 msgid "Image PDF"
 msgstr "PDF Image"
 
-#: bookeditor.php:159 booklist.php:78 booklist.php:196
+#: bookeditor.php:183
 msgid "ocr"
 msgstr "ocr"
 
-#: bookeditor.php:165 booklist.php:202
+#: bookeditor.php:189
 msgid "odt"
 msgstr "texte odt"
 
-#: bookeditor.php:171 booklist.php:208
+#: bookeditor.php:195
 msgid "epub"
 msgstr "livre epub"
 
-#: bookeditor.php:176 booklist.php:213
+#: bookeditor.php:200 booklist.php:212
 msgid "Y-m-d"
 msgstr "d/m/Y"
 
@@ -330,38 +293,62 @@ msgstr "Etat inconnu, ERREUR"
 msgid "Project in erroneous state, to be fixed by a human"
 msgstr "Le projet est dans un état inconnu, qui doit être résolu par un humain"
 
-#: booklist.php:71
-msgid "At step"
-msgstr "À l'état"
+#: bookfuncs.php:73
+msgid "free"
+msgstr "libre"
 
-#: booklist.php:73
-msgid "--- Any step ---"
-msgstr "--- N'importe laquelle ---"
+#: booklist.php:72
+msgid ""
+"DJVU files can be viewed under Windows with <a href="
+"\"DjVuLibre-3.5.25.4_DjView-4.9.2_Setup.exe\">DJView</a>"
+msgstr "Les fichiers DJVU peuvent être visualisés sous windows à l'aide de <a href=\"DjVuLibre-3.5.25.4_DjView-4.9.2_Setup.exe\">DJView</a>"
 
-#: booklist.php:103
-msgid "Step"
-msgstr "État"
+#: booklist.php:122
+#, php-format
+msgid "Download TAR of all original pictures (UNSORTED) (%sMB)"
+msgstr "Télécharger un TAR des images d'origine (NON TRIÉES) (%sMo)"
 
-#: booklist.php:106
-msgid "Page Count"
-msgstr "Nombre de pages"
-
-#: booklist.php:118
+#: booklist.php:122 booklist.php:126 booklist.php:130
 #, php-format
 msgid "Download TAR of all original pictures (%sMB)"
 msgstr "Télécharger un TAR des images d'origine (%sMo)"
 
 #: booklist.php:126
 #, php-format
+msgid "Download TAR of all original pictures (SORTED) (%sMB)"
+msgstr "Télécharger un TAR des images d'origine (TRIÉES) (%sMo)"
+
+#: booklist.php:130
+#, php-format
+msgid "Download TAR of all original pictures (SORTED AND ENHANCED) (%sMB)"
+msgstr "Télécharger un TAR des images d'origine (TRIÉES ET AMÉLIORÉES) (%sMo)"
+
+#: booklist.php:141
+#, php-format
+msgid "Download PDF image file (%sMB)"
+msgstr "Télécharger le PDF image (%sMo)"
+
+#: booklist.php:141
+#, php-format
 msgid "Download PDF image (%sMB)"
 msgstr "Télécharger le PDF image (%sMo)"
 
-#: booklist.php:134
+#: booklist.php:147
+#, php-format
+msgid "Download DJVU image file (%sMB)"
+msgstr "Télécharger le fichier DJVU (%sMo)"
+
+#: booklist.php:147
+#, php-format
+msgid "Download DJVU image (%sMB)"
+msgstr "Télécharger le fichier DJVU (%sMo)"
+
+#: booklist.php:157
 #, php-format
 msgid "Download ODT text file (%sKB)"
 msgstr "Télécharger le fichier texte ODT (%sKo)"
 
-#: booklist.php:142
+#: booklist.php:165
 #, php-format
 msgid "Download EPUB book (%sKB)"
 msgstr "Télécharger le livre numérique EPUB (%sKo)"
@@ -419,6 +406,87 @@ msgstr "Création d'une nouvelle collection"
 msgid "# books"
 msgstr "Nombre de livres"
 
+#: doaccounts.php:21
+msgid "Account not found"
+msgstr "Compte non trouvé"
+
+#: doaccounts.php:36 doaccounts.php:51
+msgid "This login is already used, please choose another one"
+msgstr "Ce nom d'utilisateur existe déjà, merci d'en choisir un autre"
+
+#: doaccounts.php:40
+msgid "Account edited successfully"
+msgstr "Compte modifié avec succès"
+
+#: doaccounts.php:57
+#, php-format
+msgid "Account created on https://%s"
+msgstr "Compte créé sur https://%s"
+
+#: doaccounts.php:58
+#, php-format
+msgid ""
+"Hello,\n"
+"Your new account has just been created on https://%s\n"
+"Please go there to login and change your password.\n"
+"Your login is %s\n"
+"and your password is %s\n"
+"\n"
+"Thanks\n"
+msgstr ""
+"Bonjour,\n"
+"Votre nouveau compte a été créé sur https://%s\n"
+"Merci de votre rendre à cette adresse, de vous connecter et de modifier "
+"votre mot de passe.\n"
+"Votre nom d'utilisateur est %s\n"
+"et votre mot de passe est %s\n"
+"\n"
+"Merci\n"
+
+#: doaccounts.php:68
+msgid "Account created successfully"
+msgstr "Compte créé avec succès"
+
+#: doaccounts.php:81
+msgid "User not found"
+msgstr "Utilisateur non trouvé"
+
+#: doaccounts.php:86
+#, php-format
+msgid "Password changed on https://%s"
+msgstr "Mot de passe modifié sur https://%s"
+
+#: doaccounts.php:87
+#, php-format
+msgid ""
+"Hello,\n"
+"An administrator requested a new password for your account on https://%s\n"
+"Please go there to login \n"
+"Your login is %s\n"
+"and your password is %s\n"
+"\n"
+"Thanks\n"
+msgstr ""
+"Bonjour,\n"
+"Un administrateur a modifié votre mot de passe sur https://%s\n"
+"Merci de votre rendre à cette adresse, de vous connecter "
+"votre nom d'utilisateur est %s\n"
+"et votre mot de passe est %s\n"
+"\n"
+"Merci\n"
+
+#: doaccounts.php:97
+msgid "Password changed and sent successfully"
+msgstr ""
+
+#: doaccounts.php:107
+msgid "Can't find This login, please check"
+msgstr "Impossible de trouver ce login, vérifiez"
+
+#: doaccounts.php:111
+msgid "Account deleted successfully"
+msgstr "Compte effacé avec succès"
+
 #: download.php:9
 msgid "The requested book has not been found"
 msgstr "Le livre demandé n'a pas été trouvé"
@@ -427,102 +495,129 @@ msgstr "Le livre demandé n'a pas été trouvé"
 msgid "This book is not under a proper license"
 msgstr "Ce livre n'est pas sous la bonne licence"
 
-#: download.php:35
+#: download.php:34
+msgid "This book is not available to you, sorry"
+msgstr "Ce livre n'est pas disponible, désolé"
+
+#: download.php:50
 msgid "This book's requested file is not available."
 msgstr "Le fichier demandé n'existe pas pour ce livre"
 
-#: edit.php:24 edit.php:97
+#: edit.php:25 edit.php:107
 msgid "Book not found"
 msgstr "Livre non trouvé"
 
-#: edit.php:35
+#: edit.php:33
+msgid "Book not available"
+msgstr "Livre non disponible"
+
+#: edit.php:45
 msgid "Status changed"
 msgstr "État modifié"
 
-#: edit.php:48
+#: edit.php:58
 msgid "Last left picture deleted"
 msgstr "Dernière image de gauche supprimée"
 
-#: edit.php:62
+#: edit.php:72
 msgid "First right picture deleted"
 msgstr "Première image de droite supprimée"
 
-#: edit.php:132 menu.php:23
+#: edit.php:142 menu.php:23
 msgid "Book Editor"
 msgstr "Éditeur de livres"
 
-#: edit.php:141
+#: edit.php:151
 #, php-format
 msgid "Editing book %s"
 msgstr "Modification du livre %s"
 
-#: edit.php:142
+#: edit.php:152
 msgid "Creating new book"
 msgstr "Création d'un nouveau livre"
 
-#: edit.php:147
+#: edit.php:157
 msgid "Book Title"
 msgstr "Titre du livre"
 
-#: edit.php:148
+#: edit.php:158
 msgid "Book Authors"
 msgstr "Auteur du livre"
 
-#: edit.php:149
+#: edit.php:159
 msgid "Book Publisher"
 msgstr "Éditeur du livre"
 
-#: edit.php:150
+#: edit.php:160
 msgid "Book Isbn"
 msgstr "ISBN du livre"
 
-#: edit.php:151
+#: edit.php:161
 msgid "Book Collection"
 msgstr "Collection du livre"
 
-#: edit.php:152
+#: edit.php:162
+msgid "Book License"
+msgstr "Licence du livre"
+
+#: edit.php:164
+msgid "Set status too"
+msgstr "Changer l'état aussi"
+
+#: edit.php:166
+msgid "Book Scan Status"
+msgstr "Etat du scan du livre"
+
+#: edit.php:169
+msgid "Private book only for"
+msgstr "Livre privé réservé à"
+
+#: edit.php:170
+msgid "--- Everybody can read it ---"
+msgstr "--- Tout le monde peut le lire ---"
+
+#: edit.php:171
 msgid "Locked by"
 msgstr "Verrouillé par"
 
-#: edit.php:152
+#: edit.php:171
 msgid "--- Nobody ---"
 msgstr "--- Personne ---"
 
-#: edit.php:155
+#: edit.php:174
 msgid "Edit this book"
 msgstr "Modifier ce livre"
 
-#: edit.php:156
+#: edit.php:175
 msgid "Create this book"
 msgstr "Créer ce livre"
 
-#: edit.php:179
+#: edit.php:198
 msgid "Current status of the project:"
 msgstr "État actuel du projet :"
 
-#: edit.php:180
-#, fuzzy
+#: edit.php:199
 msgid "Please confirm you want to set this project to ERROR status"
-msgstr "Merci de confirmer que vous souhaitez effacer la première image"
+msgstr "Merci de confirmer que vous souhaitez mettre ce projet à l'état ERREUR"
 
-#: edit.php:180
+#: edit.php:199
 msgid "Click to set the project to ERROR status"
-msgstr ""
+msgstr "Cliquez ici pour mettre le projet à l'état ERROR"
 
-#: edit.php:183
+#: edit.php:202
 msgid "Please wait"
 msgstr "Merci de patienter"
 
-#: edit.php:194
+#: edit.php:213
 msgid "Launch Scantailor to check the pages"
 msgstr "Lancer Scantailor pour vérifier les pages"
 
-#: edit.php:198
+#: edit.php:217
 #, php-format
 msgid "Change the status to '%s'"
 msgstr "Changer l'état pour '%s'"
 
-#: edit.php:202
+#: edit.php:221
 msgid ""
 "To know the status list, click on the '<a href=\"/misc\">Misc</a>' link in "
 "the menu"
@@ -530,123 +625,123 @@ msgstr ""
 "Pour connaître la liste des états, cliquz sur le lien '<a href=\"/misc"
 "\">Divers</a>' dans le menu"
 
-#: edit.php:222
+#: edit.php:241
 msgid "Can't read left folder, please check"
 msgstr "Impossible de lire le dossier left, vérifiez les droits"
 
-#: edit.php:238
+#: edit.php:257
 msgid "Can't read right folder, please check"
 msgstr "Impossible de lire le dossier right, vérifiez les droits"
 
-#: edit.php:250
+#: edit.php:269
 msgid "First and last <b>left</b> pictures"
 msgstr "Première et dernière images de <b>left</b> (gauche)"
 
-#: edit.php:252
+#: edit.php:271
 msgid "Please confirm you want to delete the last picture"
 msgstr "Merci de confirmer que vous souhaitez effacer la dernière image"
 
-#: edit.php:252
+#: edit.php:271
 msgid "Delete last"
 msgstr "Effacer la dernière"
 
-#: edit.php:256
+#: edit.php:275
 msgid "First and last <b>right</b> pictures"
 msgstr "Première et dernière images de <b>right</b> (droite)"
 
-#: edit.php:258
+#: edit.php:277
 msgid "Please confirm you want to delete the first picture"
 msgstr "Merci de confirmer que vous souhaitez effacer la première image"
 
-#: edit.php:258
+#: edit.php:277
 msgid "Delete first"
 msgstr "Effacer la première"
 
-#: edit.php:277
+#: edit.php:296
 msgid "Metadata changed on"
 msgstr "Métadonnées modifiées le"
 
-#: edit.php:280
+#: edit.php:299
 msgid "Last scanned picture on"
 msgstr "Dernière image scannée le "
 
-#: edit.php:284
+#: edit.php:303
 msgid "Number of pictures"
 msgstr "Nombre d'images"
 
-#: edit.php:287
+#: edit.php:306
 msgid "No pictures scanned yet"
 msgstr "Aucune image pour l'instant"
 
-#: edit.php:292
+#: edit.php:311
 msgid "Scantailor project made on"
 msgstr "Project scantailor créé le"
 
-#: edit.php:293
+#: edit.php:312
 msgid "Do you really want to overwrite the scantailor and booktif files ?"
 msgstr ""
 "Voulez-vous réellement écraser le project scantailor et les fichier booktif ?"
 
-#: edit.php:293
+#: edit.php:312
 msgid "Regenerate"
 msgstr "Régénérer"
 
-#: edit.php:295
+#: edit.php:314
 msgid "No scantailor project created yet"
 msgstr "Aucun projet scantailor créé pour l'instant"
 
-#: edit.php:296
+#: edit.php:315
 msgid "Create this book's scantailor's project"
 msgstr "Créer le projet scantailor de ce livre"
 
-#: edit.php:301
+#: edit.php:320
 msgid "Scantailor output made on"
 msgstr "Scantailor lancé le "
 
-#: edit.php:304
+#: edit.php:323
 msgid "No scantailor output made yet"
 msgstr "Aucun lancement de scantailor "
 
-#: edit.php:305
+#: edit.php:324
 msgid "Use VNC to make the scantailor process"
 msgstr "Utiliser VNC pour terminer le projet scantailor"
 
-#: edit.php:310
+#: edit.php:329
 msgid "Image PDF created"
 msgstr "PDF image créé"
 
-#: edit.php:311
+#: edit.php:330
 #, php-format
 msgid "It has %d pages"
 msgstr "Il fait %d pages"
 
-#: edit.php:313
+#: edit.php:332
 msgid "No PDF Image created yet"
 msgstr "Aucun fichier PDF image créé"
 
-#: edit.php:316
+#: edit.php:335
 #, php-format
 msgid "PDF Image requested on %s"
 msgstr "Fichier PDF image demandé le %s"
 
-#: edit.php:318
+#: edit.php:337
 msgid "Create a PDF Image"
 msgstr "Créer un fichier PDF image"
 
-#: edit.php:323
+#: edit.php:342
 msgid "OCR files made on"
 msgstr "OCR créé le "
 
-#: edit.php:326
+#: edit.php:345
 msgid "No OCR made yet"
 msgstr "Aucun OCR pour l'instant"
 
-#: edit.php:329
+#: edit.php:348
 #, php-format
 msgid "OCR requested on %s"
 msgstr "OCR demandé le %s"
 
-#: edit.php:331
+#: edit.php:350
 msgid "Do the OCR"
 msgstr "Lancer l'OCR"
 
@@ -725,3 +820,15 @@ msgstr "Mon compte"
 #: misc.php:64
 msgid "Possible status of book projects"
 msgstr "États possible des projets de scan de livre"
+
+#~ msgid "At step"
+#~ msgstr "À l'état"
+
+#~ msgid "--- Any step ---"
+#~ msgstr "--- N'importe laquelle ---"
+
+#~ msgid "Step"
+#~ msgstr "État"
+
+#~ msgid "Page Count"
+#~ msgstr "Nombre de pages"

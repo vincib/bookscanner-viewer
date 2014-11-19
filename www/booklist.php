@@ -69,6 +69,8 @@ echo mysql_error();
 <?php
   // echo $sql; 
 ?>
+<p><?php __("DJVU files can be viewed under Windows with <a href=\"DjVuLibre-3.5.25.4_DjView-4.9.2_Setup.exe\">DJView</a>"); ?></p>
+
 <form method="get" action="" class="form-inline">
   <label for="q"><?php __("Search for"); ?></label>
   <input type="text" class="form-control" name="q" id="q" value="<?php eher("q"); ?>" />

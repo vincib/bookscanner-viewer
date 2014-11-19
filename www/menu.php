@@ -18,7 +18,7 @@ require_once("common.php");
     <a href="/booklist"><?php __("Book Listing"); ?></a>
               </li>
 <?php
-    if ($me["role"]!=0) /* FIXME */ { ?>
+    if ($me["id"]!=0) /* FIXME */ { ?>
        <li<?php if (substr($_SERVER["REQUEST_URI"],0,9)=="/bookedit") echo ' class="active"'; ?>>
     <a href="/bookedit"><?php __("Book Editor"); ?></a>
               </li>
@@ -40,7 +40,7 @@ require_once("common.php");
 
             </ul>
        <?php if ($_SESSION["id"]) { ?>
-<div id="gravatar" class="pull-right" style="padding-left: 10px; padding-top:4px"><img src="http://www.gravatar.com/avatar/<?php echo md5(strtolower($me["email"])); ?>?s=32"></div>
+<div id="gravatar" class="pull-right" style="padding-left: 10px; padding-top:4px"><img src="https://www.gravatar.com/avatar/<?php echo md5(strtolower($me["email"])); ?>?s=32"></div>
 <div id="user" class="pull-right btn-group"><button class="btn dropdown-toggle btn-info" data-toggle="dropdown">
 <?php echo $me["firstname"]." ".$me["lastname"]; ?>  <span class="caret"></span>
    </button>
