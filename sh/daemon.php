@@ -38,7 +38,7 @@ if ($c) {
   // Create its scantailor project (named projectname_5.scantailor) then process it through scantailor step 1 to 5, and save it to projectname_6.scantailor
   if (scantailor1($c)) {
     mq("UPDATE books SET status=".STATUS_WAITUSERTAILOR." WHERE id=".$c["id"].";");
-    mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='Scantailor step 1 to 5 done';");
+    mq("INSERT INTO booklog SET book=".$c["id"].", type=1, message='Scantailor step 1 to 5 done';");
   } else {
     mq("UPDATE books SET status=".STATUS_UNKNOWN." WHERE id=".$c["id"].";");
     mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='ERROR DOING Scantailor step 1 to 5';");
@@ -63,7 +63,7 @@ if ($c) {
   // Create its TIFF files from projectname_6.scantailor using Scantailor
   if (scantailor6($c)) {
     mq("UPDATE books SET status=".STATUS_TAILOROK." WHERE id=".$c["id"].";");
-    mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='Scantailor step 6 done';");
+    mq("INSERT INTO booklog SET book=".$c["id"].", type=1, message='Scantailor step 6 done';");
   } else {
     mq("UPDATE books SET status=".STATUS_UNKNOWN." WHERE id=".$c["id"].";");
     mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='ERROR DOING Scantailor step 6';");
@@ -89,7 +89,7 @@ if ($c) {
   
   if (ocr_djvu_pdf($c)) {
     mq("UPDATE books SET status=".STATUS_PROOFREADING." WHERE id=".$c["id"].";");
-    mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='OCR, DJVU, PDF done';");
+    mq("INSERT INTO booklog SET book=".$c["id"].", type=1, message='OCR, DJVU, PDF done';");
   } else {
     mq("UPDATE books SET status=".STATUS_UNKNOWN." WHERE id=".$c["id"].";");
     mq("INSERT INTO booklog SET book=".$c["id"].", type=2, message='ERROR DOING OCR-DJVU-PDF';");

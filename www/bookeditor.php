@@ -36,7 +36,7 @@ if (!isset($_REQUEST["offset"])) {
   $offset=intval($_REQUEST["offset"]);
 }
 
-if ($count<=0 || $count>1000) $count=100;
+if ($count<=0 || $count>1000) $count=1000;
 if ($offset<0) $offset=0;
 
 if (!$_SESSION["id"]) {
