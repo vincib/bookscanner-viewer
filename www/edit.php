@@ -209,7 +209,7 @@ if ($book["status"] == STATUS_WAITUSERTAILOR) {  $changeto=STATUS_USEROKTAILOR6;
 
 echo "<p>";
 if ($book["status"] == STATUS_WAITUSERTAILOR) {
-  if ($_SERVER["REMOTE_ADDR"]=="127.0.0.1") {
+  if ($_SERVER["REMOTE_ADDR"]=="127.0.0.1" || $_SERVER["REMOTE_ADDR"]==$MYIP) {
     echo "<p><a href=\"#\" onclick=\"$.ajax('launch-scantailor.php?id=".$book["id"]."'); return false;\"><img src=\"/assets/img/scantailor.png\"> "._("Launch Scantailor to check the pages")."</a></p>";
   }
 }

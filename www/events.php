@@ -42,13 +42,14 @@ echo mysql_error();
 <tr>
 	<td><?php echo date_my2fr($c["ts"],true); ?></td>
 	<td><?php echo $abltype[$c["type"]]; ?></td>
-	<td><?php 
+	<td><a href="/edit?id=<?php echo $c["book"]; ?>"><?php 
+
 						   if ($c["title"]) {
 						     echo $c["title"];
 						       } else {
 						     echo "<i>".$c["projectname"]."</i>";
 						   }
-?></td>
+?></a></td>
 	<td><?php echo $c["message"]; ?></td>
 </tr>
 	<?php } ?>
