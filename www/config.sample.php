@@ -15,3 +15,8 @@ define("THUMBNAILS_URL","/thumbs");
 define("SECRET_CODE","123345647854");
 define("DELETE_LOG","/tr2/bookscanner/delete.log");
 define("DELETE_BIN","/tr2/bookscanner/.trash");
+
+// can be either "spreads" or "leftright"
+// defaults to leftright
+//define("SCANTAILOR_GENERATOR_MODE","spreads");
+define("SCANTAILOR_GENERATOR_MODE","leftright");
