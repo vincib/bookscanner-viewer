@@ -106,7 +106,7 @@ function scanproject($project) {
     $attribs=@json_decode($data["attribs"],true);
   }
   // metadata changed ?
-  if ($data["meta_ts"]<filemtime($root."meta.json")) {
+  if ($data["meta_ts"]<@filemtime($root."meta.json")) {
     if (!$created) booklog($data["id"],BOOKLOG_BOTINFO,"Metadata changed and indexed");
     $meta=json_decode(file_get_contents($root."meta.json"),true);
 

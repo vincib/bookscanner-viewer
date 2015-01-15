@@ -29,13 +29,14 @@ If you want to be able to do image enhancement, please install the latest Scanta
 On Debian, you may need to use the backport version or our private repository at http://debian.octopuce.fr/octopuce/
 (on Debian: # aptitude install scantailor )
 
-If you want to be able to do PDF image generation, please install ImageMagick and pdftk
+If you want to be able to do PDF image generation, please install ImageMagick and pdftk and libjpeg-progs
 (on Debian: # aptitude install imagemagick pdftk )
 
 If you want to be able to pass the images through the OCR process, please install tesseract
 (on Debian: # aptitude install tesseract-ocr tesseract-ocr-fra tesseract-ocr-reng tesseract-ocr-deu )
 
-
+for DJVU generation, you'll need djvubind.
+git clone https://github.com/strider1551/djvubind.git
 
 
 

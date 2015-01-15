@@ -20,3 +20,6 @@ define("DELETE_BIN","/tr2/bookscanner/.trash");
 // defaults to leftright
 //define("SCANTAILOR_GENERATOR_MODE","spreads");
 define("SCANTAILOR_GENERATOR_MODE","leftright");
+// X11 display where we launch scantailor?
+define("DISPLAY","DISPLAY=:1.0");
+

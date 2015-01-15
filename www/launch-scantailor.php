@@ -11,7 +11,7 @@ $id=intval($_REQUEST["id"]);
 
 $book=mqone("SELECT projectname FROM books WHERE id=".$id.";");
 if ($book) {
-  putenv("DISPLAY=:2.0");
+  if (defined("DISPLAY")) {  putenv(DISPLAY); }
   putenv("HOME=/home/bookscanner");
   exec("nohup scantailor ".escapeshellarg(PROJECT_ROOT."/".$book["projectname"]."/".$book["projectname"]."_5.scantailor")." 0<&- &>/dev/null &");
 }
